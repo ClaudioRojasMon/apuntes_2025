@@ -1,0 +1,49 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Inteligencia Artificial
+  - numbered: true
+    chapters:
+    - file: ¿Qué es la Inteligencia Artificial?
+    - file: ¿Qué es la Inteligencia Artificial fuerte y débil?
+    - file: ¿Qué es la Inteligencia Artificial Generativa?
+    - file: Ejemplos de Uso de la Inteligencia Artificial
+    - file: Prácticas de Uso
+    - file: Práctica
+  - caption: Introducción a Python
+    numbered: true
+    chapters:
+    - file: Conceptos Basicos
+    - file: Python Básico
+    - file: Practica I
+    - file: Metodos
+    - file: Practica II
+    - file: Operadores
+  - caption: Análisis y Visualización de Datos
+    numbered: true
+    chapters:
+    - file: Visualización
+    - file: Bases de Datos
+    - file: Graficos
+    - file: Practica III
+    - file: Mapa I
+    - file: Mapa II
+    - file: Practica IV
+  - caption: Análisis y visualización de Textos
+    numbered: true
+    chapters:
+    - file: Introducción a NLP I
+    - file: Introducción a NLP II
+    - file: Introducción a NLP III
+    - file: Practica V
+    - file: Introducción a NLP IV
+    - file: Introducción a NLP V
+    - file: Practica VI
+  - caption: Referencias
+    numbered: true
+    chapters:
+    - file: Bib
+    - file: glossary
