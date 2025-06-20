@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 
-file: jb-book
+format: jb-book
 root: intro.md  # Agrega el archivo principal de tu libro aquí, que puede ser un archivo .md o .ipynb
 
 parts:
