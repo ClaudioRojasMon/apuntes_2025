@@ -10,13 +10,15 @@ jobs:
   deploy-book:
     runs-on: ubuntu-latest
     permissions:
-      contents: read      # permite leer contenido del repo
-      pages: write        # permite escribir en GitHub Pages
-      id-token: write     # necesario para OIDC deployments
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v4
@@ -33,17 +35,15 @@ jobs:
           path: _build/.jupyter_cache
           key: jupyter-book-cache-${{ hashFiles('requirements.txt') }}
 
-      - name: Build the Jupyter Book
+      - name: Build the book
         run: |
           jupyter-book build .
 
       - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v2  # ✅ v2 es la última versión disponible
+        uses: actions/upload-pages-artifact@v2
         with:
           path: "_build/html"
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4  # ✅ usa v4 para deploy
-        with:
-          # aquí puedes agregar configuración si la requieres
+        uses: actions/deploy-pages@v2
