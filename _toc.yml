@@ -1,8 +1,5 @@
-# Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
-
 format: jb-book
-root: intro.md  # Agrega el archivo principal de tu libro aquí, que puede ser un archivo .md o .ipynb
+root: intro.md
 
 parts:
   - caption: Inteligencia Artificial
@@ -11,3 +8,12 @@ parts:
       - file: Inteligencia Artificial I
       - file: Inteligencia Artificial II
       - file: Inteligencia Artificial III
+  - caption: Programación Básica
+    numbered: true
+    chapters:
+      - file: Markdown II
+      - file: notebooks
+  - caption: Recursos
+    numbered: true
+    chapters:
+      - file: Bibliografía
