@@ -1,4 +1,4 @@
-# Programando la Historia: Curso de Tecnología II° Medio
+# Programando la Historia.
 
 <div align="center">"La tecnología es mejor cuando acerca a las personas" - Matt Mullenweg</div>
 
@@ -39,38 +39,19 @@ Ejemplos de lo que encontrarás:
 📖 **Contenidos del Curso**
 🤖 Bloque I: Inteligencia Artificial
 
-Unidad 1: Fundamentos de IA
-
-- ¿Qué es la Inteligencia Artificial?
+  - Definición de Inteligencia Artificial.
   - Desde Turing hasta ChatGPT: una breve historia
   - Mitos vs. Realidad: ¿La IA nos reemplazará?
-
-- IA Generativa: La revolución actual
   - Diferencias entre IA tradicional e IA Generativa
-  - Casos de uso: texto, imágenes, código, música
-
-Unidad 2: IA en la Práctica
-
-- Herramientas de IA Generativa
   - ChatGPT, Claude, Gemini: ¿cuándo usar cada uno?
   - Prompting efectivo: el arte de "conversar" con la IA
-  - Ejemplos prácticos con personajes históricos
-
-- IA en tu vida cotidiana
-  - Aplicaciones que ya usas sin darte cuenta
-  - Cómo la IA puede ayudarte en tus estudios
   - Proyectos estudiantiles potenciados por IA
-
-Unidad 3: Reflexión Crítica
-
-- Ética y responsabilidad en el uso de IA
   - Sesgos algorítmicos: el caso de los sistemas de justicia
   - Desinformación y deepfakes
   - Privacidad y datos personales
-
-- El futuro del trabajo y la educación
-  - ¿Qué empleos surgirán? ¿Cuáles desaparecerán?
-  - Cómo prepararse para un mundo con IA
+   - Aplicaciones que ya usas sin darte cuenta
+  - Cómo la IA puede ayudarte en tus estudios
+ 
 
 💻 Bloque II: Programación y Análisis de Datos
 

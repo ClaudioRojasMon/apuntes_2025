@@ -1,6 +1,5 @@
 format: jb-book
 root: intro.md
-
 parts:
   - caption: Inteligencia Artificial
     numbered: true
@@ -8,11 +7,15 @@ parts:
       - file: Inteligencia Artificial I
       - file: Inteligencia Artificial II
       - file: Inteligencia Artificial III
+      - file: Mitos y Realidades
+      - file: Mitos y Realidades II
+      - file: Eleccion de IA 
+      - file: Herramientas para la IA Generativa
+      - file: Prompt
   - caption: Programación Básica
     numbered: true
     chapters:
       - file: Markdown II
-      - file: notebooks
   - caption: Recursos
     numbered: true
     chapters:
