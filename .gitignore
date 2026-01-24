@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+.DS_Store
+.ipynb_checkpoints/
+_build/
+=======
 # Jupyter Notebook
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
@@ -8,3 +13,4 @@ _build/
 
 # macOS
 .DS_Store
+>>>>>>> a8467eaded92d713c607161dfd124fd31525ba6e
