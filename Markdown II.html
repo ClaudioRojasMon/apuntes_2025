@@ -1,0 +1,940 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>14. ¿Qué es Markdown? &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Markdown II';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="Bibliograf%C3%ADa.html" />
+    <link rel="prev" title="13. Proyectos Estudiantiles Potenciados por IA" href="Proyectos.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Original.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/Original.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Programando la Historia.
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Inteligencia Artificial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20I.html">1. ¿Qué es la Inteligencia Artificial?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20II.html">2. Algunos Hitos de la Inteligencia Artificial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20III.html">3. Inteligencia Artificial Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades.html">4. Mitos vs. Realidad: ¿La IA nos reemplazará?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades%20II.html">5. La IA Revolucionando la Investigación Histórica y la Educación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sesgos.html">6. Sesgos Algorítmicos: El uso de Compas en el Sistemas de Justicia de EEUU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deepfakes.html">7. Desinformación y Deepfakes en la Era Digital</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Datos.html">9. Privacidad y Datos Personales en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Elecci%C3%B3n%20de%20IA.html">10. ¿Cómo mejorar tus tareas escolares sin hacer trampa?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Herramientas%20para%20la%20IA%20Generativa.html">11. Herramientas de IA Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Prompt.html">12. Prompting Efectivo: El arte de “conversar” con la IA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyectos.html">13. Proyectos Estudiantiles Potenciados por IA</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Programación Básica</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">14. ¿Qué es Markdown?</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FMarkdown II.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Markdown II.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>¿Qué es Markdown?</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usa-solo-markdown-cuando-requieras">14.1. Usa solo Markdown cuando requieras:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#incorpora-html-cuando-necesites">14.2. Incorpora HTML cuando necesites:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alineacion-de-textos">14.3. Alineación de textos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-basicos-de-markdown">14.4. 📘 Ejemplos básicos de Markdown</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#negrita-y-cursiva">14.5. Negrita y cursiva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">14.6. Listas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#con-vinetas">14.6.1. Con viñetas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proceres-de-la-independencia-de-chile">14.6.2. Próceres de la Independencia de Chile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numeradas">14.6.3. Numeradas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#las-cruzadas-orden-cronologico">14.6.4. Las Cruzadas (orden cronológico)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-de-tareas-pendientes">14.6.5. Lista de tareas pendientes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conquistas-pendientes-de-alejandro-magno">14.6.6. Conquistas pendientes de Alejandro Magno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-anidadas">14.6.7. Lista anidadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imperios-por-epoca">14.6.8. Imperios por época</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citas">14.7. Citas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo">14.7.1. Código</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#en-linea">14.7.1.1. En línea</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enlaces-www-e-imagenes">14.7.2. Enlaces (WWW e Imagenes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas">14.7.3. Tablas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#separacion-de-parrafos">14.7.4. Separación de párrafos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#usar-una-linea-en-blanco-entre-parrafos">14.7.4.1. ✅  Usar una línea en blanco entre párrafos:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#usar-el-siguiente-comando-br-al-final-de-cada-parrafo-que-se-quiera-separar">14.7.4.2. ✅ Usar el siguiente comando <code class="docutils literal notranslate"><span class="pre">&lt;br&gt;</span></code> al final de cada párrafo que se quiera separar:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-basicos-de-markdown-con-emojis">14.7.5. 📘 Ejemplos básicos de Markdown con emojis:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-para-practicar-markdown">14.8. 🛠️ Herramientas para practicar Markdown</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#editores-online-ideales-para-comenzar">14.8.1. Editores online (ideales para comenzar)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-de-escritorio">14.8.2. Aplicaciones de escritorio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">14.8.3. Recursos adicionales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-practicar">14.9. Ejercicios para practicar.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recuerda">14.10. 💡 Recuerda:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recuerda-al-documentar-historia">14.11. 💡 Recuerda al documentar historia:</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="que-es-markdown">
+<h1><span class="section-number">14. </span>¿Qué es Markdown?<a class="headerlink" href="#que-es-markdown" title="Link to this heading">#</a></h1>
+<p align="justify">Es un lenguaje simple inventado por<b>John Gruber</b> en 2004 para escribir texto que se convierte en HTML bonito. Se usa en sitios como Reddit, GitHub y Jupyter Notebook.<p><div style="text-align: justify;">Además, fue desarrollado en colaboración con <b>Aaron Swartz</b>, y su principal ventaja es que el texto en Markdown es fácil de leer y escribir incluso sin renderizarlo, como si fuera texto plano.</div><div style="text-align: justify;"> Una vez que domines Markdown, podrás crear desde apuntes de clase hasta presentaciones y páginas web, todo escribiendo de forma natural. Es como tener un superpoder digital: escribes texto normal con algunos símbolos especiales, y automáticamente se transforma en algo visualmente atractivo y profesional.</div><section id="usa-solo-markdown-cuando-requieras">
+<h2><span class="section-number">14.1. </span>Usa solo Markdown cuando requieras:<a class="headerlink" href="#usa-solo-markdown-cuando-requieras" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>✅ Que el texto sea legible incluso sin renderizar.</p></li>
+<li><p>✅ Formato básico (negritas, cursivas, listas, enlaces simples).</p></li>
+<li><p>✅  Escribir en plataformas que solo soportan Markdown estándar.</p></li>
+<li><p>✅  Simplicidad y rapidez.</p></li>
+</ul>
+<p>💡 <strong>¿Qué es Renderizar?</strong>:</p>
+<ul class="simple">
+<li><p>Convertir el código Markdown en su versión visual final.</p></li>
+<li><p>Siempre debes revisar la “vista previa” (versión renderizada) antes de publicar, ya que diferentes plataformas pueden renderizar el mismo Markdown de forma levemente distinta.</p></li>
+</ul>
+</section>
+<section id="incorpora-html-cuando-necesites">
+<h2><span class="section-number">14.2. </span>Incorpora HTML cuando necesites:<a class="headerlink" href="#incorpora-html-cuando-necesites" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>✅  Alineación de texto específica: centrado, justificado, derecha.</p></li>
+<li><p>✅  Colores o tamaños de fuente personalizados.</p></li>
+<li><p>✅  Espaciado o márgenes específicos.</p></li>
+<li><p>✅  Tablas más complejas con celdas combinadas</p></li>
+<li><p>✅  Centrar imágenes o controlar su tamaño exacto</p></li>
+<li><p>✅  Markdown puro no pueda hacer lo que necesitas</p></li>
+<li><p>✅  Control visual más preciso sobre el diseño</p></li>
+</ul>
+</section>
+<section id="alineacion-de-textos">
+<h2><span class="section-number">14.3. </span>Alineación de textos<a class="headerlink" href="#alineacion-de-textos" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Texto alineado a la izquierda</strong>: Es el modelo por defecto.</p></li>
+</ul>
+<div style="text-align: left;">"Chile, fértil provincia y señalada en la región Antártica famosa de remotas naciones respetada por fuerte, principal y poderosa".</div>
+<ul class="simple">
+<li><p><strong>Texto centrado</strong>: Es útil para títulos o frases destacadas.</p></li>
+</ul>
+<div style="text-align: center;"><strong>"Chile, fértil provincia y señalada en la región Antártica famosa, de remotas naciones respetada por fuerte, principal y poderosa"</strong></div>
+<div style="text-align: center;">**"Chile, fértil provincia y señalada en la región Antártica famosa, de remotas naciones respetada por fuerte, principal y poderosa"**</div>
+<ul class="simple">
+<li><p><strong>Texto alineado a la derecha</strong>: Lo usamos con menos frecuencia.</p></li>
+</ul>
+<div style="text-align: right;">"Chile, fértil provincia y señalada <strong>en la región Antártica famosa</strong>, de remotas naciones respetada por fuerte, principal y poderosa".</div>
+<ul class="simple">
+<li><p><strong>Texto justificado</strong>: El texto se ajusta a ambos márgenes.</p></li>
+</ul>
+<div style="text-align: justify;">"Chile, fértil provincia y señalada <strong>en la región Antártica famosa</strong>, de remotas naciones respetada por fuerte, principal y poderosa, la gente que produce es tan granada, tan soberbia, gallarda y belicosa, que no ha sido por rey jamás regida ni a extranjero dominio sometida".</div></section>
+<section id="ejemplos-basicos-de-markdown">
+<h2><span class="section-number">14.4. </span>📘 Ejemplos básicos de Markdown<a class="headerlink" href="#ejemplos-basicos-de-markdown" title="Link to this heading">#</a></h2>
+</section>
+<section id="negrita-y-cursiva">
+<h2><span class="section-number">14.5. </span>Negrita y cursiva<a class="headerlink" href="#negrita-y-cursiva" title="Link to this heading">#</a></h2>
+<p><strong>Bernardo O’Higgins fue el Padre de la Patria chilena.</strong><br />
+<em>La Batalla de Maipú se libró el 5 de abril de 1818.</em><br />
+<em><strong>Simón Bolívar fue conocido como El Libertador.</strong></em><br />
+~~Octavio perdió en Actium~~ (fue Marco Antonio)</p>
+<p>Ejemplo en lista:</p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> Cruzar los Andes con el Ejército Libertador  ~~(San Martín lo logró en 1817)~~</p></li>
+</ul>
+</section>
+<section id="listas">
+<h2><span class="section-number">14.6. </span>Listas<a class="headerlink" href="#listas" title="Link to this heading">#</a></h2>
+<section id="con-vinetas">
+<h3><span class="section-number">14.6.1. </span>Con viñetas<a class="headerlink" href="#con-vinetas" title="Link to this heading">#</a></h3>
+</section>
+<section id="proceres-de-la-independencia-de-chile">
+<h3><span class="section-number">14.6.2. </span>Próceres de la Independencia de Chile<a class="headerlink" href="#proceres-de-la-independencia-de-chile" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Bernardo O’Higgins</p></li>
+<li><p>José de San Martín</p></li>
+</ul>
+<ul class="simple">
+<li><p>Manuel Rodríguez</p></li>
+<li><p>Javiera Carrera</p></li>
+</ul>
+</section>
+<section id="numeradas">
+<h3><span class="section-number">14.6.3. </span>Numeradas<a class="headerlink" href="#numeradas" title="Link to this heading">#</a></h3>
+</section>
+<section id="las-cruzadas-orden-cronologico">
+<h3><span class="section-number">14.6.4. </span>Las Cruzadas (orden cronológico)<a class="headerlink" href="#las-cruzadas-orden-cronologico" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Primera Cruzada (1096-1099)</p></li>
+<li><p>Segunda Cruzada (1147-1149)</p></li>
+<li><p>Tercera Cruzada (1189-1192)</p></li>
+</ol>
+</section>
+<section id="lista-de-tareas-pendientes">
+<h3><span class="section-number">14.6.5. </span>Lista de tareas pendientes<a class="headerlink" href="#lista-de-tareas-pendientes" title="Link to this heading">#</a></h3>
+</section>
+<section id="conquistas-pendientes-de-alejandro-magno">
+<h3><span class="section-number">14.6.6. </span>Conquistas pendientes de Alejandro Magno<a class="headerlink" href="#conquistas-pendientes-de-alejandro-magno" title="Link to this heading">#</a></h3>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> Conquistar el Imperio Persa</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Llegar hasta la India</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Conquistar Arabia (murió antes)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Invadir el oeste hacia Cartago</p></li>
+</ul>
+</section>
+<section id="lista-anidadas">
+<h3><span class="section-number">14.6.7. </span>Lista anidadas<a class="headerlink" href="#lista-anidadas" title="Link to this heading">#</a></h3>
+</section>
+<section id="imperios-por-epoca">
+<h3><span class="section-number">14.6.8. </span>Imperios por época<a class="headerlink" href="#imperios-por-epoca" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Mundo Antiguo</p>
+<ul>
+<li><p>Imperio Romano (27 a.C. - 476 d.C.)</p></li>
+<li><p>Imperio Chino Han (206 a.C. - 220 d.C.)</p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple">
+<li><p>Edad Media</p>
+<ol class="arabic simple">
+<li><p>Imperio Bizantino (330-1453)</p></li>
+<li><p>Imperio Carolingio (800-888)</p></li>
+</ol>
+</li>
+</ol>
+</section>
+</section>
+<section id="citas">
+<h2><span class="section-number">14.7. </span>Citas<a class="headerlink" href="#citas" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>“Alea iacta est” (La suerte está echada).</p>
+<ul class="simple">
+<li><p>Julio César al cruzar el Rubicón (49 a.C.).</p></li>
+</ul>
+</div></blockquote>
+<blockquote>
+<div><p>“Veni, vidi, vici” (Vine, vi, vencí).<br />
+Julio César tras la Batalla de Zela (47 a.C.).</p>
+</div></blockquote>
+<section id="codigo">
+<h3><span class="section-number">14.7.1. </span>Código<a class="headerlink" href="#codigo" title="Link to this heading">#</a></h3>
+<section id="en-linea">
+<h4><span class="section-number">14.7.1.1. </span>En línea<a class="headerlink" href="#en-linea" title="Link to this heading">#</a></h4>
+<p>Para ejecutar un comando escribe: <code class="docutils literal notranslate"><span class="pre">print(&quot;Hola&quot;)</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##### Bloques de código</span>
+<span class="c1">##### Esto es un bloque de código en Python</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Para recordar la caída de Constantinopla escribe: 29 de mayo de 1453&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Para recordar la caída de Constantinopla escribe: 29 de mayo de 1453
+Para recordar la caída de Constantinopla escribe: 29 de mayo de 1453
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="enlaces-www-e-imagenes">
+<h3><span class="section-number">14.7.2. </span>Enlaces (WWW e Imagenes)<a class="headerlink" href="#enlaces-www-e-imagenes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://youtube.com">YouTube</a></p></li>
+<li><p><a class="reference external" href="https://instagram.com">Instagram</a></p></li>
+<li><p><img alt="Chile" src="https://img.shields.io/badge/Chile-Independencia_1818-red?style=for-the-badge&amp;logo=chile&amp;logoColor=white" /></p></li>
+</ul>
+<ul class="simple">
+<li><p>Puedes centrarla con HTML: <p align="center"><img src="https://img.shields.io/badge/Chile-Independencia_1818-red?style=for-the-badge&logo=chile&logoColor=white" alt="Roma" width="200"></p></p></li>
+</ul>
+</section>
+<section id="tablas">
+<h3><span class="section-number">14.7.3. </span>Tablas<a class="headerlink" href="#tablas" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Faraón</p></th>
+<th class="head"><p>Dinastía</p></th>
+<th class="head"><p>Año de Reinado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Narmer</p></td>
+<td><p>I</p></td>
+<td><p>3100 a.C.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Keops</p></td>
+<td><p>IV</p></td>
+<td><p>2589-2566 a.C.</p></td>
+</tr>
+<tr class="row-even"><td><p>Tutankamón</p></td>
+<td><p>XVIII</p></td>
+<td><p>1332-1323 a.C.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Presidente</p></th>
+<th class="head"><p>Periodo</p></th>
+<th class="head"><p>Partido</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Arturo Alessandri</p></td>
+<td><p>1920-1925</p></td>
+<td><p>Liberal</p></td>
+</tr>
+<tr class="row-odd"><td><p>Patricio Aylwin</p></td>
+<td><p>1990 - 1994</p></td>
+<td><p>Democracia Cristiana</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Batalla</p></th>
+<th class="head text-center"><p>Año</p></th>
+<th class="head text-center"><p>Ganador</p></th>
+<th class="head text-right"><p>Consecuencia</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Maratón</p></td>
+<td class="text-center"><p>490 a.C</p></td>
+<td class="text-center"><p>Atenas</p></td>
+<td class="text-right"><p>Salvo a Grecia</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Hastings</p></td>
+<td class="text-center"><p>1066</p></td>
+<td class="text-center"><p>Normandos</p></td>
+<td class="text-right"><p>Conquisto Inglaterra</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Waterloo</p></td>
+<td class="text-center"><p>1815</p></td>
+<td class="text-center"><p>Coalicion</p></td>
+<td class="text-right"><p>Fin de Napoleon</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="separacion-de-parrafos">
+<h3><span class="section-number">14.7.4. </span>Separación de párrafos<a class="headerlink" href="#separacion-de-parrafos" title="Link to this heading">#</a></h3>
+<p>👎 <strong>Al no separar queda todo junto</strong>:
+Al no separar queda todo junto:
+La Revolución Francesa comenzó en 1789.
+Napoleón tomó el poder en 1799.
+Fue derrotado en Waterloo en 1815.</p>
+<section id="usar-una-linea-en-blanco-entre-parrafos">
+<h4><span class="section-number">14.7.4.1. </span>✅  Usar una línea en blanco entre párrafos:<a class="headerlink" href="#usar-una-linea-en-blanco-entre-parrafos" title="Link to this heading">#</a></h4>
+<p>La Revolución Francesa comenzó en 1789.</p>
+<p>Napoleón tomó el poder en 1799.</p>
+<p>Fue derrotado en Waterloo en 1815.</p>
+</section>
+<section id="usar-el-siguiente-comando-br-al-final-de-cada-parrafo-que-se-quiera-separar">
+<h4><span class="section-number">14.7.4.2. </span>✅ Usar el siguiente comando <code class="docutils literal notranslate"><span class="pre">&lt;br&gt;</span></code> al final de cada párrafo que se quiera separar:<a class="headerlink" href="#usar-el-siguiente-comando-br-al-final-de-cada-parrafo-que-se-quiera-separar" title="Link to this heading">#</a></h4>
+<p>La Revolución Francesa comenzó en 1789.<br>Napoleón tomó el poder en 1799.<br> Fue derrotado en Waterloo en 1815..</p>
+</section>
+</section>
+<section id="ejemplos-basicos-de-markdown-con-emojis">
+<h3><span class="section-number">14.7.5. </span>📘 Ejemplos básicos de Markdown con emojis:<a class="headerlink" href="#ejemplos-basicos-de-markdown-con-emojis" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>⚔️ Guerras: 🏛️ Roma vs 🐘 Cartago.</p></li>
+<li><p>👑 En títulos: # Los Reyes Católicos 👑</p></li>
+<li><p>🔍 🔍 Busca símbolos históricos en  👉 <a class="reference external" href="https://emojipedia.org">emojipedia</a>
+✅</p></li>
+</ul>
+</section>
+</section>
+<section id="herramientas-para-practicar-markdown">
+<h2><span class="section-number">14.8. </span>🛠️ Herramientas para practicar Markdown<a class="headerlink" href="#herramientas-para-practicar-markdown" title="Link to this heading">#</a></h2>
+<section id="editores-online-ideales-para-comenzar">
+<h3><span class="section-number">14.8.1. </span>Editores online (ideales para comenzar)<a class="headerlink" href="#editores-online-ideales-para-comenzar" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>💻 <a class="reference external" href="https://dillinger.io">Dillinger.io</a>- Editor simple con vista previa en tiempo real</p></li>
+<li><p>💻 <a class="reference external" href="https://stackedit.io">StackEdit</a>-  Más avanzado, guarda en la nube</p></li>
+<li><p>💻 <a class="reference external" href="https://markdownlivepreview.com">Markdown Live Preview</a> - Súper simple para práctica rápida</p></li>
+</ul>
+</section>
+<section id="aplicaciones-de-escritorio">
+<h3><span class="section-number">14.8.2. </span>Aplicaciones de escritorio<a class="headerlink" href="#aplicaciones-de-escritorio" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>💻 <a class="reference external" href="https://typora.io/#feature">Typora</a>  Editor WYSIWYG (lo que ves es lo que obtienes)</p></li>
+<li><p>💻 <a class="reference external" href="https://marktext.app">Mark Text </a> - Gratuito y de código abierto</p></li>
+<li><p>💻 <a class="reference external" href="https://obsidian.md">Obsidian</a> - Para tomar notas con Markdown</p></li>
+</ul>
+</section>
+<section id="recursos-adicionales">
+<h3><span class="section-number">14.8.3. </span>Recursos adicionales<a class="headerlink" href="#recursos-adicionales" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>🔗 <a class="reference external" href="https://www.markdownguide.org">Markdown Guide</a>: Referencia completa</p></li>
+<li><p>⚙️ <a class="reference external" href="https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax">GitHub Flavored Markdown</a>: Variante de GitHub</p></li>
+<li><p>📜  <a class="reference external" href="https://commonmark.org">CommonMark</a>: Especificación estándar</p></li>
+</ul>
+</section>
+</section>
+<section id="ejercicios-para-practicar">
+<h2><span class="section-number">14.9. </span>Ejercicios para practicar.<a class="headerlink" href="#ejercicios-para-practicar" title="Link to this heading">#</a></h2>
+<p>Elige dos de estas opciones y profundiza en el uso de markdown.</p>
+<ul class="simple">
+<li><p>🏛️ Civilización antigua: Egipto, Roma, Grecia. Usa títulos, tablas de faraones/emperadores, enlaces a museos..</p></li>
+<li><p>⚔️ Batalla histórica: Describe Maipú, Waterloo, Stalingrado. Practica con mapas, cronologías, listas de consecuencias..</p></li>
+<li><p>👑 Biografía de personaje: Napoleón, Cleopatra, O’Higgins. Usa citas famosas, líneas de tiempo, imágenes.</p></li>
+<li><p>🗺️ Línea de tiempo: Guerra del Pacífico, Revolución Francesa, Caída del Imperio Romano.</p></li>
+<li><p>🎭 Historia alternativa: “¿Qué habría pasado si…?”</p>
+<ul>
+<li><p>Julio César no cruzara el Rubicón</p></li>
+<li><p>Napoleón ganara en Waterloo</p></li>
+<li><p>Los aztecas hubieran tenido caballos</p></li>
+</ul>
+</li>
+<li><p>🏛️ Comparación de imperios: Romano vs Chino Han, Inca vs Azteca.</p></li>
+<li><p>📚 Reseña de libro histórico: “Los Miserables”, “Guerra y Paz”, “Yo, Claudio”</p></li>
+</ul>
+</section>
+<section id="recuerda">
+<h2><span class="section-number">14.10. </span>💡 Recuerda:<a class="headerlink" href="#recuerda" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>👀 Siempre revisa cómo se ve tu Markdown renderizado.</p></li>
+<li><p>📏 Los espacios y saltos de línea son importantes.</p></li>
+<li><p>⚠️ Lo que escribes no siempre es lo que obtienes.</p></li>
+<li><p>💪 Empieza con alguno de los proyectos antes mencionados en lugar de solo hacer ejercicios.¡Aprenderás mucho más rápido!</p></li>
+</ul>
+</section>
+<section id="recuerda-al-documentar-historia">
+<h2><span class="section-number">14.11. </span>💡 Recuerda al documentar historia:<a class="headerlink" href="#recuerda-al-documentar-historia" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>👀 Siempre cita tus fuentes históricas</p></li>
+<li><p>📅 Las fechas y cronologías son cruciales</p></li>
+<li><p>⚠️ Distingue entre hechos verificados e hipótesis</p></li>
+<li><p>💪 Empieza con períodos que te apasionen: ¡aprenderás mucho más rápido!</p></li>
+<li><p>🔍 Usa fuentes primarias cuando sea posible</p></li>
+<li><p>🌍 Considera múltiples perspectivas culturales de los eventos</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Proyectos.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">13. </span>Proyectos Estudiantiles Potenciados por IA</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Bibliograf%C3%ADa.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usa-solo-markdown-cuando-requieras">14.1. Usa solo Markdown cuando requieras:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#incorpora-html-cuando-necesites">14.2. Incorpora HTML cuando necesites:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alineacion-de-textos">14.3. Alineación de textos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-basicos-de-markdown">14.4. 📘 Ejemplos básicos de Markdown</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#negrita-y-cursiva">14.5. Negrita y cursiva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">14.6. Listas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#con-vinetas">14.6.1. Con viñetas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proceres-de-la-independencia-de-chile">14.6.2. Próceres de la Independencia de Chile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numeradas">14.6.3. Numeradas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#las-cruzadas-orden-cronologico">14.6.4. Las Cruzadas (orden cronológico)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-de-tareas-pendientes">14.6.5. Lista de tareas pendientes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conquistas-pendientes-de-alejandro-magno">14.6.6. Conquistas pendientes de Alejandro Magno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-anidadas">14.6.7. Lista anidadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imperios-por-epoca">14.6.8. Imperios por época</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citas">14.7. Citas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo">14.7.1. Código</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#en-linea">14.7.1.1. En línea</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enlaces-www-e-imagenes">14.7.2. Enlaces (WWW e Imagenes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas">14.7.3. Tablas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#separacion-de-parrafos">14.7.4. Separación de párrafos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#usar-una-linea-en-blanco-entre-parrafos">14.7.4.1. ✅  Usar una línea en blanco entre párrafos:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#usar-el-siguiente-comando-br-al-final-de-cada-parrafo-que-se-quiera-separar">14.7.4.2. ✅ Usar el siguiente comando <code class="docutils literal notranslate"><span class="pre">&lt;br&gt;</span></code> al final de cada párrafo que se quiera separar:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-basicos-de-markdown-con-emojis">14.7.5. 📘 Ejemplos básicos de Markdown con emojis:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-para-practicar-markdown">14.8. 🛠️ Herramientas para practicar Markdown</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#editores-online-ideales-para-comenzar">14.8.1. Editores online (ideales para comenzar)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-de-escritorio">14.8.2. Aplicaciones de escritorio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">14.8.3. Recursos adicionales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-practicar">14.9. Ejercicios para practicar.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recuerda">14.10. 💡 Recuerda:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recuerda-al-documentar-historia">14.11. 💡 Recuerda al documentar historia:</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Claudio Rojas Monsalves
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
