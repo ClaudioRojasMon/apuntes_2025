@@ -9,9 +9,13 @@ parts:
       - file: Inteligencia Artificial III
       - file: Mitos y Realidades
       - file: Mitos y Realidades II
+      - file: Sesgos
+      - file: Deepfakes
+      - file: Datos
       - file: Elección de IA
       - file: Herramientas para la IA Generativa
-      - file: Prompt
+      - file: Prompt     
+      - file: Proyectos
   - caption: Programación Básica
     numbered: true
     chapters:
