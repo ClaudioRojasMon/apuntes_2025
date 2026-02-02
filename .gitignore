@@ -14,3 +14,4 @@ _build/
 # macOS
 .DS_Store
 >>>>>>> a8467eaded92d713c607161dfd124fd31525ba6e
+.ipynb_checkpoints/

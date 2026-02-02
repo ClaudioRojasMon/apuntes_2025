@@ -1,5 +1,5 @@
 format: jb-book
-root: intro.md
+root: intro
 parts:
   - caption: Inteligencia Artificial
     numbered: true
@@ -14,13 +14,11 @@ parts:
       - file: Datos
       - file: Elección de IA
       - file: Herramientas para la IA Generativa
-      - file: Prompt     
+      - file: Prompt
       - file: Proyectos
   - caption: Programación Básica
     numbered: true
     chapters:
-      - file: Markdown II
-  - caption: Recursos
-    numbered: true
-    chapters:
-      - file: Bibliografía
+      - file: Markdown_II_final
+      - file: Google_Sheets_Formulas
+      - file: Mini_Dashboard_Crisis
