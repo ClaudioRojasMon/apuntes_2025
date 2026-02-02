@@ -1,0 +1,1216 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>16. Mini Dashboard de Crisis Históricas &#8212; Programando la Historia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Mini_Dashboard_Crisis';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="15. Fórmulas Básicas en Google Sheets" href="Google_Sheets_Formulas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Original.png" class="logo__image only-light" alt="Programando la Historia - Home"/>
+    <script>document.write(`<img src="_static/Original.png" class="logo__image only-dark" alt="Programando la Historia - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Programando la Historia.
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Inteligencia Artificial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20I.html">1. ¿Qué es la Inteligencia Artificial?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20II.html">2. Historia de la Inteligencia Artificial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20III.html">3. Inteligencia Artificial Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades.html">4. Mitos vs. Realidad: ¿La IA nos reemplazará?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades%20II.html">5. La IA Revolucionando la Investigación Histórica y la Educación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sesgos.html">6. Sesgos Algorítmicos: El uso de Compas en el Sistemas de Justicia de EEUU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deepfakes.html">7. Desinformación y Deepfakes en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datos.html">8. Privacidad y Datos Personales en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Elecci%C3%B3n%20de%20IA.html">9. ¿Cómo mejorar tus tareas escolares sin hacer trampa?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Herramientas%20para%20la%20IA%20Generativa.html">10. Herramientas de IA Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Prompt.html">11. Prompting Efectivo: El arte de “conversar” con la IA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyectos.html">12. Proyectos Estudiantiles Potenciados por IA</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Programación Básica</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Markdown_II_final.html">13. ¿Qué es Markdown?</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Google_Sheets_Formulas.html">15. Fórmulas Básicas en Google Sheets</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Mini Dashboard de Crisis Históricas</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ClaudioRojasMon/apuntes_2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ClaudioRojasMon/apuntes_2025/issues/new?title=Issue%20on%20page%20%2FMini_Dashboard_Crisis.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Mini_Dashboard_Crisis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Mini Dashboard de Crisis Históricas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">16.1. 🎯 Objetivos de aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recordatorio-el-dataset">16.2. 📊 Recordatorio: El Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-crear-una-nueva-hoja">16.3. 📝 Paso 1: Crear una nueva hoja</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-disenar-la-estructura">16.4. 📐 Paso 2: Diseñar la estructura</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-titulo-fila-1">16.4.1. Sección de título (fila 1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-estadisticas-generales-filas-3-8">16.4.2. Sección de estadísticas generales (filas 3-8)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-analisis-por-tipo-filas-10-15">16.4.3. Sección de análisis por tipo (filas 10-15)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-porcentajes-filas-17-22">16.4.4. Sección de porcentajes (filas 17-22)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-agregar-las-formulas">16.5. 🔢 Paso 3: Agregar las fórmulas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-estadisticas-generales">16.5.1. 📊 Fórmulas para Estadísticas Generales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-analisis-por-tipo-de-crisis">16.5.2. 📈 Fórmulas para Análisis por Tipo de Crisis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-porcentajes">16.5.3. 📊 Fórmulas para Porcentajes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-aplicar-formato-visual-basico">16.6. 🎨 Paso 4: Aplicar formato visual básico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-principal-a1">16.6.1. Título principal (A1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#titulos-de-seccion-a3-a10-a17">16.6.2. Títulos de sección (A3, A10, A17)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#columna-de-valores-b">16.6.3. Columna de valores (B)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ancho-de-columnas">16.6.4. Ancho de columnas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-5-formato-condicional-colores-automaticos">16.7. 🚦 Paso 5: Formato condicional (colores automáticos)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-paso-a-paso">16.7.1. Configuración paso a paso:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-6-agregar-un-grafico">16.8. 📊 Paso 6: Agregar un gráfico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-el-grafico">16.8.1. Crear el gráfico:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativa-grafico-circular">16.8.2. Alternativa: Gráfico circular</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-esperado">16.9. ✅ Resultado esperado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extension-dashboard-avanzado">16.10. 🚀 Extensión: Dashboard Avanzado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-5-crisis-mas-severas">16.10.1. Top 5 crisis más severas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nombre-de-la-crisis-mas-severa">16.10.2. Nombre de la crisis más severa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparativo-que-es-mas-destructivo">16.10.3. Comparativo: ¿Qué es más destructivo?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">16.11. ✏️ Ejercicios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desafio-final-tu-pregunta-historica">16.12. 🏆 Desafío Final: Tu pregunta histórica</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="mini-dashboard-de-crisis-historicas">
+<h1><span class="section-number">16. </span>Mini Dashboard de Crisis Históricas<a class="headerlink" href="#mini-dashboard-de-crisis-historicas" title="Link to this heading">#</a></h1>
+<div style="text-align: justify;">
+Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerlas en práctica. En este capítulo crearás un <b>mini dashboard</b> que resume visualmente los datos más importantes del dataset de crisis históricas.
+</div>
+<div class="tip admonition">
+<p class="admonition-title">🎯 ¿Qué es un Dashboard?</p>
+<p>Un <strong>dashboard</strong> (o tablero de control) es una visualización que muestra los indicadores más importantes de un conjunto de datos en un solo lugar. Es como el tablero de un auto: de un vistazo ves velocidad, combustible y temperatura sin tener que revisar cada sistema por separado.</p>
+</div>
+<section id="objetivos-de-aprendizaje">
+<h2><span class="section-number">16.1. </span>🎯 Objetivos de aprendizaje<a class="headerlink" href="#objetivos-de-aprendizaje" title="Link to this heading">#</a></h2>
+<p>Al finalizar este capítulo serás capaz de:</p>
+<ul class="simple">
+<li><p>✅ Diseñar la estructura de un dashboard</p></li>
+<li><p>✅ Combinar múltiples fórmulas para obtener métricas</p></li>
+<li><p>✅ Aplicar formato condicional para visualizar datos</p></li>
+<li><p>✅ Crear gráficos básicos en Google Sheets</p></li>
+<li><p>✅ Comunicar información de forma clara y visual</p></li>
+</ul>
+</section>
+<section id="recordatorio-el-dataset">
+<h2><span class="section-number">16.2. </span>📊 Recordatorio: El Dataset<a class="headerlink" href="#recordatorio-el-dataset" title="Link to this heading">#</a></h2>
+<p>Seguiremos trabajando con el dataset del <strong>Seshat Databank</strong> que contiene 169 crisis históricas de diferentes civilizaciones.</p>
+<div class="warning admonition">
+<p class="admonition-title">⚠️ Cita Obligatoria</p>
+<p>Esta investigación empleó datos del <strong>Seshat Databank</strong> (<a class="reference external" href="https://seshatdatabank.info">seshatdatabank.info</a>) bajo la licencia Creative Commons Attribution Non-Commercial (CC By-NC SA).</p>
+<p><strong>Referencias:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://doi.org/10.21237/C7clio6127917">Turchin et al., 2015</a> - <em>“Seshat: El banco de datos de la historia global”</em>. Cliodinámica 6(1): 77-107.</p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1098/rstb.2022.0402">Hoyer et al., 2023</a> - <em>“Navegando por la policrisis”</em>. Transacciones filosóficas de la Royal Society B.</p></li>
+</ul>
+</div>
+<p><strong>Columnas clave que usaremos:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Columna</p></th>
+<th class="head"><p>Variable</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Polity.Name</span></code></p></td>
+<td><p>Nombre de la sociedad</p></td>
+</tr>
+<tr class="row-odd"><td><p>G</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">collapse</span></code></p></td>
+<td><p>¿Hubo colapso? (0/1)</p></td>
+</tr>
+<tr class="row-even"><td><p>H</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">epidemic</span></code></p></td>
+<td><p>¿Hubo epidemia? (0/1)</p></td>
+</tr>
+<tr class="row-odd"><td><p>L</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">civil.war</span></code></p></td>
+<td><p>¿Hubo guerra civil? (0/1)</p></td>
+</tr>
+<tr class="row-even"><td><p>P</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conquest</span></code></p></td>
+<td><p>¿Hubo conquista? (0/1)</p></td>
+</tr>
+<tr class="row-odd"><td><p>S</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Severity</span></code></p></td>
+<td><p>Índice de severidad (0-10)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="paso-1-crear-una-nueva-hoja">
+<h2><span class="section-number">16.3. </span>📝 Paso 1: Crear una nueva hoja<a class="headerlink" href="#paso-1-crear-una-nueva-hoja" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Abre tu archivo de Google Sheets con los datos de crisis</p></li>
+<li><p>En la parte inferior, haz clic en el <strong>+</strong> para agregar una nueva hoja</p></li>
+<li><p>Haz doble clic en el nombre de la hoja y renómbrala como <strong>“Dashboard”</strong></p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mantener el dashboard en una hoja separada te permite tener los datos “crudos” en una hoja y el resumen visual en otra. Es una buena práctica de organización.</p>
+</div>
+</section>
+<section id="paso-2-disenar-la-estructura">
+<h2><span class="section-number">16.4. </span>📐 Paso 2: Diseñar la estructura<a class="headerlink" href="#paso-2-disenar-la-estructura" title="Link to this heading">#</a></h2>
+<p>Copia esta estructura en tu hoja <strong>Dashboard</strong>. Escribe exactamente lo que aparece en cada celda:</p>
+<section id="seccion-de-titulo-fila-1">
+<h3><span class="section-number">16.4.1. </span>Sección de título (fila 1)<a class="headerlink" href="#seccion-de-titulo-fila-1" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Celda</p></th>
+<th class="head"><p>Escribe esto</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">📊</span> <span class="pre">DASHBOARD:</span> <span class="pre">Crisis</span> <span class="pre">Históricas</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="seccion-de-estadisticas-generales-filas-3-8">
+<h3><span class="section-number">16.4.2. </span>Sección de estadísticas generales (filas 3-8)<a class="headerlink" href="#seccion-de-estadisticas-generales-filas-3-8" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Celda</p></th>
+<th class="head"><p>Escribe esto</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ESTADÍSTICAS</span> <span class="pre">GENERALES</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>A5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Total</span> <span class="pre">de</span> <span class="pre">crisis</span> <span class="pre">registradas</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>A6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Promedio</span> <span class="pre">de</span> <span class="pre">severidad</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>A7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Severidad</span> <span class="pre">máxima</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>A8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Severidad</span> <span class="pre">mínima</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="seccion-de-analisis-por-tipo-filas-10-15">
+<h3><span class="section-number">16.4.3. </span>Sección de análisis por tipo (filas 10-15)<a class="headerlink" href="#seccion-de-analisis-por-tipo-filas-10-15" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Celda</p></th>
+<th class="head"><p>Escribe esto</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ANÁLISIS</span> <span class="pre">POR</span> <span class="pre">TIPO</span> <span class="pre">DE</span> <span class="pre">CRISIS</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>A12</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Crisis</span> <span class="pre">con</span> <span class="pre">epidemia</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>A13</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Crisis</span> <span class="pre">con</span> <span class="pre">guerra</span> <span class="pre">civil</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>A14</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Crisis</span> <span class="pre">con</span> <span class="pre">colapso</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>A15</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Crisis</span> <span class="pre">con</span> <span class="pre">conquista</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="seccion-de-porcentajes-filas-17-22">
+<h3><span class="section-number">16.4.4. </span>Sección de porcentajes (filas 17-22)<a class="headerlink" href="#seccion-de-porcentajes-filas-17-22" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Celda</p></th>
+<th class="head"><p>Escribe esto</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A17</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PORCENTAJES</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>A19</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">con</span> <span class="pre">epidemia</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>A20</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">con</span> <span class="pre">guerra</span> <span class="pre">civil</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>A21</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">con</span> <span class="pre">colapso</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>A22</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">con</span> <span class="pre">conquista</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="paso-3-agregar-las-formulas">
+<h2><span class="section-number">16.5. </span>🔢 Paso 3: Agregar las fórmulas<a class="headerlink" href="#paso-3-agregar-las-formulas" title="Link to this heading">#</a></h2>
+<p>Ahora viene lo importante: agregar las fórmulas en la <strong>columna B</strong> que calcularán automáticamente los valores.</p>
+<div class="warning admonition">
+<p class="admonition-title">⚠️ Importante: Nombre de la hoja de datos</p>
+<p>En las fórmulas uso <code class="docutils literal notranslate"><span class="pre">Datos_Crisis!</span></code> como nombre de la hoja donde están los datos. Si tu hoja tiene otro nombre (por ejemplo <code class="docutils literal notranslate"><span class="pre">Hoja1</span></code>), debes cambiarlo en cada fórmula.</p>
+<p>Ejemplo: <code class="docutils literal notranslate"><span class="pre">=COUNTA(Hoja1!A2:A170)</span></code> en vez de <code class="docutils literal notranslate"><span class="pre">=COUNTA(Datos_Crisis!A2:A170)</span></code></p>
+</div>
+<section id="formulas-para-estadisticas-generales">
+<h3><span class="section-number">16.5.1. </span>📊 Fórmulas para Estadísticas Generales<a class="headerlink" href="#formulas-para-estadisticas-generales" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Celda</p></th>
+<th class="head"><p>Fórmula</p></th>
+<th class="head"><p>Qué hace</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>B5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=COUNTA(Datos_Crisis!A2:A170)</span></code></p></td>
+<td><p>Cuenta el total de crisis</p></td>
+</tr>
+<tr class="row-odd"><td><p>B6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=ROUND(AVERAGE(Datos_Crisis!S2:S170),2)</span></code></p></td>
+<td><p>Promedio redondeado a 2 decimales</p></td>
+</tr>
+<tr class="row-even"><td><p>B7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=MAX(Datos_Crisis!S2:S170)</span></code></p></td>
+<td><p>El valor más alto de severidad</p></td>
+</tr>
+<tr class="row-odd"><td><p>B8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=MIN(Datos_Crisis!S2:S170)</span></code></p></td>
+<td><p>El valor más bajo de severidad</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>La función <code class="docutils literal notranslate"><span class="pre">ROUND(valor,</span> <span class="pre">decimales)</span></code> redondea un número. Usamos <code class="docutils literal notranslate"><span class="pre">ROUND(...,2)</span></code> para mostrar solo 2 decimales y que el dashboard se vea más limpio.</p>
+</div>
+</section>
+<section id="formulas-para-analisis-por-tipo-de-crisis">
+<h3><span class="section-number">16.5.2. </span>📈 Fórmulas para Análisis por Tipo de Crisis<a class="headerlink" href="#formulas-para-analisis-por-tipo-de-crisis" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Celda</p></th>
+<th class="head"><p>Fórmula</p></th>
+<th class="head"><p>Qué hace</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>B12</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=COUNTIF(Datos_Crisis!H2:H170,1)</span></code></p></td>
+<td><p>Cuenta crisis con epidemia</p></td>
+</tr>
+<tr class="row-odd"><td><p>B13</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=COUNTIF(Datos_Crisis!L2:L170,1)</span></code></p></td>
+<td><p>Cuenta crisis con guerra civil</p></td>
+</tr>
+<tr class="row-even"><td><p>B14</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=COUNTIF(Datos_Crisis!G2:G170,1)</span></code></p></td>
+<td><p>Cuenta crisis con colapso</p></td>
+</tr>
+<tr class="row-odd"><td><p>B15</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=COUNTIF(Datos_Crisis!P2:P170,1)</span></code></p></td>
+<td><p>Cuenta crisis con conquista</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Recuerda que en el dataset, <code class="docutils literal notranslate"><span class="pre">1</span></code> significa “sí ocurrió” y <code class="docutils literal notranslate"><span class="pre">0</span></code> significa “no ocurrió”. Por eso buscamos el valor <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+</div>
+</section>
+<section id="formulas-para-porcentajes">
+<h3><span class="section-number">16.5.3. </span>📊 Fórmulas para Porcentajes<a class="headerlink" href="#formulas-para-porcentajes" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Celda</p></th>
+<th class="head"><p>Fórmula</p></th>
+<th class="head"><p>Qué hace</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>B19</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=ROUND(B12/B5*100,1)&amp;&quot;%&quot;</span></code></p></td>
+<td><p>% de crisis con epidemia</p></td>
+</tr>
+<tr class="row-odd"><td><p>B20</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=ROUND(B13/B5*100,1)&amp;&quot;%&quot;</span></code></p></td>
+<td><p>% de crisis con guerra civil</p></td>
+</tr>
+<tr class="row-even"><td><p>B21</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=ROUND(B14/B5*100,1)&amp;&quot;%&quot;</span></code></p></td>
+<td><p>% de crisis con colapso</p></td>
+</tr>
+<tr class="row-odd"><td><p>B22</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=ROUND(B15/B5*100,1)&amp;&quot;%&quot;</span></code></p></td>
+<td><p>% de crisis con conquista</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>```{admonition} 💡 ¿Qué hace el símbolo <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>?
+:class: tip</p>
+<p>El símbolo <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> une (concatena) textos. En este caso:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ROUND(B12/B5*100,1)</span></code> calcula el porcentaje (ejemplo: <code class="docutils literal notranslate"><span class="pre">30.8</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&amp;&quot;%&quot;</span></code> le agrega el símbolo de porcentaje al final</p></li>
+<li><p>Resultado: <code class="docutils literal notranslate"><span class="pre">30.8%</span></code></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="paso-4-aplicar-formato-visual-basico">
+<h2><span class="section-number">16.6. </span>🎨 Paso 4: Aplicar formato visual básico<a class="headerlink" href="#paso-4-aplicar-formato-visual-basico" title="Link to this heading">#</a></h2>
+<p>Un buen dashboard no solo tiene datos correctos, también es <strong>fácil de leer</strong>. Aplica estos formatos:</p>
+<section id="titulo-principal-a1">
+<h3><span class="section-number">16.6.1. </span>Título principal (A1)<a class="headerlink" href="#titulo-principal-a1" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Selecciona la celda A1</p></li>
+<li><p>Pon el texto en <strong>negrita</strong> (Ctrl+B)</p></li>
+<li><p>Aumenta el tamaño de fuente a <strong>16 o 18</strong></p></li>
+<li><p>Cambia el color de fondo a un azul oscuro</p></li>
+<li><p>Cambia el color del texto a blanco</p></li>
+</ol>
+</section>
+<section id="titulos-de-seccion-a3-a10-a17">
+<h3><span class="section-number">16.6.2. </span>Títulos de sección (A3, A10, A17)<a class="headerlink" href="#titulos-de-seccion-a3-a10-a17" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Selecciona las celdas A3, A10 y A17</p></li>
+<li><p>Pon el texto en <strong>negrita</strong></p></li>
+<li><p>Aplica un color de fondo gris claro</p></li>
+</ol>
+</section>
+<section id="columna-de-valores-b">
+<h3><span class="section-number">16.6.3. </span>Columna de valores (B)<a class="headerlink" href="#columna-de-valores-b" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Selecciona B5:B22</p></li>
+<li><p>Alinea el texto a la <strong>derecha</strong></p></li>
+<li><p>Pon los números en <strong>negrita</strong></p></li>
+</ol>
+</section>
+<section id="ancho-de-columnas">
+<h3><span class="section-number">16.6.4. </span>Ancho de columnas<a class="headerlink" href="#ancho-de-columnas" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Haz doble clic en el borde entre las columnas A y B para ajustar automáticamente</p></li>
+<li><p>O arrastra para que la columna A tenga unos 250 píxeles de ancho</p></li>
+</ol>
+</section>
+</section>
+<section id="paso-5-formato-condicional-colores-automaticos">
+<h2><span class="section-number">16.7. </span>🚦 Paso 5: Formato condicional (colores automáticos)<a class="headerlink" href="#paso-5-formato-condicional-colores-automaticos" title="Link to this heading">#</a></h2>
+<p>El formato condicional cambia automáticamente el color de las celdas según su valor. Haremos que los porcentajes altos aparezcan en rojo (crisis frecuentes) y los bajos en verde (poco frecuentes).</p>
+<section id="configuracion-paso-a-paso">
+<h3><span class="section-number">16.7.1. </span>Configuración paso a paso:<a class="headerlink" href="#configuracion-paso-a-paso" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Selecciona las celdas <strong>B19:B22</strong> (los porcentajes)</p></li>
+<li><p>Ve a <strong>Formato</strong> → <strong>Formato condicional</strong></p></li>
+<li><p>Crea estas tres reglas:</p></li>
+</ol>
+<div class="danger admonition">
+<p class="admonition-title">Regla 1: Porcentaje alto (🔴 Rojo)</p>
+<ul class="simple">
+<li><p><strong>Aplicar a rango:</strong> B19:B22</p></li>
+<li><p><strong>Formato de celdas si:</strong> Fórmula personalizada</p></li>
+<li><p><strong>Fórmula:</strong> <code class="docutils literal notranslate"><span class="pre">=VALUE(SUBSTITUTE(B19,&quot;%&quot;,&quot;&quot;))&gt;40</span></code></p></li>
+<li><p><strong>Color de fondo:</strong> Rojo claro</p></li>
+</ul>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Regla 2: Porcentaje medio (🟡 Amarillo)</p>
+<ul class="simple">
+<li><p><strong>Aplicar a rango:</strong> B19:B22</p></li>
+<li><p><strong>Formato de celdas si:</strong> Fórmula personalizada</p></li>
+<li><p><strong>Fórmula:</strong> <code class="docutils literal notranslate"><span class="pre">=AND(VALUE(SUBSTITUTE(B19,&quot;%&quot;,&quot;&quot;))&gt;=20,VALUE(SUBSTITUTE(B19,&quot;%&quot;,&quot;&quot;))&lt;=40)</span></code></p></li>
+<li><p><strong>Color de fondo:</strong> Amarillo claro</p></li>
+</ul>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Regla 3: Porcentaje bajo (🟢 Verde)</p>
+<ul class="simple">
+<li><p><strong>Aplicar a rango:</strong> B19:B22</p></li>
+<li><p><strong>Formato de celdas si:</strong> Fórmula personalizada</p></li>
+<li><p><strong>Fórmula:</strong> <code class="docutils literal notranslate"><span class="pre">=VALUE(SUBSTITUTE(B19,&quot;%&quot;,&quot;&quot;))&lt;20</span></code></p></li>
+<li><p><strong>Color de fondo:</strong> Verde claro</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>¿Por qué usamos <code class="docutils literal notranslate"><span class="pre">VALUE(SUBSTITUTE(...))</span></code>?</strong></p>
+<p>Porque nuestros porcentajes son texto (“30.8%”), no números. La fórmula:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SUBSTITUTE(B19,&quot;%&quot;,&quot;&quot;)</span></code> quita el símbolo % → “30.8”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VALUE(...)</span></code> convierte el texto en número → 30.8</p></li>
+<li><p>Ahora sí podemos comparar: <code class="docutils literal notranslate"><span class="pre">30.8</span> <span class="pre">&gt;</span> <span class="pre">40</span></code> → Falso</p></li>
+</ol>
+</div>
+</section>
+</section>
+<section id="paso-6-agregar-un-grafico">
+<h2><span class="section-number">16.8. </span>📊 Paso 6: Agregar un gráfico<a class="headerlink" href="#paso-6-agregar-un-grafico" title="Link to this heading">#</a></h2>
+<p>Un gráfico hace que los datos sean más fáciles de entender de un vistazo.</p>
+<section id="crear-el-grafico">
+<h3><span class="section-number">16.8.1. </span>Crear el gráfico:<a class="headerlink" href="#crear-el-grafico" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Selecciona las celdas <strong>A12:B15</strong> (los tipos de crisis y sus cantidades)</p></li>
+<li><p>Ve a <strong>Insertar</strong> → <strong>Gráfico</strong></p></li>
+<li><p>En el panel lateral, elige <strong>Tipo de gráfico:</strong> Gráfico de barras horizontal</p></li>
+<li><p>En la pestaña <strong>Personalizar</strong>:</p>
+<ul class="simple">
+<li><p><strong>Título del gráfico:</strong> “Tipos de Crisis Históricas”</p></li>
+<li><p><strong>Color de las barras:</strong> Elige un color que combine con tu dashboard</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="alternativa-grafico-circular">
+<h3><span class="section-number">16.8.2. </span>Alternativa: Gráfico circular<a class="headerlink" href="#alternativa-grafico-circular" title="Link to this heading">#</a></h3>
+<p>Si prefieres ver las proporciones:</p>
+<ol class="arabic simple">
+<li><p>Selecciona <strong>A12:B15</strong></p></li>
+<li><p>Insertar → Gráfico → <strong>Gráfico circular</strong></p></li>
+<li><p>Activa la opción de mostrar porcentajes en las etiquetas</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Mueve el gráfico a la derecha de tu dashboard (columnas D-H) para que no tape las fórmulas.</p>
+</div>
+</section>
+</section>
+<section id="resultado-esperado">
+<h2><span class="section-number">16.9. </span>✅ Resultado esperado<a class="headerlink" href="#resultado-esperado" title="Link to this heading">#</a></h2>
+<p>Tu dashboard debería verse similar a esto:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>╔═══════════════════════════════════════════════════════════╗
+║  📊 DASHBOARD: Crisis Históricas                          ║
+╠═══════════════════════════════════════════════════════════╣
+║                                                           ║
+║  ESTADÍSTICAS GENERALES                                   ║
+║  ─────────────────────────────────────────                ║
+║  Total de crisis registradas          │  169              ║
+║  Promedio de severidad                │  3.45             ║
+║  Severidad máxima                     │  10               ║
+║  Severidad mínima                     │  0                ║
+║                                                           ║
+║  ANÁLISIS POR TIPO DE CRISIS                              ║
+║  ─────────────────────────────────────────                ║
+║  Crisis con epidemia                  │  52               ║
+║  Crisis con guerra civil              │  71               ║
+║  Crisis con colapso                   │  34               ║
+║  Crisis con conquista                 │  89               ║
+║                                                           ║
+║  PORCENTAJES                                              ║
+║  ─────────────────────────────────────────                ║
+║  % con epidemia                       │  30.8%  🟡        ║
+║  % con guerra civil                   │  42.0%  🔴        ║
+║  % con colapso                        │  20.1%  🟡        ║
+║  % con conquista                      │  52.7%  🔴        ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+</pre></div>
+</div>
+<div class="seealso admonition">
+<p class="admonition-title">🤔 ¿Qué nos dicen estos datos?</p>
+<p>Mirando el dashboard podemos hacer observaciones históricas interesantes:</p>
+<ul class="simple">
+<li><p><strong>La conquista externa</strong> fue el tipo de crisis más común (52.7%)</p></li>
+<li><p><strong>La guerra civil</strong> también fue muy frecuente (42%)</p></li>
+<li><p><strong>El colapso total</strong> fue relativamente raro (20.1%)</p></li>
+<li><p>Esto sugiere que las sociedades históricas resistían más a las amenazas internas que a las externas</p></li>
+</ul>
+</div>
+</section>
+<section id="extension-dashboard-avanzado">
+<h2><span class="section-number">16.10. </span>🚀 Extensión: Dashboard Avanzado<a class="headerlink" href="#extension-dashboard-avanzado" title="Link to this heading">#</a></h2>
+<p>Si terminaste y quieres ir más allá, agrega estas secciones adicionales:</p>
+<section id="top-5-crisis-mas-severas">
+<h3><span class="section-number">16.10.1. </span>Top 5 crisis más severas<a class="headerlink" href="#top-5-crisis-mas-severas" title="Link to this heading">#</a></h3>
+<p>Agrega en las celdas A24-A28:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Celda</p></th>
+<th class="head"><p>Texto</p></th>
+<th class="head"><p>Fórmula (columna B)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A24</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TOP</span> <span class="pre">5</span> <span class="pre">CRISIS</span> <span class="pre">MÁS</span> <span class="pre">SEVERAS</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>A25</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1°</span> <span class="pre">lugar</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=LARGE(Datos_Crisis!S2:S170,1)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>A26</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2°</span> <span class="pre">lugar</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=LARGE(Datos_Crisis!S2:S170,2)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>A27</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3°</span> <span class="pre">lugar</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=LARGE(Datos_Crisis!S2:S170,3)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>A28</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4°</span> <span class="pre">lugar</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=LARGE(Datos_Crisis!S2:S170,4)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>A29</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">5°</span> <span class="pre">lugar</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=LARGE(Datos_Crisis!S2:S170,5)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="nombre-de-la-crisis-mas-severa">
+<h3><span class="section-number">16.10.2. </span>Nombre de la crisis más severa<a class="headerlink" href="#nombre-de-la-crisis-mas-severa" title="Link to this heading">#</a></h3>
+<p>Esta fórmula avanzada busca el nombre de la crisis con mayor severidad:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>=INDEX(Datos_Crisis!A2:A170,MATCH(MAX(Datos_Crisis!S2:S170),Datos_Crisis!S2:S170,0))
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>¿Cómo funciona INDEX+MATCH?</strong></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MAX(S2:S170)</span></code> encuentra el valor máximo de severidad (ej: 10)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MATCH(...,S2:S170,0)</span></code> encuentra en qué fila está ese valor (ej: fila 45)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INDEX(A2:A170,...)</span></code> devuelve el nombre que está en esa fila</p></li>
+</ol>
+<p>Es como decir: “Busca el 10 en la columna S, dime en qué fila está, y luego dime qué nombre hay en esa misma fila de la columna A”</p>
+</div>
+</section>
+<section id="comparativo-que-es-mas-destructivo">
+<h3><span class="section-number">16.10.3. </span>Comparativo: ¿Qué es más destructivo?<a class="headerlink" href="#comparativo-que-es-mas-destructivo" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Celda</p></th>
+<th class="head"><p>Texto</p></th>
+<th class="head"><p>Fórmula</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A31</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">COMPARATIVO</span> <span class="pre">DE</span> <span class="pre">SEVERIDAD</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>A32</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Promedio</span> <span class="pre">CON</span> <span class="pre">epidemia</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=ROUND(AVERAGEIF(Datos_Crisis!H2:H170,1,Datos_Crisis!S2:S170),2)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>A33</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Promedio</span> <span class="pre">SIN</span> <span class="pre">epidemia</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=ROUND(AVERAGEIF(Datos_Crisis!H2:H170,0,Datos_Crisis!S2:S170),2)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="ejercicios">
+<h2><span class="section-number">16.11. </span>✏️ Ejercicios<a class="headerlink" href="#ejercicios" title="Link to this heading">#</a></h2>
+<div class="note admonition">
+<p class="admonition-title">Ejercicio 1: Amplía tu dashboard</p>
+<p>Agrega una nueva sección que muestre:</p>
+<ul class="simple">
+<li><p>Cantidad de crisis con <strong>fragmentación territorial</strong></p></li>
+<li><p>Cantidad de crisis con <strong>asesinato de líder</strong></p></li>
+<li><p>Sus respectivos porcentajes</p></li>
+</ul>
+<p>Pista: fragmentación está en columna N, asesinato en columna Q.</p>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Ejercicio 2: Nuevo gráfico</p>
+<p>Crea un segundo gráfico que compare:</p>
+<ul class="simple">
+<li><p>Promedio de severidad CON colapso vs SIN colapso</p></li>
+<li><p>Usa <code class="docutils literal notranslate"><span class="pre">AVERAGEIF</span></code> para calcular ambos valores</p></li>
+<li><p>Elige un gráfico de barras para la comparación</p></li>
+</ul>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Ejercicio 3: Formato condicional extra</p>
+<p>Aplica formato condicional a la celda de “Severidad máxima” (B7):</p>
+<ul class="simple">
+<li><p>Si es mayor a 8: fondo rojo</p></li>
+<li><p>Si está entre 5 y 8: fondo amarillo</p></li>
+<li><p>Si es menor a 5: fondo verde</p></li>
+</ul>
+</div>
+</section>
+<section id="desafio-final-tu-pregunta-historica">
+<h2><span class="section-number">16.12. </span>🏆 Desafío Final: Tu pregunta histórica<a class="headerlink" href="#desafio-final-tu-pregunta-historica" title="Link to this heading">#</a></h2>
+<p>Elige <strong>UNA</strong> de estas preguntas y respóndela agregando nuevas métricas a tu dashboard:</p>
+<div class="seealso admonition">
+<p class="admonition-title">Preguntas de investigación</p>
+<ol class="arabic simple">
+<li><p><strong>¿Las epidemias causan colapsos?</strong></p>
+<ul class="simple">
+<li><p>Cuenta cuántas crisis tienen AMBAS: epidemia Y colapso</p></li>
+<li><p>Pista: <code class="docutils literal notranslate"><span class="pre">=COUNTIFS(H2:H170,1,G2:G170,1)</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>¿Las guerras civiles son más destructivas que las conquistas?</strong></p>
+<ul class="simple">
+<li><p>Compara el promedio de severidad de cada tipo</p></li>
+<li><p>Muestra ambos en tu dashboard</p></li>
+</ul>
+</li>
+<li><p><strong>¿Cuántas crisis “perfectas” existen?</strong></p>
+<ul class="simple">
+<li><p>Una crisis “perfecta” tiene TODO: epidemia, guerra civil, colapso Y conquista</p></li>
+<li><p>Pista: <code class="docutils literal notranslate"><span class="pre">=COUNTIFS(H2:H170,1,L2:L170,1,G2:G170,1,P2:P170,1)</span></code></p></li>
+</ul>
+</li>
+</ol>
+</div>
+<p><strong>Entrega:</strong> Captura de pantalla de tu dashboard completo con la nueva métrica y una breve interpretación (2-3 oraciones) de lo que encontraste.</p>
+<div class="tip admonition">
+<p class="admonition-title">💡 Recuerda</p>
+<ul class="simple">
+<li><p>🎨 Un buen dashboard es <strong>claro y fácil de leer</strong></p></li>
+<li><p>🔢 Las fórmulas deben <strong>actualizarse automáticamente</strong> si cambian los datos</p></li>
+<li><p>🚦 El formato condicional ayuda a <strong>identificar patrones</strong> rápidamente</p></li>
+<li><p>📊 Los gráficos <strong>complementan</strong> los números, no los reemplazan</p></li>
+<li><p>🤔 Lo más importante es <strong>qué historia cuentan los datos</strong></p></li>
+</ul>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Google_Sheets_Formulas.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Fórmulas Básicas en Google Sheets</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">16.1. 🎯 Objetivos de aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recordatorio-el-dataset">16.2. 📊 Recordatorio: El Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-crear-una-nueva-hoja">16.3. 📝 Paso 1: Crear una nueva hoja</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-disenar-la-estructura">16.4. 📐 Paso 2: Diseñar la estructura</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-titulo-fila-1">16.4.1. Sección de título (fila 1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-estadisticas-generales-filas-3-8">16.4.2. Sección de estadísticas generales (filas 3-8)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-analisis-por-tipo-filas-10-15">16.4.3. Sección de análisis por tipo (filas 10-15)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-porcentajes-filas-17-22">16.4.4. Sección de porcentajes (filas 17-22)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-agregar-las-formulas">16.5. 🔢 Paso 3: Agregar las fórmulas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-estadisticas-generales">16.5.1. 📊 Fórmulas para Estadísticas Generales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-analisis-por-tipo-de-crisis">16.5.2. 📈 Fórmulas para Análisis por Tipo de Crisis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-porcentajes">16.5.3. 📊 Fórmulas para Porcentajes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-aplicar-formato-visual-basico">16.6. 🎨 Paso 4: Aplicar formato visual básico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-principal-a1">16.6.1. Título principal (A1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#titulos-de-seccion-a3-a10-a17">16.6.2. Títulos de sección (A3, A10, A17)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#columna-de-valores-b">16.6.3. Columna de valores (B)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ancho-de-columnas">16.6.4. Ancho de columnas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-5-formato-condicional-colores-automaticos">16.7. 🚦 Paso 5: Formato condicional (colores automáticos)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-paso-a-paso">16.7.1. Configuración paso a paso:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-6-agregar-un-grafico">16.8. 📊 Paso 6: Agregar un gráfico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-el-grafico">16.8.1. Crear el gráfico:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativa-grafico-circular">16.8.2. Alternativa: Gráfico circular</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-esperado">16.9. ✅ Resultado esperado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extension-dashboard-avanzado">16.10. 🚀 Extensión: Dashboard Avanzado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-5-crisis-mas-severas">16.10.1. Top 5 crisis más severas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nombre-de-la-crisis-mas-severa">16.10.2. Nombre de la crisis más severa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparativo-que-es-mas-destructivo">16.10.3. Comparativo: ¿Qué es más destructivo?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">16.11. ✏️ Ejercicios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desafio-final-tu-pregunta-historica">16.12. 🏆 Desafío Final: Tu pregunta histórica</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Claudio Rojas Monsalves
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
