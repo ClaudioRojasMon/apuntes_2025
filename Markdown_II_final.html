@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Markdown_II_final';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="15. Fórmulas Básicas en Google Sheets" href="Google_Sheets_Formulas.html" />
+    <link rel="next" title="14. Fórmulas Básicas en Google Sheets" href="Google_Sheets_Formulas.html" />
     <link rel="prev" title="12. Proyectos Estudiantiles Potenciados por IA" href="Proyectos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -195,9 +195,8 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programación Básica</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">13. ¿Qué es Markdown?</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="Google_Sheets_Formulas.html">15. Fórmulas Básicas en Google Sheets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Mini_Dashboard_Crisis.html">16. Mini Dashboard de Crisis Históricas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Google_Sheets_Formulas.html">14. Fórmulas Básicas en Google Sheets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mini_Dashboard_Crisis.html">15. Mini Dashboard de Crisis Históricas</a></li>
 </ul>
 
     </div>
@@ -393,83 +392,63 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">13. ¿Qué es Markdown?</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usa-solo-markdown-cuando-requieras">13.1. Usa solo Markdown cuando requieras:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#incorpora-html-cuando-necesites">13.2. Incorpora HTML cuando necesites:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alineacion-de-textos">13.3. Alineación de textos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-basicos-de-markdown">13.4. 📘 Ejemplos básicos de Markdown</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encabezados-titulos">13.4.1. Encabezados (Títulos)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#negrita-y-cursiva">13.4.2. Negrita y cursiva</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-historicos">13.4.2.1. Ejemplos históricos:</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">13.4.3. Listas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#con-vinetas">13.4.3.1. Con viñetas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#listas-numeradas">13.4.3.2. Listas numeradas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-de-tareas-checkboxes">13.4.3.3. Lista de tareas (checkboxes)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#listas-anidadas">13.4.3.4. Listas anidadas</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-nivel-1">14. Título nivel 1</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-nivel-2">14.1. Título nivel 2</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-nivel-3">14.1.1. Título nivel 3</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-nivel-4">14.1.1.1. Título nivel 4</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-nivel-5">14.1.1.1.1. Título nivel 5</a><ul class="nav section-nav flex-column">
-<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-nivel-6">14.1.1.1.1.1. Título nivel 6</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citas-blockquotes">13.4.4. Citas (blockquotes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lineas-horizontales">13.4.5. Líneas horizontales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo">13.4.6. Código</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-en-linea-inline">13.4.6.1. Código en línea (inline)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bloques-de-codigo">13.4.6.2. Bloques de código</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enlaces-e-imagenes">13.4.7. Enlaces e imágenes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#enlaces-web">13.4.7.1. Enlaces web</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imagenes">13.4.7.2. Imágenes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centrar-imagen-con-html">13.4.7.3. Centrar imagen con HTML</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas">13.4.8. Tablas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alineacion-en-tablas">13.4.8.1. Alineación en tablas</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#negrita-y-cursiva">14.1.2. Negrita y cursiva</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-historicos">14.1.2.1. Ejemplos históricos:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#separacion-de-parrafos">13.4.9. Separación de párrafos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#error-comun-no-separar">13.4.9.1. 👎 Error común: no separar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-1-linea-en-blanco-entre-parrafos">13.4.9.2. ✅ Solución 1: Línea en blanco entre párrafos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-2-usar-br-para-salto-de-linea">13.4.9.3. ✅ Solución 2: Usar <code class="docutils literal notranslate"><span class="pre">&lt;br&gt;</span></code> para salto de línea</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-3-dos-espacios-al-final-de-linea">13.4.9.4. ✅ Solución 3: Dos espacios al final de línea</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">14.1.3. Listas</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#con-vinetas">14.1.3.1. Con viñetas</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#listas-numeradas">14.1.3.2. Listas numeradas</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-de-tareas-checkboxes">14.1.3.3. Lista de tareas (checkboxes)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#listas-anidadas">14.1.3.4. Listas anidadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escapar-caracteres-especiales">13.4.10. Escapar caracteres especiales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-al-pie-de-pagina">13.4.11. Notas al pie de página</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuadros-especiales-admonitions-solo-jupyter-book">13.4.12. Cuadros especiales (Admonitions) - Solo Jupyter Book</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citas-blockquotes">14.1.4. Citas (blockquotes)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lineas-horizontales">14.1.5. Líneas horizontales</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo">14.1.6. Código</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-en-linea-inline">14.1.6.1. Código en línea (inline)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bloques-de-codigo">14.1.6.2. Bloques de código</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-rapido-de-sintaxis">13.5. 📋 Resumen rápido de sintaxis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-basicos-de-markdown-con-emojis">13.5.1. 📘 Ejemplos básicos de Markdown con emojis:</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enlaces-e-imagenes">14.1.7. Enlaces e imágenes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#enlaces-web">14.1.7.1. Enlaces web</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imagenes">14.1.7.2. Imágenes</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centrar-imagen-con-html">14.1.7.3. Centrar imagen con HTML</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-para-practicar-markdown">13.6. 🛠️ Herramientas para practicar Markdown</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#editores-online-ideales-para-comenzar">13.6.1. Editores online (ideales para comenzar)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-de-escritorio">13.6.2. Aplicaciones de escritorio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">13.6.3. Recursos adicionales</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas">14.1.8. Tablas</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alineacion-en-tablas">14.1.8.1. Alineación en tablas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-practicar">13.7. ✏️ Ejercicios para practicar</a></li>
 </ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#separacion-de-parrafos">14.1.9. Separación de párrafos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#error-comun-no-separar">14.1.9.1. 👎 Error común: no separar</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-1-linea-en-blanco-entre-parrafos">14.1.9.2. ✅ Solución 1: Línea en blanco entre párrafos</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-2-usar-br-para-salto-de-linea">14.1.9.3. ✅ Solución 2: Usar <code class="docutils literal notranslate"><span class="pre">&lt;br&gt;</span></code> para salto de línea</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-3-dos-espacios-al-final-de-linea">14.1.9.4. ✅ Solución 3: Dos espacios al final de línea</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escapar-caracteres-especiales">14.1.10. Escapar caracteres especiales</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-al-pie-de-pagina">14.1.11. Notas al pie de página</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuadros-especiales-admonitions-solo-jupyter-book">14.1.12. Cuadros especiales (Admonitions) - Solo Jupyter Book</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-rapido-de-sintaxis">14.2. 📋 Resumen rápido de sintaxis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-basicos-de-markdown-con-emojis">14.2.1. 📘 Ejemplos básicos de Markdown con emojis:</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-para-practicar-markdown">14.3. 🛠️ Herramientas para practicar Markdown</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#editores-online-ideales-para-comenzar">14.3.1. Editores online (ideales para comenzar)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-de-escritorio">14.3.2. Aplicaciones de escritorio</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">14.3.3. Recursos adicionales</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-practicar">14.4. ✏️ Ejercicios para practicar</a></li>
-</ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -544,27 +523,17 @@ document.write(`
 </pre></div>
 </div>
 <p><strong>Obtienes esto:</strong></p>
-</section>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="titulo-nivel-1">
-<h1><span class="section-number">14. </span>Título nivel 1<a class="headerlink" href="#titulo-nivel-1" title="Link to this heading">#</a></h1>
-<section id="titulo-nivel-2">
-<h2><span class="section-number">14.1. </span>Título nivel 2<a class="headerlink" href="#titulo-nivel-2" title="Link to this heading">#</a></h2>
-<section id="titulo-nivel-3">
-<h3><span class="section-number">14.1.1. </span>Título nivel 3<a class="headerlink" href="#titulo-nivel-3" title="Link to this heading">#</a></h3>
-<section id="titulo-nivel-4">
-<h4><span class="section-number">14.1.1.1. </span>Título nivel 4<a class="headerlink" href="#titulo-nivel-4" title="Link to this heading">#</a></h4>
-<section id="titulo-nivel-5">
-<h5><span class="section-number">14.1.1.1.1. </span>Título nivel 5<a class="headerlink" href="#titulo-nivel-5" title="Link to this heading">#</a></h5>
-<section id="titulo-nivel-6">
-<h6><span class="section-number">14.1.1.1.1.1. </span>Título nivel 6<a class="headerlink" href="#titulo-nivel-6" title="Link to this heading">#</a></h6>
-</section>
-</section>
-</section>
+<blockquote>
+<div><h1 class="rubric" id="titulo-nivel-1">Título nivel 1</h1>
+<h2 class="rubric" id="titulo-nivel-2">Título nivel 2</h2>
+<h3 class="rubric" id="titulo-nivel-3">Título nivel 3</h3>
+<h4 class="rubric" id="titulo-nivel-4">Título nivel 4</h4>
+<h5 class="rubric" id="titulo-nivel-5">Título nivel 5</h5>
+<h6 class="rubric" id="titulo-nivel-6-el-mas-pequeno">Título nivel 6 (el más pequeño)</h6>
+</div></blockquote>
 </section>
 <section id="negrita-y-cursiva">
-<h3><span class="section-number">14.1.2. </span>Negrita y cursiva<a class="headerlink" href="#negrita-y-cursiva" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">13.4.2. </span>Negrita y cursiva<a class="headerlink" href="#negrita-y-cursiva" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Formato</p></th>
@@ -593,7 +562,7 @@ document.write(`
 </table>
 </div>
 <section id="ejemplos-historicos">
-<h4><span class="section-number">14.1.2.1. </span>Ejemplos históricos:<a class="headerlink" href="#ejemplos-historicos" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">13.4.2.1. </span>Ejemplos históricos:<a class="headerlink" href="#ejemplos-historicos" title="Link to this heading">#</a></h4>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gs">**Bernardo O&#39;Higgins fue el Padre de la Patria chilena.**</span>
 <span class="ge">*La Batalla de Maipú se libró el 5 de abril de 1818.*</span>
@@ -609,9 +578,9 @@ document.write(`
 </section>
 </section>
 <section id="listas">
-<h3><span class="section-number">14.1.3. </span>Listas<a class="headerlink" href="#listas" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">13.4.3. </span>Listas<a class="headerlink" href="#listas" title="Link to this heading">#</a></h3>
 <section id="con-vinetas">
-<h4><span class="section-number">14.1.3.1. </span>Con viñetas<a class="headerlink" href="#con-vinetas" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">13.4.3.1. </span>Con viñetas<a class="headerlink" href="#con-vinetas" title="Link to this heading">#</a></h4>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="k">-</span><span class="w"> </span>Bernardo O&#39;Higgins
 <span class="k">-</span><span class="w"> </span>José de San Martín
@@ -631,7 +600,7 @@ document.write(`
 </section>
 <hr class="docutils" />
 <section id="listas-numeradas">
-<h4><span class="section-number">14.1.3.2. </span>Listas numeradas<a class="headerlink" href="#listas-numeradas" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">13.4.3.2. </span>Listas numeradas<a class="headerlink" href="#listas-numeradas" title="Link to this heading">#</a></h4>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="k">1.</span> Primera Cruzada (1096-1099)
 <span class="k">2.</span> Segunda Cruzada (1147-1149)
@@ -647,7 +616,7 @@ document.write(`
 </section>
 <hr class="docutils" />
 <section id="lista-de-tareas-checkboxes">
-<h4><span class="section-number">14.1.3.3. </span>Lista de tareas (checkboxes)<a class="headerlink" href="#lista-de-tareas-checkboxes" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">13.4.3.3. </span>Lista de tareas (checkboxes)<a class="headerlink" href="#lista-de-tareas-checkboxes" title="Link to this heading">#</a></h4>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="k">- [x]</span> Conquistar el Imperio Persa
 <span class="k">- [ ]</span> Llegar hasta la India
@@ -665,7 +634,7 @@ document.write(`
 </section>
 <hr class="docutils" />
 <section id="listas-anidadas">
-<h4><span class="section-number">14.1.3.4. </span>Listas anidadas<a class="headerlink" href="#listas-anidadas" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">13.4.3.4. </span>Listas anidadas<a class="headerlink" href="#listas-anidadas" title="Link to this heading">#</a></h4>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="k">-</span><span class="w"> </span>Mundo Antiguo
 <span class="w">  </span><span class="k">-</span><span class="w"> </span>Imperio Romano (27 a.C. - 476 d.C.)
@@ -695,7 +664,7 @@ document.write(`
 </section>
 </section>
 <section id="citas-blockquotes">
-<h3><span class="section-number">14.1.4. </span>Citas (blockquotes)<a class="headerlink" href="#citas-blockquotes" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">13.4.4. </span>Citas (blockquotes)<a class="headerlink" href="#citas-blockquotes" title="Link to this heading">#</a></h3>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="k">&gt; </span><span class="ge">&quot;Alea iacta est&quot; (La suerte está echada).  </span>
 <span class="k">&gt; </span><span class="ge">- Julio César al cruzar el Rubicón (49 a.C.).</span>
@@ -721,7 +690,7 @@ Julio César tras la Batalla de Zela (47 a.C.).</p>
 </div></blockquote>
 </section>
 <section id="lineas-horizontales">
-<h3><span class="section-number">14.1.5. </span>Líneas horizontales<a class="headerlink" href="#lineas-horizontales" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">13.4.5. </span>Líneas horizontales<a class="headerlink" href="#lineas-horizontales" title="Link to this heading">#</a></h3>
 <p>Sirven para separar secciones visualmente.</p>
 <p><strong>Escribe cualquiera de estas opciones:</strong></p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>---
@@ -733,9 +702,9 @@ ___
 </section>
 <hr class="docutils" />
 <section id="codigo">
-<h3><span class="section-number">14.1.6. </span>Código<a class="headerlink" href="#codigo" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">13.4.6. </span>Código<a class="headerlink" href="#codigo" title="Link to this heading">#</a></h3>
 <section id="codigo-en-linea-inline">
-<h4><span class="section-number">14.1.6.1. </span>Código en línea (inline)<a class="headerlink" href="#codigo-en-linea-inline" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">13.4.6.1. </span>Código en línea (inline)<a class="headerlink" href="#codigo-en-linea-inline" title="Link to this heading">#</a></h4>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Para ejecutar un comando escribe: `print(&quot;Hola&quot;)`
 </pre></div>
@@ -745,7 +714,7 @@ ___
 </section>
 <hr class="docutils" />
 <section id="bloques-de-codigo">
-<h4><span class="section-number">14.1.6.2. </span>Bloques de código<a class="headerlink" href="#bloques-de-codigo" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">13.4.6.2. </span>Bloques de código<a class="headerlink" href="#bloques-de-codigo" title="Link to this heading">#</a></h4>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```python
 for i in range(2):
@@ -772,9 +741,9 @@ for i in range(2):
 </section>
 </section>
 <section id="enlaces-e-imagenes">
-<h3><span class="section-number">14.1.7. </span>Enlaces e imágenes<a class="headerlink" href="#enlaces-e-imagenes" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">13.4.7. </span>Enlaces e imágenes<a class="headerlink" href="#enlaces-e-imagenes" title="Link to this heading">#</a></h3>
 <section id="enlaces-web">
-<h4><span class="section-number">14.1.7.1. </span>Enlaces web<a class="headerlink" href="#enlaces-web" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">13.4.7.1. </span>Enlaces web<a class="headerlink" href="#enlaces-web" title="Link to this heading">#</a></h4>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="k">-</span><span class="w"> </span>[<span class="nt">YouTube</span>](<span class="na">https://youtube.com</span>)
 <span class="k">-</span><span class="w"> </span>[<span class="nt">Instagram</span>](<span class="na">https://instagram.com</span>)
@@ -790,7 +759,7 @@ for i in range(2):
 </section>
 <hr class="docutils" />
 <section id="imagenes">
-<h4><span class="section-number">14.1.7.2. </span>Imágenes<a class="headerlink" href="#imagenes" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">13.4.7.2. </span>Imágenes<a class="headerlink" href="#imagenes" title="Link to this heading">#</a></h4>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>![<span class="nt">Chile</span>](<span class="na">https://img.shields.io/badge/Chile-Independencia_1818-red?style=for-the-badge</span>)
 </pre></div>
@@ -800,7 +769,7 @@ for i in range(2):
 </section>
 <hr class="docutils" />
 <section id="centrar-imagen-con-html">
-<h4><span class="section-number">14.1.7.3. </span>Centrar imagen con HTML<a class="headerlink" href="#centrar-imagen-con-html" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">13.4.7.3. </span>Centrar imagen con HTML<a class="headerlink" href="#centrar-imagen-con-html" title="Link to this heading">#</a></h4>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span> <span class="na">align</span><span class="o">=</span><span class="s">&quot;center&quot;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://img.shields.io/badge/Chile-Independencia_1818-red?style=for-the-badge&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Chile&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;200&quot;</span><span class="p">&gt;</span>
@@ -811,7 +780,7 @@ for i in range(2):
 <p align="center"><img src="https://img.shields.io/badge/Chile-Independencia_1818-red?style=for-the-badge" alt="Chile" width="200"></p></section>
 </section>
 <section id="tablas">
-<h3><span class="section-number">14.1.8. </span>Tablas<a class="headerlink" href="#tablas" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">13.4.8. </span>Tablas<a class="headerlink" href="#tablas" title="Link to this heading">#</a></h3>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>| Faraón | Dinastía | Año de Reinado |
 | ------ | -------- | -------------- |
@@ -846,7 +815,7 @@ for i in range(2):
 </div>
 <hr class="docutils" />
 <section id="alineacion-en-tablas">
-<h4><span class="section-number">14.1.8.1. </span>Alineación en tablas<a class="headerlink" href="#alineacion-en-tablas" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">13.4.8.1. </span>Alineación en tablas<a class="headerlink" href="#alineacion-en-tablas" title="Link to this heading">#</a></h4>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>| Batalla | Año | Ganador | Consecuencia |
 | :------ | :---: | :---: | ------: |
@@ -895,9 +864,9 @@ for i in range(2):
 </section>
 </section>
 <section id="separacion-de-parrafos">
-<h3><span class="section-number">14.1.9. </span>Separación de párrafos<a class="headerlink" href="#separacion-de-parrafos" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">13.4.9. </span>Separación de párrafos<a class="headerlink" href="#separacion-de-parrafos" title="Link to this heading">#</a></h3>
 <section id="error-comun-no-separar">
-<h4><span class="section-number">14.1.9.1. </span>👎 Error común: no separar<a class="headerlink" href="#error-comun-no-separar" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">13.4.9.1. </span>👎 Error común: no separar<a class="headerlink" href="#error-comun-no-separar" title="Link to this heading">#</a></h4>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>La Revolución Francesa comenzó en 1789.
 Napoleón tomó el poder en 1799.
@@ -911,7 +880,7 @@ Fue derrotado en Waterloo en 1815.</p>
 </section>
 <hr class="docutils" />
 <section id="solucion-1-linea-en-blanco-entre-parrafos">
-<h4><span class="section-number">14.1.9.2. </span>✅ Solución 1: Línea en blanco entre párrafos<a class="headerlink" href="#solucion-1-linea-en-blanco-entre-parrafos" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">13.4.9.2. </span>✅ Solución 1: Línea en blanco entre párrafos<a class="headerlink" href="#solucion-1-linea-en-blanco-entre-parrafos" title="Link to this heading">#</a></h4>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>La Revolución Francesa comenzó en 1789.
 
@@ -927,7 +896,7 @@ Fue derrotado en Waterloo en 1815.
 </section>
 <hr class="docutils" />
 <section id="solucion-2-usar-br-para-salto-de-linea">
-<h4><span class="section-number">14.1.9.3. </span>✅ Solución 2: Usar <code class="docutils literal notranslate"><span class="pre">&lt;br&gt;</span></code> para salto de línea<a class="headerlink" href="#solucion-2-usar-br-para-salto-de-linea" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">13.4.9.3. </span>✅ Solución 2: Usar <code class="docutils literal notranslate"><span class="pre">&lt;br&gt;</span></code> para salto de línea<a class="headerlink" href="#solucion-2-usar-br-para-salto-de-linea" title="Link to this heading">#</a></h4>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>La Revolución Francesa comenzó en 1789.&lt;br&gt;
 Napoleón tomó el poder en 1799.&lt;br&gt;
@@ -941,7 +910,7 @@ Fue derrotado en Waterloo en 1815.</p>
 </section>
 <hr class="docutils" />
 <section id="solucion-3-dos-espacios-al-final-de-linea">
-<h4><span class="section-number">14.1.9.4. </span>✅ Solución 3: Dos espacios al final de línea<a class="headerlink" href="#solucion-3-dos-espacios-al-final-de-linea" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">13.4.9.4. </span>✅ Solución 3: Dos espacios al final de línea<a class="headerlink" href="#solucion-3-dos-espacios-al-final-de-linea" title="Link to this heading">#</a></h4>
 <p><strong>Escribe esto</strong> (con dos espacios antes del Enter):</p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>La Revolución Francesa comenzó en 1789.  
 Napoleón tomó el poder en 1799.  
@@ -955,7 +924,7 @@ Fue derrotado en Waterloo en 1815.</p>
 </section>
 </section>
 <section id="escapar-caracteres-especiales">
-<h3><span class="section-number">14.1.10. </span>Escapar caracteres especiales<a class="headerlink" href="#escapar-caracteres-especiales" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">13.4.10. </span>Escapar caracteres especiales<a class="headerlink" href="#escapar-caracteres-especiales" title="Link to this heading">#</a></h3>
 <p>¿Qué pasa si quieres mostrar los símbolos de Markdown sin que se conviertan en formato?</p>
 <p>Usa la barra invertida <code class="docutils literal notranslate"><span class="pre">\</span></code> antes del carácter.</p>
 <p><strong>Escribe esto:</strong></p>
@@ -1013,7 +982,7 @@ Fue derrotado en Waterloo en 1815.</p>
 </div>
 </section>
 <section id="notas-al-pie-de-pagina">
-<h3><span class="section-number">14.1.11. </span>Notas al pie de página<a class="headerlink" href="#notas-al-pie-de-pagina" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">13.4.11. </span>Notas al pie de página<a class="headerlink" href="#notas-al-pie-de-pagina" title="Link to this heading">#</a></h3>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>La Batalla de Maipú[^1] fue decisiva para la independencia de Chile.
 
@@ -1028,7 +997,7 @@ Fue derrotado en Waterloo en 1815.</p>
 </div>
 </section>
 <section id="cuadros-especiales-admonitions-solo-jupyter-book">
-<h3><span class="section-number">14.1.12. </span>Cuadros especiales (Admonitions) - Solo Jupyter Book<a class="headerlink" href="#cuadros-especiales-admonitions-solo-jupyter-book" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">13.4.12. </span>Cuadros especiales (Admonitions) - Solo Jupyter Book<a class="headerlink" href="#cuadros-especiales-admonitions-solo-jupyter-book" title="Link to this heading">#</a></h3>
 <p>En Jupyter Book puedes crear cuadros de colores para destacar información:</p>
 <p><strong>Escribe esto:</strong></p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{admonition} 💡 Título del tip
@@ -1073,7 +1042,7 @@ Este es un consejo útil para tus estudiantes.
 </section>
 </section>
 <section id="resumen-rapido-de-sintaxis">
-<h2><span class="section-number">14.2. </span>📋 Resumen rápido de sintaxis<a class="headerlink" href="#resumen-rapido-de-sintaxis" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.5. </span>📋 Resumen rápido de sintaxis<a class="headerlink" href="#resumen-rapido-de-sintaxis" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Elemento</p></th>
@@ -1127,7 +1096,7 @@ Este es un consejo útil para tus estudiantes.
 </table>
 </div>
 <section id="ejemplos-basicos-de-markdown-con-emojis">
-<h3><span class="section-number">14.2.1. </span>📘 Ejemplos básicos de Markdown con emojis:<a class="headerlink" href="#ejemplos-basicos-de-markdown-con-emojis" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">13.5.1. </span>📘 Ejemplos básicos de Markdown con emojis:<a class="headerlink" href="#ejemplos-basicos-de-markdown-con-emojis" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>⚔️ Guerras: 🏛️ Roma vs 🐘 Cartago.</p></li>
 <li><p>👑 En títulos: # Los Reyes Católicos 👑</p></li>
@@ -1136,9 +1105,9 @@ Este es un consejo útil para tus estudiantes.
 </section>
 </section>
 <section id="herramientas-para-practicar-markdown">
-<h2><span class="section-number">14.3. </span>🛠️ Herramientas para practicar Markdown<a class="headerlink" href="#herramientas-para-practicar-markdown" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.6. </span>🛠️ Herramientas para practicar Markdown<a class="headerlink" href="#herramientas-para-practicar-markdown" title="Link to this heading">#</a></h2>
 <section id="editores-online-ideales-para-comenzar">
-<h3><span class="section-number">14.3.1. </span>Editores online (ideales para comenzar)<a class="headerlink" href="#editores-online-ideales-para-comenzar" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">13.6.1. </span>Editores online (ideales para comenzar)<a class="headerlink" href="#editores-online-ideales-para-comenzar" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>💻 <a class="reference external" href="https://dillinger.io">Dillinger.io</a> - Editor simple con vista previa en tiempo real</p></li>
 <li><p>💻 <a class="reference external" href="https://stackedit.io">StackEdit</a> - Más avanzado, guarda en la nube</p></li>
@@ -1146,7 +1115,7 @@ Este es un consejo útil para tus estudiantes.
 </ul>
 </section>
 <section id="aplicaciones-de-escritorio">
-<h3><span class="section-number">14.3.2. </span>Aplicaciones de escritorio<a class="headerlink" href="#aplicaciones-de-escritorio" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">13.6.2. </span>Aplicaciones de escritorio<a class="headerlink" href="#aplicaciones-de-escritorio" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>💻 <a class="reference external" href="https://typora.io/#feature">Typora</a> - Editor WYSIWYG (lo que ves es lo que obtienes)</p></li>
 <li><p>💻 <a class="reference external" href="https://marktext.app">Mark Text</a> - Gratuito y de código abierto</p></li>
@@ -1154,7 +1123,7 @@ Este es un consejo útil para tus estudiantes.
 </ul>
 </section>
 <section id="recursos-adicionales">
-<h3><span class="section-number">14.3.3. </span>Recursos adicionales<a class="headerlink" href="#recursos-adicionales" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">13.6.3. </span>Recursos adicionales<a class="headerlink" href="#recursos-adicionales" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>🔗 <a class="reference external" href="https://www.markdownguide.org">Markdown Guide</a>: Referencia completa</p></li>
 <li><p>⚙️ <a class="reference external" href="https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax">GitHub Flavored Markdown</a>: Variante de GitHub</p></li>
@@ -1164,7 +1133,7 @@ Este es un consejo útil para tus estudiantes.
 </section>
 </section>
 <section id="ejercicios-para-practicar">
-<h2><span class="section-number">14.4. </span>✏️ Ejercicios para practicar<a class="headerlink" href="#ejercicios-para-practicar" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.7. </span>✏️ Ejercicios para practicar<a class="headerlink" href="#ejercicios-para-practicar" title="Link to this heading">#</a></h2>
 <p>Elige dos de estas opciones y profundiza en el uso de Markdown:</p>
 <ul class="simple">
 <li><p>🏛️ <strong>Civilización antigua</strong>: Egipto, Roma, Grecia. Usa títulos, tablas de faraones/emperadores, enlaces a museos.</p></li>
@@ -1255,7 +1224,7 @@ Este es un consejo útil para tus estudiantes.
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>Fórmulas Básicas en Google Sheets</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Fórmulas Básicas en Google Sheets</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1275,83 +1244,63 @@ Este es un consejo útil para tus estudiantes.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">13. ¿Qué es Markdown?</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usa-solo-markdown-cuando-requieras">13.1. Usa solo Markdown cuando requieras:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#incorpora-html-cuando-necesites">13.2. Incorpora HTML cuando necesites:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alineacion-de-textos">13.3. Alineación de textos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-basicos-de-markdown">13.4. 📘 Ejemplos básicos de Markdown</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encabezados-titulos">13.4.1. Encabezados (Títulos)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#negrita-y-cursiva">13.4.2. Negrita y cursiva</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-historicos">13.4.2.1. Ejemplos históricos:</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">13.4.3. Listas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#con-vinetas">13.4.3.1. Con viñetas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#listas-numeradas">13.4.3.2. Listas numeradas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-de-tareas-checkboxes">13.4.3.3. Lista de tareas (checkboxes)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#listas-anidadas">13.4.3.4. Listas anidadas</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-nivel-1">14. Título nivel 1</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-nivel-2">14.1. Título nivel 2</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-nivel-3">14.1.1. Título nivel 3</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-nivel-4">14.1.1.1. Título nivel 4</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-nivel-5">14.1.1.1.1. Título nivel 5</a><ul class="nav section-nav flex-column">
-<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-nivel-6">14.1.1.1.1.1. Título nivel 6</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citas-blockquotes">13.4.4. Citas (blockquotes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lineas-horizontales">13.4.5. Líneas horizontales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo">13.4.6. Código</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-en-linea-inline">13.4.6.1. Código en línea (inline)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bloques-de-codigo">13.4.6.2. Bloques de código</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enlaces-e-imagenes">13.4.7. Enlaces e imágenes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#enlaces-web">13.4.7.1. Enlaces web</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imagenes">13.4.7.2. Imágenes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centrar-imagen-con-html">13.4.7.3. Centrar imagen con HTML</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas">13.4.8. Tablas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alineacion-en-tablas">13.4.8.1. Alineación en tablas</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#negrita-y-cursiva">14.1.2. Negrita y cursiva</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-historicos">14.1.2.1. Ejemplos históricos:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#separacion-de-parrafos">13.4.9. Separación de párrafos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#error-comun-no-separar">13.4.9.1. 👎 Error común: no separar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-1-linea-en-blanco-entre-parrafos">13.4.9.2. ✅ Solución 1: Línea en blanco entre párrafos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-2-usar-br-para-salto-de-linea">13.4.9.3. ✅ Solución 2: Usar <code class="docutils literal notranslate"><span class="pre">&lt;br&gt;</span></code> para salto de línea</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-3-dos-espacios-al-final-de-linea">13.4.9.4. ✅ Solución 3: Dos espacios al final de línea</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">14.1.3. Listas</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#con-vinetas">14.1.3.1. Con viñetas</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#listas-numeradas">14.1.3.2. Listas numeradas</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-de-tareas-checkboxes">14.1.3.3. Lista de tareas (checkboxes)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#listas-anidadas">14.1.3.4. Listas anidadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escapar-caracteres-especiales">13.4.10. Escapar caracteres especiales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-al-pie-de-pagina">13.4.11. Notas al pie de página</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuadros-especiales-admonitions-solo-jupyter-book">13.4.12. Cuadros especiales (Admonitions) - Solo Jupyter Book</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citas-blockquotes">14.1.4. Citas (blockquotes)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lineas-horizontales">14.1.5. Líneas horizontales</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo">14.1.6. Código</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-en-linea-inline">14.1.6.1. Código en línea (inline)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bloques-de-codigo">14.1.6.2. Bloques de código</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-rapido-de-sintaxis">13.5. 📋 Resumen rápido de sintaxis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-basicos-de-markdown-con-emojis">13.5.1. 📘 Ejemplos básicos de Markdown con emojis:</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enlaces-e-imagenes">14.1.7. Enlaces e imágenes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#enlaces-web">14.1.7.1. Enlaces web</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imagenes">14.1.7.2. Imágenes</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centrar-imagen-con-html">14.1.7.3. Centrar imagen con HTML</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-para-practicar-markdown">13.6. 🛠️ Herramientas para practicar Markdown</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#editores-online-ideales-para-comenzar">13.6.1. Editores online (ideales para comenzar)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-de-escritorio">13.6.2. Aplicaciones de escritorio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">13.6.3. Recursos adicionales</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas">14.1.8. Tablas</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alineacion-en-tablas">14.1.8.1. Alineación en tablas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-practicar">13.7. ✏️ Ejercicios para practicar</a></li>
 </ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#separacion-de-parrafos">14.1.9. Separación de párrafos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#error-comun-no-separar">14.1.9.1. 👎 Error común: no separar</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-1-linea-en-blanco-entre-parrafos">14.1.9.2. ✅ Solución 1: Línea en blanco entre párrafos</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-2-usar-br-para-salto-de-linea">14.1.9.3. ✅ Solución 2: Usar <code class="docutils literal notranslate"><span class="pre">&lt;br&gt;</span></code> para salto de línea</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-3-dos-espacios-al-final-de-linea">14.1.9.4. ✅ Solución 3: Dos espacios al final de línea</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escapar-caracteres-especiales">14.1.10. Escapar caracteres especiales</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-al-pie-de-pagina">14.1.11. Notas al pie de página</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuadros-especiales-admonitions-solo-jupyter-book">14.1.12. Cuadros especiales (Admonitions) - Solo Jupyter Book</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-rapido-de-sintaxis">14.2. 📋 Resumen rápido de sintaxis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-basicos-de-markdown-con-emojis">14.2.1. 📘 Ejemplos básicos de Markdown con emojis:</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-para-practicar-markdown">14.3. 🛠️ Herramientas para practicar Markdown</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#editores-online-ideales-para-comenzar">14.3.1. Editores online (ideales para comenzar)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-de-escritorio">14.3.2. Aplicaciones de escritorio</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">14.3.3. Recursos adicionales</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-practicar">14.4. ✏️ Ejercicios para practicar</a></li>
-</ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>16. Mini Dashboard de Crisis Históricas &#8212; Programando la Historia</title>
+    <title>15. Mini Dashboard de Crisis Históricas &#8212; Programando la Historia</title>
   
   
   
@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Mini_Dashboard_Crisis';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="15. Fórmulas Básicas en Google Sheets" href="Google_Sheets_Formulas.html" />
+    <link rel="prev" title="14. Fórmulas Básicas en Google Sheets" href="Google_Sheets_Formulas.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -194,9 +194,8 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programación Básica</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Markdown_II_final.html">13. ¿Qué es Markdown?</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="Google_Sheets_Formulas.html">15. Fórmulas Básicas en Google Sheets</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Mini Dashboard de Crisis Históricas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Google_Sheets_Formulas.html">14. Fórmulas Básicas en Google Sheets</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Mini Dashboard de Crisis Históricas</a></li>
 </ul>
 
     </div>
@@ -392,47 +391,47 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">16.1. 🎯 Objetivos de aprendizaje</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recordatorio-el-dataset">16.2. 📊 Recordatorio: El Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-crear-una-nueva-hoja">16.3. 📝 Paso 1: Crear una nueva hoja</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-disenar-la-estructura">16.4. 📐 Paso 2: Diseñar la estructura</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-titulo-fila-1">16.4.1. Sección de título (fila 1)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-estadisticas-generales-filas-3-8">16.4.2. Sección de estadísticas generales (filas 3-8)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-analisis-por-tipo-filas-10-15">16.4.3. Sección de análisis por tipo (filas 10-15)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-porcentajes-filas-17-22">16.4.4. Sección de porcentajes (filas 17-22)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">15.1. 🎯 Objetivos de aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recordatorio-el-dataset">15.2. 📊 Recordatorio: El Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-crear-una-nueva-hoja">15.3. 📝 Paso 1: Crear una nueva hoja</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-disenar-la-estructura">15.4. 📐 Paso 2: Diseñar la estructura</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-titulo-fila-1">15.4.1. Sección de título (fila 1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-estadisticas-generales-filas-3-8">15.4.2. Sección de estadísticas generales (filas 3-8)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-analisis-por-tipo-filas-10-15">15.4.3. Sección de análisis por tipo (filas 10-15)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-porcentajes-filas-17-22">15.4.4. Sección de porcentajes (filas 17-22)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-agregar-las-formulas">16.5. 🔢 Paso 3: Agregar las fórmulas</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-estadisticas-generales">16.5.1. 📊 Fórmulas para Estadísticas Generales</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-analisis-por-tipo-de-crisis">16.5.2. 📈 Fórmulas para Análisis por Tipo de Crisis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-porcentajes">16.5.3. 📊 Fórmulas para Porcentajes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-agregar-las-formulas">15.5. 🔢 Paso 3: Agregar las fórmulas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-estadisticas-generales">15.5.1. 📊 Fórmulas para Estadísticas Generales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-analisis-por-tipo-de-crisis">15.5.2. 📈 Fórmulas para Análisis por Tipo de Crisis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-porcentajes">15.5.3. 📊 Fórmulas para Porcentajes</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-aplicar-formato-visual-basico">16.6. 🎨 Paso 4: Aplicar formato visual básico</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-principal-a1">16.6.1. Título principal (A1)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#titulos-de-seccion-a3-a10-a17">16.6.2. Títulos de sección (A3, A10, A17)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#columna-de-valores-b">16.6.3. Columna de valores (B)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ancho-de-columnas">16.6.4. Ancho de columnas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-aplicar-formato-visual-basico">15.6. 🎨 Paso 4: Aplicar formato visual básico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-principal-a1">15.6.1. Título principal (A1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#titulos-de-seccion-a3-a10-a17">15.6.2. Títulos de sección (A3, A10, A17)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#columna-de-valores-b">15.6.3. Columna de valores (B)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ancho-de-columnas">15.6.4. Ancho de columnas</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-5-formato-condicional-colores-automaticos">16.7. 🚦 Paso 5: Formato condicional (colores automáticos)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-paso-a-paso">16.7.1. Configuración paso a paso:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-5-formato-condicional-colores-automaticos">15.7. 🚦 Paso 5: Formato condicional (colores automáticos)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-paso-a-paso">15.7.1. Configuración paso a paso:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-6-agregar-un-grafico">16.8. 📊 Paso 6: Agregar un gráfico</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-el-grafico">16.8.1. Crear el gráfico:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativa-grafico-circular">16.8.2. Alternativa: Gráfico circular</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-6-agregar-un-grafico">15.8. 📊 Paso 6: Agregar un gráfico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-el-grafico">15.8.1. Crear el gráfico:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativa-grafico-circular">15.8.2. Alternativa: Gráfico circular</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-esperado">16.9. ✅ Resultado esperado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extension-dashboard-avanzado">16.10. 🚀 Extensión: Dashboard Avanzado</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-5-crisis-mas-severas">16.10.1. Top 5 crisis más severas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nombre-de-la-crisis-mas-severa">16.10.2. Nombre de la crisis más severa</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparativo-que-es-mas-destructivo">16.10.3. Comparativo: ¿Qué es más destructivo?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-esperado">15.9. ✅ Resultado esperado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extension-dashboard-avanzado">15.10. 🚀 Extensión: Dashboard Avanzado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-5-crisis-mas-severas">15.10.1. Top 5 crisis más severas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nombre-de-la-crisis-mas-severa">15.10.2. Nombre de la crisis más severa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparativo-que-es-mas-destructivo">15.10.3. Comparativo: ¿Qué es más destructivo?</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">16.11. ✏️ Ejercicios</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desafio-final-tu-pregunta-historica">16.12. 🏆 Desafío Final: Tu pregunta histórica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">15.11. ✏️ Ejercicios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desafio-final-tu-pregunta-historica">15.12. 🏆 Desafío Final: Tu pregunta histórica</a></li>
 </ul>
             </nav>
         </div>
@@ -445,7 +444,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="mini-dashboard-de-crisis-historicas">
-<h1><span class="section-number">16. </span>Mini Dashboard de Crisis Históricas<a class="headerlink" href="#mini-dashboard-de-crisis-historicas" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">15. </span>Mini Dashboard de Crisis Históricas<a class="headerlink" href="#mini-dashboard-de-crisis-historicas" title="Link to this heading">#</a></h1>
 <div style="text-align: justify;">
 Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerlas en práctica. En este capítulo crearás un <b>mini dashboard</b> que resume visualmente los datos más importantes del dataset de crisis históricas.
 </div>
@@ -454,7 +453,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 <p>Un <strong>dashboard</strong> (o tablero de control) es una visualización que muestra los indicadores más importantes de un conjunto de datos en un solo lugar. Es como el tablero de un auto: de un vistazo ves velocidad, combustible y temperatura sin tener que revisar cada sistema por separado.</p>
 </div>
 <section id="objetivos-de-aprendizaje">
-<h2><span class="section-number">16.1. </span>🎯 Objetivos de aprendizaje<a class="headerlink" href="#objetivos-de-aprendizaje" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.1. </span>🎯 Objetivos de aprendizaje<a class="headerlink" href="#objetivos-de-aprendizaje" title="Link to this heading">#</a></h2>
 <p>Al finalizar este capítulo serás capaz de:</p>
 <ul class="simple">
 <li><p>✅ Diseñar la estructura de un dashboard</p></li>
@@ -465,7 +464,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </ul>
 </section>
 <section id="recordatorio-el-dataset">
-<h2><span class="section-number">16.2. </span>📊 Recordatorio: El Dataset<a class="headerlink" href="#recordatorio-el-dataset" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.2. </span>📊 Recordatorio: El Dataset<a class="headerlink" href="#recordatorio-el-dataset" title="Link to this heading">#</a></h2>
 <p>Seguiremos trabajando con el dataset del <strong>Seshat Databank</strong> que contiene 169 crisis históricas de diferentes civilizaciones.</p>
 <div class="warning admonition">
 <p class="admonition-title">⚠️ Cita Obligatoria</p>
@@ -514,7 +513,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </div>
 </section>
 <section id="paso-1-crear-una-nueva-hoja">
-<h2><span class="section-number">16.3. </span>📝 Paso 1: Crear una nueva hoja<a class="headerlink" href="#paso-1-crear-una-nueva-hoja" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.3. </span>📝 Paso 1: Crear una nueva hoja<a class="headerlink" href="#paso-1-crear-una-nueva-hoja" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Abre tu archivo de Google Sheets con los datos de crisis</p></li>
 <li><p>En la parte inferior, haz clic en el <strong>+</strong> para agregar una nueva hoja</p></li>
@@ -526,10 +525,10 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </div>
 </section>
 <section id="paso-2-disenar-la-estructura">
-<h2><span class="section-number">16.4. </span>📐 Paso 2: Diseñar la estructura<a class="headerlink" href="#paso-2-disenar-la-estructura" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.4. </span>📐 Paso 2: Diseñar la estructura<a class="headerlink" href="#paso-2-disenar-la-estructura" title="Link to this heading">#</a></h2>
 <p>Copia esta estructura en tu hoja <strong>Dashboard</strong>. Escribe exactamente lo que aparece en cada celda:</p>
 <section id="seccion-de-titulo-fila-1">
-<h3><span class="section-number">16.4.1. </span>Sección de título (fila 1)<a class="headerlink" href="#seccion-de-titulo-fila-1" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.4.1. </span>Sección de título (fila 1)<a class="headerlink" href="#seccion-de-titulo-fila-1" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Celda</p></th>
@@ -545,7 +544,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </div>
 </section>
 <section id="seccion-de-estadisticas-generales-filas-3-8">
-<h3><span class="section-number">16.4.2. </span>Sección de estadísticas generales (filas 3-8)<a class="headerlink" href="#seccion-de-estadisticas-generales-filas-3-8" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.4.2. </span>Sección de estadísticas generales (filas 3-8)<a class="headerlink" href="#seccion-de-estadisticas-generales-filas-3-8" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Celda</p></th>
@@ -573,7 +572,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </div>
 </section>
 <section id="seccion-de-analisis-por-tipo-filas-10-15">
-<h3><span class="section-number">16.4.3. </span>Sección de análisis por tipo (filas 10-15)<a class="headerlink" href="#seccion-de-analisis-por-tipo-filas-10-15" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.4.3. </span>Sección de análisis por tipo (filas 10-15)<a class="headerlink" href="#seccion-de-analisis-por-tipo-filas-10-15" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Celda</p></th>
@@ -601,7 +600,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </div>
 </section>
 <section id="seccion-de-porcentajes-filas-17-22">
-<h3><span class="section-number">16.4.4. </span>Sección de porcentajes (filas 17-22)<a class="headerlink" href="#seccion-de-porcentajes-filas-17-22" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.4.4. </span>Sección de porcentajes (filas 17-22)<a class="headerlink" href="#seccion-de-porcentajes-filas-17-22" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Celda</p></th>
@@ -630,7 +629,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </section>
 </section>
 <section id="paso-3-agregar-las-formulas">
-<h2><span class="section-number">16.5. </span>🔢 Paso 3: Agregar las fórmulas<a class="headerlink" href="#paso-3-agregar-las-formulas" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.5. </span>🔢 Paso 3: Agregar las fórmulas<a class="headerlink" href="#paso-3-agregar-las-formulas" title="Link to this heading">#</a></h2>
 <p>Ahora viene lo importante: agregar las fórmulas en la <strong>columna B</strong> que calcularán automáticamente los valores.</p>
 <div class="warning admonition">
 <p class="admonition-title">⚠️ Importante: Nombre de la hoja de datos</p>
@@ -638,7 +637,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 <p>Ejemplo: <code class="docutils literal notranslate"><span class="pre">=COUNTA(Hoja1!A2:A170)</span></code> en vez de <code class="docutils literal notranslate"><span class="pre">=COUNTA(Datos_Crisis!A2:A170)</span></code></p>
 </div>
 <section id="formulas-para-estadisticas-generales">
-<h3><span class="section-number">16.5.1. </span>📊 Fórmulas para Estadísticas Generales<a class="headerlink" href="#formulas-para-estadisticas-generales" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.5.1. </span>📊 Fórmulas para Estadísticas Generales<a class="headerlink" href="#formulas-para-estadisticas-generales" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Celda</p></th>
@@ -672,7 +671,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </div>
 </section>
 <section id="formulas-para-analisis-por-tipo-de-crisis">
-<h3><span class="section-number">16.5.2. </span>📈 Fórmulas para Análisis por Tipo de Crisis<a class="headerlink" href="#formulas-para-analisis-por-tipo-de-crisis" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.5.2. </span>📈 Fórmulas para Análisis por Tipo de Crisis<a class="headerlink" href="#formulas-para-analisis-por-tipo-de-crisis" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Celda</p></th>
@@ -706,7 +705,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </div>
 </section>
 <section id="formulas-para-porcentajes">
-<h3><span class="section-number">16.5.3. </span>📊 Fórmulas para Porcentajes<a class="headerlink" href="#formulas-para-porcentajes" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.5.3. </span>📊 Fórmulas para Porcentajes<a class="headerlink" href="#formulas-para-porcentajes" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Celda</p></th>
@@ -734,24 +733,21 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </tbody>
 </table>
 </div>
-<p>```{admonition} 💡 ¿Qué hace el símbolo <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>?
-:class: tip</p>
-<p>El símbolo <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> une (concatena) textos. En este caso:</p>
+<blockquote>
+<div><p>💡 <strong>Tip:</strong> El símbolo <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> une (concatena) textos y permite agregar el símbolo % al final de una fórmula.</p>
+</div></blockquote>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">ROUND(B12/B5*100,1)</span></code> calcula el porcentaje (ejemplo: <code class="docutils literal notranslate"><span class="pre">30.8</span></code>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&amp;&quot;%&quot;</span></code> le agrega el símbolo de porcentaje al final</p></li>
 <li><p>Resultado: <code class="docutils literal notranslate"><span class="pre">30.8%</span></code></p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </section>
 </section>
 <section id="paso-4-aplicar-formato-visual-basico">
-<h2><span class="section-number">16.6. </span>🎨 Paso 4: Aplicar formato visual básico<a class="headerlink" href="#paso-4-aplicar-formato-visual-basico" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.6. </span>🎨 Paso 4: Aplicar formato visual básico<a class="headerlink" href="#paso-4-aplicar-formato-visual-basico" title="Link to this heading">#</a></h2>
 <p>Un buen dashboard no solo tiene datos correctos, también es <strong>fácil de leer</strong>. Aplica estos formatos:</p>
 <section id="titulo-principal-a1">
-<h3><span class="section-number">16.6.1. </span>Título principal (A1)<a class="headerlink" href="#titulo-principal-a1" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.6.1. </span>Título principal (A1)<a class="headerlink" href="#titulo-principal-a1" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Selecciona la celda A1</p></li>
 <li><p>Pon el texto en <strong>negrita</strong> (Ctrl+B)</p></li>
@@ -761,7 +757,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </ol>
 </section>
 <section id="titulos-de-seccion-a3-a10-a17">
-<h3><span class="section-number">16.6.2. </span>Títulos de sección (A3, A10, A17)<a class="headerlink" href="#titulos-de-seccion-a3-a10-a17" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.6.2. </span>Títulos de sección (A3, A10, A17)<a class="headerlink" href="#titulos-de-seccion-a3-a10-a17" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Selecciona las celdas A3, A10 y A17</p></li>
 <li><p>Pon el texto en <strong>negrita</strong></p></li>
@@ -769,7 +765,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </ol>
 </section>
 <section id="columna-de-valores-b">
-<h3><span class="section-number">16.6.3. </span>Columna de valores (B)<a class="headerlink" href="#columna-de-valores-b" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.6.3. </span>Columna de valores (B)<a class="headerlink" href="#columna-de-valores-b" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Selecciona B5:B22</p></li>
 <li><p>Alinea el texto a la <strong>derecha</strong></p></li>
@@ -777,7 +773,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </ol>
 </section>
 <section id="ancho-de-columnas">
-<h3><span class="section-number">16.6.4. </span>Ancho de columnas<a class="headerlink" href="#ancho-de-columnas" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.6.4. </span>Ancho de columnas<a class="headerlink" href="#ancho-de-columnas" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Haz doble clic en el borde entre las columnas A y B para ajustar automáticamente</p></li>
 <li><p>O arrastra para que la columna A tenga unos 250 píxeles de ancho</p></li>
@@ -785,10 +781,10 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </section>
 </section>
 <section id="paso-5-formato-condicional-colores-automaticos">
-<h2><span class="section-number">16.7. </span>🚦 Paso 5: Formato condicional (colores automáticos)<a class="headerlink" href="#paso-5-formato-condicional-colores-automaticos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.7. </span>🚦 Paso 5: Formato condicional (colores automáticos)<a class="headerlink" href="#paso-5-formato-condicional-colores-automaticos" title="Link to this heading">#</a></h2>
 <p>El formato condicional cambia automáticamente el color de las celdas según su valor. Haremos que los porcentajes altos aparezcan en rojo (crisis frecuentes) y los bajos en verde (poco frecuentes).</p>
 <section id="configuracion-paso-a-paso">
-<h3><span class="section-number">16.7.1. </span>Configuración paso a paso:<a class="headerlink" href="#configuracion-paso-a-paso" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.7.1. </span>Configuración paso a paso:<a class="headerlink" href="#configuracion-paso-a-paso" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Selecciona las celdas <strong>B19:B22</strong> (los porcentajes)</p></li>
 <li><p>Ve a <strong>Formato</strong> → <strong>Formato condicional</strong></p></li>
@@ -834,10 +830,10 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </section>
 </section>
 <section id="paso-6-agregar-un-grafico">
-<h2><span class="section-number">16.8. </span>📊 Paso 6: Agregar un gráfico<a class="headerlink" href="#paso-6-agregar-un-grafico" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.8. </span>📊 Paso 6: Agregar un gráfico<a class="headerlink" href="#paso-6-agregar-un-grafico" title="Link to this heading">#</a></h2>
 <p>Un gráfico hace que los datos sean más fáciles de entender de un vistazo.</p>
 <section id="crear-el-grafico">
-<h3><span class="section-number">16.8.1. </span>Crear el gráfico:<a class="headerlink" href="#crear-el-grafico" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.8.1. </span>Crear el gráfico:<a class="headerlink" href="#crear-el-grafico" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Selecciona las celdas <strong>A12:B15</strong> (los tipos de crisis y sus cantidades)</p></li>
 <li><p>Ve a <strong>Insertar</strong> → <strong>Gráfico</strong></p></li>
@@ -851,7 +847,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </ol>
 </section>
 <section id="alternativa-grafico-circular">
-<h3><span class="section-number">16.8.2. </span>Alternativa: Gráfico circular<a class="headerlink" href="#alternativa-grafico-circular" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.8.2. </span>Alternativa: Gráfico circular<a class="headerlink" href="#alternativa-grafico-circular" title="Link to this heading">#</a></h3>
 <p>Si prefieres ver las proporciones:</p>
 <ol class="arabic simple">
 <li><p>Selecciona <strong>A12:B15</strong></p></li>
@@ -865,7 +861,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </section>
 </section>
 <section id="resultado-esperado">
-<h2><span class="section-number">16.9. </span>✅ Resultado esperado<a class="headerlink" href="#resultado-esperado" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.9. </span>✅ Resultado esperado<a class="headerlink" href="#resultado-esperado" title="Link to this heading">#</a></h2>
 <p>Tu dashboard debería verse similar a esto:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>╔═══════════════════════════════════════════════════════════╗
 ║  📊 DASHBOARD: Crisis Históricas                          ║
@@ -907,10 +903,10 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </div>
 </section>
 <section id="extension-dashboard-avanzado">
-<h2><span class="section-number">16.10. </span>🚀 Extensión: Dashboard Avanzado<a class="headerlink" href="#extension-dashboard-avanzado" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.10. </span>🚀 Extensión: Dashboard Avanzado<a class="headerlink" href="#extension-dashboard-avanzado" title="Link to this heading">#</a></h2>
 <p>Si terminaste y quieres ir más allá, agrega estas secciones adicionales:</p>
 <section id="top-5-crisis-mas-severas">
-<h3><span class="section-number">16.10.1. </span>Top 5 crisis más severas<a class="headerlink" href="#top-5-crisis-mas-severas" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.10.1. </span>Top 5 crisis más severas<a class="headerlink" href="#top-5-crisis-mas-severas" title="Link to this heading">#</a></h3>
 <p>Agrega en las celdas A24-A28:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -949,7 +945,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </div>
 </section>
 <section id="nombre-de-la-crisis-mas-severa">
-<h3><span class="section-number">16.10.2. </span>Nombre de la crisis más severa<a class="headerlink" href="#nombre-de-la-crisis-mas-severa" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.10.2. </span>Nombre de la crisis más severa<a class="headerlink" href="#nombre-de-la-crisis-mas-severa" title="Link to this heading">#</a></h3>
 <p>Esta fórmula avanzada busca el nombre de la crisis con mayor severidad:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>=INDEX(Datos_Crisis!A2:A170,MATCH(MAX(Datos_Crisis!S2:S170),Datos_Crisis!S2:S170,0))
 </pre></div>
@@ -966,7 +962,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </div>
 </section>
 <section id="comparativo-que-es-mas-destructivo">
-<h3><span class="section-number">16.10.3. </span>Comparativo: ¿Qué es más destructivo?<a class="headerlink" href="#comparativo-que-es-mas-destructivo" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.10.3. </span>Comparativo: ¿Qué es más destructivo?<a class="headerlink" href="#comparativo-que-es-mas-destructivo" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Celda</p></th>
@@ -993,7 +989,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </section>
 </section>
 <section id="ejercicios">
-<h2><span class="section-number">16.11. </span>✏️ Ejercicios<a class="headerlink" href="#ejercicios" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.11. </span>✏️ Ejercicios<a class="headerlink" href="#ejercicios" title="Link to this heading">#</a></h2>
 <div class="note admonition">
 <p class="admonition-title">Ejercicio 1: Amplía tu dashboard</p>
 <p>Agrega una nueva sección que muestre:</p>
@@ -1024,7 +1020,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
 </div>
 </section>
 <section id="desafio-final-tu-pregunta-historica">
-<h2><span class="section-number">16.12. </span>🏆 Desafío Final: Tu pregunta histórica<a class="headerlink" href="#desafio-final-tu-pregunta-historica" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.12. </span>🏆 Desafío Final: Tu pregunta histórica<a class="headerlink" href="#desafio-final-tu-pregunta-historica" title="Link to this heading">#</a></h2>
 <p>Elige <strong>UNA</strong> de estas preguntas y respóndela agregando nuevas métricas a tu dashboard:</p>
 <div class="seealso admonition">
 <p class="admonition-title">Preguntas de investigación</p>
@@ -1099,7 +1095,7 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>Fórmulas Básicas en Google Sheets</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Fórmulas Básicas en Google Sheets</p>
       </div>
     </a>
 </div>
@@ -1118,47 +1114,47 @@ Ahora que conoces las fórmulas básicas de Google Sheets, es momento de ponerla
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">16.1. 🎯 Objetivos de aprendizaje</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recordatorio-el-dataset">16.2. 📊 Recordatorio: El Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-crear-una-nueva-hoja">16.3. 📝 Paso 1: Crear una nueva hoja</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-disenar-la-estructura">16.4. 📐 Paso 2: Diseñar la estructura</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-titulo-fila-1">16.4.1. Sección de título (fila 1)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-estadisticas-generales-filas-3-8">16.4.2. Sección de estadísticas generales (filas 3-8)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-analisis-por-tipo-filas-10-15">16.4.3. Sección de análisis por tipo (filas 10-15)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-porcentajes-filas-17-22">16.4.4. Sección de porcentajes (filas 17-22)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">15.1. 🎯 Objetivos de aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recordatorio-el-dataset">15.2. 📊 Recordatorio: El Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-crear-una-nueva-hoja">15.3. 📝 Paso 1: Crear una nueva hoja</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-disenar-la-estructura">15.4. 📐 Paso 2: Diseñar la estructura</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-titulo-fila-1">15.4.1. Sección de título (fila 1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-estadisticas-generales-filas-3-8">15.4.2. Sección de estadísticas generales (filas 3-8)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-analisis-por-tipo-filas-10-15">15.4.3. Sección de análisis por tipo (filas 10-15)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-de-porcentajes-filas-17-22">15.4.4. Sección de porcentajes (filas 17-22)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-agregar-las-formulas">16.5. 🔢 Paso 3: Agregar las fórmulas</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-estadisticas-generales">16.5.1. 📊 Fórmulas para Estadísticas Generales</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-analisis-por-tipo-de-crisis">16.5.2. 📈 Fórmulas para Análisis por Tipo de Crisis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-porcentajes">16.5.3. 📊 Fórmulas para Porcentajes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-agregar-las-formulas">15.5. 🔢 Paso 3: Agregar las fórmulas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-estadisticas-generales">15.5.1. 📊 Fórmulas para Estadísticas Generales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-analisis-por-tipo-de-crisis">15.5.2. 📈 Fórmulas para Análisis por Tipo de Crisis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-para-porcentajes">15.5.3. 📊 Fórmulas para Porcentajes</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-aplicar-formato-visual-basico">16.6. 🎨 Paso 4: Aplicar formato visual básico</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-principal-a1">16.6.1. Título principal (A1)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#titulos-de-seccion-a3-a10-a17">16.6.2. Títulos de sección (A3, A10, A17)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#columna-de-valores-b">16.6.3. Columna de valores (B)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ancho-de-columnas">16.6.4. Ancho de columnas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-aplicar-formato-visual-basico">15.6. 🎨 Paso 4: Aplicar formato visual básico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo-principal-a1">15.6.1. Título principal (A1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#titulos-de-seccion-a3-a10-a17">15.6.2. Títulos de sección (A3, A10, A17)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#columna-de-valores-b">15.6.3. Columna de valores (B)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ancho-de-columnas">15.6.4. Ancho de columnas</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-5-formato-condicional-colores-automaticos">16.7. 🚦 Paso 5: Formato condicional (colores automáticos)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-paso-a-paso">16.7.1. Configuración paso a paso:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-5-formato-condicional-colores-automaticos">15.7. 🚦 Paso 5: Formato condicional (colores automáticos)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-paso-a-paso">15.7.1. Configuración paso a paso:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-6-agregar-un-grafico">16.8. 📊 Paso 6: Agregar un gráfico</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-el-grafico">16.8.1. Crear el gráfico:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativa-grafico-circular">16.8.2. Alternativa: Gráfico circular</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-6-agregar-un-grafico">15.8. 📊 Paso 6: Agregar un gráfico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-el-grafico">15.8.1. Crear el gráfico:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativa-grafico-circular">15.8.2. Alternativa: Gráfico circular</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-esperado">16.9. ✅ Resultado esperado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extension-dashboard-avanzado">16.10. 🚀 Extensión: Dashboard Avanzado</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-5-crisis-mas-severas">16.10.1. Top 5 crisis más severas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nombre-de-la-crisis-mas-severa">16.10.2. Nombre de la crisis más severa</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparativo-que-es-mas-destructivo">16.10.3. Comparativo: ¿Qué es más destructivo?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-esperado">15.9. ✅ Resultado esperado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extension-dashboard-avanzado">15.10. 🚀 Extensión: Dashboard Avanzado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-5-crisis-mas-severas">15.10.1. Top 5 crisis más severas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nombre-de-la-crisis-mas-severa">15.10.2. Nombre de la crisis más severa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparativo-que-es-mas-destructivo">15.10.3. Comparativo: ¿Qué es más destructivo?</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">16.11. ✏️ Ejercicios</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desafio-final-tu-pregunta-historica">16.12. 🏆 Desafío Final: Tu pregunta histórica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">15.11. ✏️ Ejercicios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desafio-final-tu-pregunta-historica">15.12. 🏆 Desafío Final: Tu pregunta histórica</a></li>
 </ul>
   </nav></div>
 
