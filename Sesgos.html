@@ -186,16 +186,15 @@
 <li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades%20II.html">5. La IA Revolucionando la Investigación Histórica y la Educación</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Sesgos Algorítmicos: El uso de Compas en el Sistemas de Justicia de EEUU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Deepfakes.html">7. Desinformación y Deepfakes en la Era Digital</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="Datos.html">9. Privacidad y Datos Personales en la Era Digital</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Elecci%C3%B3n%20de%20IA.html">10. ¿Cómo mejorar tus tareas escolares sin hacer trampa?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Herramientas%20para%20la%20IA%20Generativa.html">11. Herramientas de IA Generativa</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Prompt.html">12. Prompting Efectivo: El arte de “conversar” con la IA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Proyectos.html">13. Proyectos Estudiantiles Potenciados por IA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datos.html">8. Privacidad y Datos Personales en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Elecci%C3%B3n%20de%20IA.html">9. ¿Cómo mejorar tus tareas escolares sin hacer trampa?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Herramientas%20para%20la%20IA%20Generativa.html">10. Herramientas de IA Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Prompt.html">11. Prompting Efectivo: El arte de “conversar” con la IA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyectos.html">12. Proyectos Estudiantiles Potenciados por IA</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programación Básica</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Markdown%20II.html">14. ¿Qué es Markdown?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Markdown%20II.html">13. ¿Qué es Markdown?</a></li>
 </ul>
 
     </div>
@@ -449,7 +448,7 @@ document.write(`
 </div>
 <section id="introduccion">
 <h2><span class="section-number">6.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
-<div align="justify">Los algoritmos de Inteligencia Artificial aprenden de datos creados por humanos. Si esos datos contienen sesgos históricos, sociales o culturales, la IA los aprenderá y los replicará, a veces amplificándolos.Un ***sesgo algorítmico*** ocurre cuando un sistema de IA produce resultados sistemáticamente injustos o discriminatorios hacia ciertos grupos de personas.</div></section>
+<div align="justify">Los algoritmos de Inteligencia Artificial aprenden de datos creados por humanos. Si esos datos contienen sesgos históricos, sociales o culturales, la IA los aprenderá y los replicará, a veces amplificándolos. Un <strong>sesgo algorítmico</strong> ocurre cuando un sistema de IA produce resultados sistemáticamente injustos o discriminatorios hacia ciertos grupos de personas.</div></section>
 <section id="tipos-de-sesgos">
 <h2><span class="section-number">6.2. </span>Tipos de Sesgos:<a class="headerlink" href="#tipos-de-sesgos" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
@@ -495,6 +494,8 @@ document.write(`
 <li><p>Personas blancas tenían más probabilidad de ser clasificadas como “bajo riesgo” incluso cuando sí reincidían</p></li>
 <li><p>La precisión general era solo del <strong>61%</strong> (similar a lanzar una moneda)</p></li>
 </ul>
+<p><img alt="Precisión de COMPAS" src="_images/COMPAS.jpg" /></p>
+<p><a class="reference external" href="https://today.duke.edu/2017/07/opening-lid-criminal-sentencing-software">Fuente</a></p>
 </section>
 <section id="datos-concretos">
 <h3><span class="section-number">6.3.3. </span>Datos Concretos:<a class="headerlink" href="#datos-concretos" title="Link to this heading">#</a></h3>
@@ -558,6 +559,24 @@ document.write(`
 <li><p>Estudiantes de zonas rurales</p></li>
 <li><p>Minorías étnicas</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;TWWsW1w-BVo&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="800"
+            height="450"
+            src="https://www.youtube.com/embed/TWWsW1w-BVo"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        </div></div>
+</div>
 </section>
 </section>
 <section id="como-se-crean-estos-sesgos">
@@ -652,13 +671,14 @@ document.write(`
 <li><p>Exige transparencia en sistemas de alto riesgo</p></li>
 <li><p>Multas por incumplimiento</p></li>
 </ul>
+<p><img alt="IA ACT" src="_images/ReglamentoEUR.jpeg" /></p>
 </section>
 <section id="chile">
 <h3><span class="section-number">6.8.2. </span>Chile:<a class="headerlink" href="#chile" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Aún no existe legislación específica sobre sesgos en IA</p></li>
-<li><p>Proyecto de ley de protección de datos personales en discusión</p></li>
-<li><p>Necesidad de regulación urgente</p></li>
+<li><p>Aún no existe legislación específica sobre sesgos en IA.</p></li>
+<li><p>Nueva ley de protección de datos personales.</p></li>
+<li><p>Hay un <a class="reference external" href="https://www.camara.cl/legislacion/ProyectosDeLey/tramitacion.aspx?prmID=17429&amp;amp;prmBOLETIN=1784">proyecto de ley</a> que pretende regula los sistemas de inteligencia artificial (IA) en Chile “… buscando asegurar que el desarrollo y uso de estas tecnologías sea respetuoso de los derechos de las personas, fomentar la innovación y fortalecer la capacidad del Estado para actuar frente a sus riesgos y desafíos”. <a class="reference external" href="https://www.minciencia.gob.cl/areas/inteligencia-artificial/Inteligencia-Artificial/Proyecto-Ley-regula-sistemas-IA/">Ministerio de Ciencias</a></p></li>
 </ul>
 </section>
 </section>
@@ -668,10 +688,11 @@ document.write(`
 <p><strong>Datos disponibles</strong>:</p>
 <ul class="simple">
 <li><p>Notas de enseñanza media</p></li>
-<li><p>Colegio de origen (público/privado)</p></li>
-<li><p>Comuna de residencia</p></li>
+<li><p>Colegio de origen (público/Subvencionado/privado)</p></li>
+<li><p>Comuna o ciudad de residencia</p></li>
 <li><p>Actividades extracurriculares</p></li>
-<li><p>Puntaje PSU</p></li>
+<li><p>Puntaje PAES</p></li>
+<li><p>Foto del estudiante</p></li>
 </ul>
 <p><strong>Preguntas</strong>:</p>
 <ol class="arabic simple">
