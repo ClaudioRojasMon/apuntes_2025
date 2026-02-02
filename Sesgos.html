@@ -1,0 +1,880 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6. Sesgos Algorítmicos: El uso de Compas en el Sistemas de Justicia de EEUU &#8212; Programando la Historia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Sesgos';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="7. Desinformación y Deepfakes en la Era Digital" href="Deepfakes.html" />
+    <link rel="prev" title="5. La IA Revolucionando la Investigación Histórica y la Educación" href="Mitos%20y%20Realidades%20II.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Original.png" class="logo__image only-light" alt="Programando la Historia - Home"/>
+    <script>document.write(`<img src="_static/Original.png" class="logo__image only-dark" alt="Programando la Historia - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Programando la Historia.
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Inteligencia Artificial</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20I.html">1. ¿Qué es la Inteligencia Artificial?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20II.html">2. Algunos Hitos de la Inteligencia Artificial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20III.html">3. Inteligencia Artificial Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades.html">4. Mitos vs. Realidad: ¿La IA nos reemplazará?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades%20II.html">5. La IA Revolucionando la Investigación Histórica y la Educación</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Sesgos Algorítmicos: El uso de Compas en el Sistemas de Justicia de EEUU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deepfakes.html">7. Desinformación y Deepfakes en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datos.html">8. Privacidad y Datos Personales en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Elecci%C3%B3n%20de%20IA.html">9. ¿Cómo mejorar tus tareas escolares sin hacer trampa?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Herramientas%20para%20la%20IA%20Generativa.html">10. Herramientas de IA Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Prompt.html">11. Prompting Efectivo: El arte de “conversar” con la IA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyectos.html">12. Proyectos Estudiantiles Potenciados por IA</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Programación Básica</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Markdown%20II.html">13. ¿Qué es Markdown?</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ClaudioRojasMon/apuntes_2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ClaudioRojasMon/apuntes_2025/issues/new?title=Issue%20on%20page%20%2FSesgos.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Sesgos.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sesgos Algorítmicos: El uso de Compas en el Sistemas de Justicia de EEUU</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">6.1. Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-sesgos">6.2. Tipos de Sesgos:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-historico-compas-y-el-sistema-de-justicia-en-ee-uu">6.3. Caso Histórico: COMPAS y el Sistema de Justicia en EE.UU.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-compas">6.3.1. ¿Qué es COMPAS?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-problema-descubierto">6.3.2. El Problema Descubierto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-concretos">6.3.3. Datos Concretos:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-ocurrio-esto">6.3.4. ¿Por qué ocurrió esto?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-ejemplos-de-sesgos-algoritmicos">6.4. Otros Ejemplos de Sesgos Algorítmicos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconocimiento-facial">6.4.1. 1. Reconocimiento Facial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-de-contratacion">6.4.2. 2. Sistemas de Contratación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediccion-de-rendimiento-academico">6.4.3. 3. Predicción de Rendimiento Académico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-codigo">6.4.4. Análisis del Código:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-combatir-los-sesgos-algoritmicos">6.5. Cómo Combatir los Sesgos Algorítmicos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-diversos-y-representativos">6.5.1. 1. Datos Diversos y Representativos:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#auditorias-independientes">6.5.2. 2. Auditorías Independientes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equipos-diversos">6.5.3. 3. Equipos Diversos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regulacion-y-leyes">6.5.4. 4. Regulación y Leyes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marco-legal-actual">6.6. Marco Legal Actual</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#union-europea-ai-act">6.6.1. Unión Europea: AI Act</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chile">6.6.2. Chile:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividad-detecta-el-sesgo-ejercicio-practico">6.7. Actividad: Detecta el Sesgo - Ejercicio Práctico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-para-profundizar">6.8. Recursos para Profundizar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">6.9. Referencias</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sesgos-algoritmicos-el-uso-de-compas-en-el-sistemas-de-justicia-de-eeuu">
+<h1><span class="section-number">6. </span>Sesgos Algorítmicos: El uso de Compas en el Sistemas de Justicia de EEUU<a class="headerlink" href="#sesgos-algoritmicos-el-uso-de-compas-en-el-sistemas-de-justicia-de-eeuu" title="Link to this heading">#</a></h1>
+<div class="admonition-pregunta-para-reflexionar admonition">
+<p class="admonition-title">Pregunta para reflexionar</p>
+<div align="justify"><strong>¿Puede una máquina ser racista? ¿Puede un algoritmo ser injusto?</strong></div><br>
+</div>
+<section id="introduccion">
+<h2><span class="section-number">6.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
+<div align="justify">Los algoritmos de Inteligencia Artificial aprenden de datos creados por humanos. Si esos datos contienen sesgos históricos, sociales o culturales, la IA los aprenderá y los replicará, a veces amplificándolos {cite}`oneil2016weapons`. Un <strong>sesgo algorítmico</strong> ocurre cuando un sistema de IA produce resultados sistemáticamente injustos o discriminatorios hacia ciertos grupos de personas.</div></section>
+<section id="tipos-de-sesgos">
+<h2><span class="section-number">6.2. </span>Tipos de Sesgos:<a class="headerlink" href="#tipos-de-sesgos" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Sesgo en los datos de entrenamiento</strong></p>
+<ul class="simple">
+<li><p>Datos históricos que reflejan discriminación pasada</p></li>
+<li><p>Falta de representación de ciertos grupos</p></li>
+</ul>
+</li>
+<li><p><strong>Sesgo en el diseño del algoritmo</strong></p>
+<ul class="simple">
+<li><p>Decisiones de programación que favorecen ciertos resultados</p></li>
+<li><p>Métricas de éxito mal definidas</p></li>
+</ul>
+</li>
+<li><p><strong>Sesgo en la interpretación</strong></p>
+<ul class="simple">
+<li><p>Cómo se usan y se interpretan los resultados de la IA</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="caso-historico-compas-y-el-sistema-de-justicia-en-ee-uu">
+<h2><span class="section-number">6.3. </span>Caso Histórico: COMPAS y el Sistema de Justicia en EE.UU.<a class="headerlink" href="#caso-historico-compas-y-el-sistema-de-justicia-en-ee-uu" title="Link to this heading">#</a></h2>
+<section id="que-es-compas">
+<h3><span class="section-number">6.3.1. </span>¿Qué es COMPAS?<a class="headerlink" href="#que-es-compas" title="Link to this heading">#</a></h3>
+<div align="justify">
+<strong>COMPAS</strong> (Correctional Offender Management Profiling for Alternative Sanctions) es un algoritmo usado en varios estados de EE.UU. para predecir si un acusado volverá a cometer un crimen (reincidencia).
+</div><br>
+<p><strong>Lo usa para</strong>:</p>
+<ul class="simple">
+<li><p>Decidir fianzas</p></li>
+<li><p>Determinar sentencias</p></li>
+<li><p>Evaluar libertad condicional</p></li>
+</ul>
+</section>
+<section id="el-problema-descubierto">
+<h3><span class="section-number">6.3.2. </span>El Problema Descubierto<a class="headerlink" href="#el-problema-descubierto" title="Link to this heading">#</a></h3>
+<p>En <strong>2016</strong>, una investigación de <strong>ProPublica</strong> reveló que COMPAS era <strong>racialmente sesgado</strong> <span id="id1">[]</span>:</p>
+<p><strong>Hallazgos claves</strong>:</p>
+<ul class="simple">
+<li><p>Personas afroamericanas tenían <strong>casi el doble</strong> de probabilidad de ser incorrectamente clasificadas como “alto riesgo” de reincidencia</p></li>
+<li><p>Personas blancas tenían más probabilidad de ser clasificadas como “bajo riesgo” incluso cuando sí reincidían</p></li>
+<li><p>La precisión general era solo del <strong>61%</strong> (similar a lanzar una moneda)</p></li>
+</ul>
+<figure class="align-default" id="fig-compas-accuracy">
+<a class="reference internal image-reference" href="_images/COMPAS.jpg"><img alt="Precisión del algoritmo COMPAS" src="_images/COMPAS.jpg" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Precisión del algoritmo COMPAS en la predicción de reincidencia: aproximadamente 60-70% de aciertos, similar a lanzar una moneda. Fuente: <span id="id2"></span>.</span><a class="headerlink" href="#fig-compas-accuracy" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Como se observa en la <a class="reference internal" href="#fig-compas-accuracy"><span class="std std-numref">Fig. 6.1</span></a>, la precisión del algoritmo COMPAS es sorprendentemente baja.</p>
+</section>
+<section id="datos-concretos">
+<h3><span class="section-number">6.3.3. </span>Datos Concretos:<a class="headerlink" href="#datos-concretos" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table" id="tabla-compas-errores">
+<caption><span class="caption-number">Table 6.1 </span><span class="caption-text">Tasas de error de COMPAS por grupo étnico</span><a class="headerlink" href="#tabla-compas-errores" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Grupo</p></th>
+<th class="head text-center"><p>Falsamente clasificados como “Alto Riesgo”</p></th>
+<th class="head text-center"><p>Falsamente clasificados como “Bajo Riesgo”</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Afroamericanos</p></td>
+<td class="text-center"><p><strong>45%</strong></p></td>
+<td class="text-center"><p>23%</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Blancos</p></td>
+<td class="text-center"><p>23%</p></td>
+<td class="text-center"><p><strong>48%</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los datos de la <a class="reference internal" href="#tabla-compas-errores"><span class="std std-numref">Table 6.1</span></a> muestran claramente el sesgo racial del algoritmo <span id="id3">[]</span>.</p>
+</section>
+<section id="por-que-ocurrio-esto">
+<h3><span class="section-number">6.3.4. </span>¿Por qué ocurrió esto?<a class="headerlink" href="#por-que-ocurrio-esto" title="Link to this heading">#</a></h3>
+<div align="justify">El algoritmo fue entrenado con datos históricos del sistema de justicia de EE.UU., que tiene <strong>sesgos documentados</strong> {cite}`oneil2016weapons`:</div>
+<ol class="arabic simple">
+<li><p><strong>Arrestos desproporcionados</strong> de minorías</p></li>
+<li><p><strong>Sentencias más duras</strong> para personas afroamericanas</p></li>
+<li><p><strong>Mayor vigilancia</strong> en vecindarios de bajos recursos</p></li>
+</ol>
+<p><strong>La IA aprendió estos patrones y los perpetuó.</strong></p>
+</section>
+</section>
+<section id="otros-ejemplos-de-sesgos-algoritmicos">
+<h2><span class="section-number">6.4. </span>Otros Ejemplos de Sesgos Algorítmicos<a class="headerlink" href="#otros-ejemplos-de-sesgos-algoritmicos" title="Link to this heading">#</a></h2>
+<section id="reconocimiento-facial">
+<h3><span class="section-number">6.4.1. </span>1. Reconocimiento Facial<a class="headerlink" href="#reconocimiento-facial" title="Link to this heading">#</a></h3>
+<p><strong>Problema</strong>: Sistemas de reconocimiento facial son menos precisos con personas de piel oscura y mujeres <span id="id4">[]</span>.</p>
+<p><strong>Estudio del MIT (2018)</strong>:</p>
+<ul class="simple">
+<li><p>Error del <strong>0.8%</strong> para hombres de piel clara</p></li>
+<li><p>Error del <strong>34.7%</strong> para mujeres de piel oscura</p></li>
+</ul>
+</section>
+<section id="sistemas-de-contratacion">
+<h3><span class="section-number">6.4.2. </span>2. Sistemas de Contratación<a class="headerlink" href="#sistemas-de-contratacion" title="Link to this heading">#</a></h3>
+<p><strong>Caso Amazon (2018)</strong> <span id="id5">[]</span>:</p>
+<ul class="simple">
+<li><p>Amazon desarrolló un sistema de IA para filtrar CVs</p></li>
+<li><p>El sistema aprendió a <strong>discriminar contra mujeres</strong></p></li>
+<li><p>Penalizaba CVs con la palabra “women” (ej: “women’s chess club”)</p></li>
+<li><p>Fue descontinuado</p></li>
+</ul>
+</section>
+<section id="prediccion-de-rendimiento-academico">
+<h3><span class="section-number">6.4.3. </span>3. Predicción de Rendimiento Académico<a class="headerlink" href="#prediccion-de-rendimiento-academico" title="Link to this heading">#</a></h3>
+<p><strong>Problema</strong>: Algoritmos que predicen deserción escolar pueden estar sesgados contra:</p>
+<ul class="simple">
+<li><p>Estudiantes de bajos recursos</p></li>
+<li><p>Estudiantes de zonas rurales</p></li>
+<li><p>Minorías étnicas</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplo: Simulación simple de sesgo en datos</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluar_candidato</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">universidad</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Algoritmo sesgado que favorece ciertas universidades&quot;&quot;&quot;</span>
+    <span class="n">universidades_elite</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Harvard&#39;</span><span class="p">,</span> <span class="s1">&#39;MIT&#39;</span><span class="p">,</span> <span class="s1">&#39;Stanford&#39;</span><span class="p">]</span>
+    
+    <span class="n">puntaje_base</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+    
+    <span class="c1"># SESGO: +30 puntos si viene de universidad &quot;elite&quot;</span>
+    <span class="k">if</span> <span class="n">universidad</span> <span class="ow">in</span> <span class="n">universidades_elite</span><span class="p">:</span>
+        <span class="n">puntaje_base</span> <span class="o">+=</span> <span class="mi">30</span>
+    
+    <span class="k">return</span> <span class="n">puntaje_base</span>
+
+<span class="c1"># Ejemplos</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Juan (U. Chile): </span><span class="si">{</span><span class="n">evaluar_candidato</span><span class="p">(</span><span class="s1">&#39;Juan&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;U. Chile&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;María (Harvard): </span><span class="si">{</span><span class="n">evaluar_candidato</span><span class="p">(</span><span class="s1">&#39;María&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Harvard&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pedro (U. Concepción): </span><span class="si">{</span><span class="n">evaluar_candidato</span><span class="p">(</span><span class="s1">&#39;Pedro&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;U. Concepción&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ana (MIT): </span><span class="si">{</span><span class="n">evaluar_candidato</span><span class="p">(</span><span class="s1">&#39;Ana&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;MIT&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">¿Notas el sesgo?&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analisis-del-codigo">
+<h3><span class="section-number">6.4.4. </span>Análisis del Código:<a class="headerlink" href="#analisis-del-codigo" title="Link to this heading">#</a></h3>
+<p><strong>El sesgo está en la línea</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">universidad</span> <span class="ow">in</span> <span class="n">universidades_elite</span><span class="p">:</span>
+    <span class="n">puntaje_base</span> <span class="o">+=</span> <span class="mi">30</span>
+</pre></div>
+</div>
+<p><strong>Problemas</strong>:</p>
+<ol class="arabic simple">
+<li><p>Asume que estudiantes de ciertas universidades son mejores</p></li>
+<li><p>No considera mérito individual</p></li>
+<li><p>Perpetúa desigualdades de acceso a educación “elite”</p></li>
+<li><p>Discrimina contra talento de universidades regionales</p></li>
+</ol>
+</section>
+</section>
+<section id="como-combatir-los-sesgos-algoritmicos">
+<h2><span class="section-number">6.5. </span>Cómo Combatir los Sesgos Algorítmicos<a class="headerlink" href="#como-combatir-los-sesgos-algoritmicos" title="Link to this heading">#</a></h2>
+<section id="datos-diversos-y-representativos">
+<h3><span class="section-number">6.5.1. </span>1. Datos Diversos y Representativos:<a class="headerlink" href="#datos-diversos-y-representativos" title="Link to this heading">#</a></h3>
+<p>Asegurarse de que los datos de entrenamiento incluyan:</p>
+<ul class="simple">
+<li><p>Múltiples grupos demográficos</p></li>
+<li><p>Contextos históricos diversos</p></li>
+<li><p>Corrección de sesgos históricos</p></li>
+</ul>
+</section>
+<section id="auditorias-independientes">
+<h3><span class="section-number">6.5.2. </span>2. Auditorías Independientes<a class="headerlink" href="#auditorias-independientes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Revisión externa de algoritmos</p></li>
+<li><p>Transparencia en cómo funcionan</p></li>
+<li><p>Publicación de tasas de error por grupo</p></li>
+</ul>
+</section>
+<section id="equipos-diversos">
+<h3><span class="section-number">6.5.3. </span>3. Equipos Diversos<a class="headerlink" href="#equipos-diversos" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Desarrolladores de diferentes orígenes</p></li>
+<li><p>Perspectivas variadas en el diseño</p></li>
+<li><p>Ética en el centro del desarrollo</p></li>
+</ul>
+</section>
+<section id="regulacion-y-leyes">
+<h3><span class="section-number">6.5.4. </span>4. Regulación y Leyes<a class="headerlink" href="#regulacion-y-leyes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Leyes que exijan transparencia algorítmica</p></li>
+<li><p>Derecho a explicación de decisiones automatizadas</p></li>
+<li><p>Responsabilidad por daños causados por IA</p></li>
+</ul>
+</section>
+</section>
+<section id="marco-legal-actual">
+<h2><span class="section-number">6.6. </span>Marco Legal Actual<a class="headerlink" href="#marco-legal-actual" title="Link to this heading">#</a></h2>
+<section id="union-europea-ai-act">
+<h3><span class="section-number">6.6.1. </span>Unión Europea: AI Act<a class="headerlink" href="#union-europea-ai-act" title="Link to this heading">#</a></h3>
+<p>La Unión Europea ha aprobado regulaciones estrictas sobre IA <span id="id6">[]</span>:</p>
+<ul class="simple">
+<li><p>Prohíbe ciertos usos de IA en justicia</p></li>
+<li><p>Exige transparencia en sistemas de alto riesgo</p></li>
+<li><p>Multas por incumplimiento</p></li>
+</ul>
+<figure class="align-default" id="fig-eu-ai-act">
+<a class="reference internal image-reference" href="_images/ReglamentoEUR.jpeg"><img alt="Reglamento de la Unión Europea sobre IA" src="_images/ReglamentoEUR.jpeg" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6.2 </span><span class="caption-text">Marco regulatorio de la Unión Europea para la Inteligencia Artificial (AI Act). Fuente: <span id="id7"></span>.</span><a class="headerlink" href="#fig-eu-ai-act" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Como se muestra en la <a class="reference internal" href="#fig-eu-ai-act"><span class="std std-numref">Fig. 6.2</span></a>, la UE ha establecido un marco comprehensivo para regular la IA.</p>
+</section>
+<section id="chile">
+<h3><span class="section-number">6.6.2. </span>Chile:<a class="headerlink" href="#chile" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Aún no existe legislación específica sobre sesgos en IA</p></li>
+<li><p>Nueva ley de protección de datos personales</p></li>
+<li><p>Existe un proyecto de ley que pretende regular los sistemas de inteligencia artificial (IA) en Chile, buscando asegurar que el desarrollo y uso de estas tecnologías sea respetuoso de los derechos de las personas, fomentar la innovación y fortalecer la capacidad del Estado para actuar frente a sus riesgos y desafíos <span id="id8">[]</span></p></li>
+</ul>
+</section>
+</section>
+<section id="actividad-detecta-el-sesgo-ejercicio-practico">
+<h2><span class="section-number">6.7. </span>Actividad: Detecta el Sesgo - Ejercicio Práctico<a class="headerlink" href="#actividad-detecta-el-sesgo-ejercicio-practico" title="Link to this heading">#</a></h2>
+<p><strong>Escenario</strong>: Una universidad quiere usar IA para seleccionar estudiantes.</p>
+<p><strong>Datos disponibles</strong>:</p>
+<ul class="simple">
+<li><p>Notas de enseñanza media</p></li>
+<li><p>Colegio de origen (público/Subvencionado/privado)</p></li>
+<li><p>Comuna o ciudad de residencia</p></li>
+<li><p>Actividades extracurriculares</p></li>
+<li><p>Puntaje PAES</p></li>
+<li><p>Foto del estudiante</p></li>
+</ul>
+<p><strong>Preguntas</strong>:</p>
+<ol class="arabic simple">
+<li><p>¿Qué sesgos podrían existir en estos datos?</p></li>
+<li><p>¿Qué grupos podrían ser discriminados?</p></li>
+<li><p>¿Cómo mejorarías el sistema?</p></li>
+<li><p>¿Qué datos NO deberían usarse?</p></li>
+</ol>
+<div align="justify">
+La IA tiene el potencial de ser más justa que los humanos, pero solo si la diseñamos conscientemente para serlo. Debemos ser críticos y vigilantes sobre cómo se usa la tecnología en decisiones que afectan vidas humanas.
+</div></section>
+<section id="recursos-para-profundizar">
+<h2><span class="section-number">6.8. </span>Recursos para Profundizar<a class="headerlink" href="#recursos-para-profundizar" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Libro</strong>: <span id="id9">O'Neil [<a class="reference internal" href="markdown.html#id25" title="Cathy O'Neil. Armas de Destrucción Matemáticas: Cómo el BIG DATA aumenta la desigualdad y amenaza la Democracia. Crown, Nueva York, 2016.">ONeil16</a>]</span> - “Weapons of Math Destruction”</p></li>
+<li><p><strong>Documental</strong>: “Coded Bias” - Netflix</p></li>
+<li><p><strong>Artículo</strong>: <span id="id10"></span> - ProPublica “Machine Bias”</p></li>
+<li><p><strong>Organización</strong>: Algorithmic Justice League</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Próxima clase</strong>: Exploraremos la desinformación y los deepfakes en la era digital.</p>
+</section>
+<section id="referencias">
+<h2><span class="section-number">6.9. </span>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<div class="docutils container" id="id11">
+<div role="list" class="citation-list">
+<div class="citation" id="id34" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">1</a><span class="fn-bracket">]</span></span>
+<p>Cathy O'Neil. <em>Armas de Destrucción Matemáticas: Cómo el BIG DATA aumenta la desigualdad y amenaza la Democracia</em>. Crown, Nueva York, 2016.</p>
+</div>
+<div class="citation" id="id12" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p>Rob Toews. Deepfakes are going to wreak havoc on society. we are not prepared. <em>Forbes</em>, May 2022. URL: <a class="reference external" href="https://www.forbes.com/sites/robtoews/2020/05/25/deepfakes-are-going-to-wreak-havoc-on-society-we-are-not-prepared/">https://www.forbes.com/sites/robtoews/2020/05/25/deepfakes-are-going-to-wreak-havoc-on-society-we-are-not-prepared/</a>.</p>
+</div>
+<div class="citation" id="id14" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
+<p>Coalition Against Stalkerware. Disrupting the deepfake supply chain. Technical Report, Coalition Against Stalkerware, 2024.</p>
+</div>
+<div class="citation" id="id29" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
+<p>Experian. Here's how much your personal information is selling for on the dark web. 2024. URL: <a class="reference external" href="https://www.experian.com/blogs/ask-experian/heres-how-much-your-personal-information-is-selling-for-on-the-dark-web/">https://www.experian.com/blogs/ask-experian/heres-how-much-your-personal-information-is-selling-for-on-the-dark-web/</a>.</p>
+</div>
+<div class="citation" id="id13" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></span>
+<p>Lisa Institute. Deepfakes: qué es, tipos, riesgos y amenazas. <a class="reference external" href="https://www.lisainstitute.com/blogs/blog/deepfakes-tipos-consejos-riesgos-amenazas">https://www.lisainstitute.com/blogs/blog/deepfakes-tipos-consejos-riesgos-amenazas</a>, 2024.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Mitos%20y%20Realidades%20II.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>La IA Revolucionando la Investigación Histórica y la Educación</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Deepfakes.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Desinformación y Deepfakes en la Era Digital</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">6.1. Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-sesgos">6.2. Tipos de Sesgos:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-historico-compas-y-el-sistema-de-justicia-en-ee-uu">6.3. Caso Histórico: COMPAS y el Sistema de Justicia en EE.UU.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-compas">6.3.1. ¿Qué es COMPAS?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-problema-descubierto">6.3.2. El Problema Descubierto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-concretos">6.3.3. Datos Concretos:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-ocurrio-esto">6.3.4. ¿Por qué ocurrió esto?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-ejemplos-de-sesgos-algoritmicos">6.4. Otros Ejemplos de Sesgos Algorítmicos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconocimiento-facial">6.4.1. 1. Reconocimiento Facial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-de-contratacion">6.4.2. 2. Sistemas de Contratación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediccion-de-rendimiento-academico">6.4.3. 3. Predicción de Rendimiento Académico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-codigo">6.4.4. Análisis del Código:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-combatir-los-sesgos-algoritmicos">6.5. Cómo Combatir los Sesgos Algorítmicos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-diversos-y-representativos">6.5.1. 1. Datos Diversos y Representativos:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#auditorias-independientes">6.5.2. 2. Auditorías Independientes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equipos-diversos">6.5.3. 3. Equipos Diversos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regulacion-y-leyes">6.5.4. 4. Regulación y Leyes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marco-legal-actual">6.6. Marco Legal Actual</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#union-europea-ai-act">6.6.1. Unión Europea: AI Act</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chile">6.6.2. Chile:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividad-detecta-el-sesgo-ejercicio-practico">6.7. Actividad: Detecta el Sesgo - Ejercicio Práctico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-para-profundizar">6.8. Recursos para Profundizar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">6.9. Referencias</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Claudio Rojas Monsalves
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
