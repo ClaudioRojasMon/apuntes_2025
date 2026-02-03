@@ -1,0 +1,1191 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>21. Funciones con Parámetros: Organizando el Código Histórico &#8212; Programando la Historia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Capitulo_21_Funciones_Parametros';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="20. Ciclo While y Control de Flujo: Repetir Hasta que la Historia Cambie" href="Capitulo_20_While_Control_Flujo.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Original.png" class="logo__image only-light" alt="Programando la Historia - Home"/>
+    <script>document.write(`<img src="_static/Original.png" class="logo__image only-dark" alt="Programando la Historia - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Programando la Historia.
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Inteligencia Artificial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20I.html">1. ¿Qué es la Inteligencia Artificial?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20II.html">2. Historia de la Inteligencia Artificial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20III.html">3. Inteligencia Artificial Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades.html">4. Mitos vs. Realidad: ¿La IA nos reemplazará?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades%20II.html">5. La IA Revolucionando la Investigación Histórica y la Educación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sesgos.html">6. Sesgos Algorítmicos: El uso de Compas en el Sistemas de Justicia de EEUU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deepfakes.html">7. Desinformación y Deepfakes en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datos.html">8. Privacidad y Datos Personales en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Elecci%C3%B3n%20de%20IA.html">9. ¿Cómo mejorar tus tareas escolares sin hacer trampa?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Herramientas%20para%20la%20IA%20Generativa.html">10. Herramientas de IA Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Prompt.html">11. Prompting Efectivo: El arte de “conversar” con la IA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyectos.html">12. Proyectos Estudiantiles Potenciados por IA</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Programación Básica</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Markdown_II_final.html">13. ¿Qué es Markdown?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Google_Sheets_Formulas.html">14. Fórmulas Básicas en Google Sheets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mini_Dashboard_Crisis.html">15. Mini Dashboard de Crisis Históricas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_16_Introduccion_Python.html">16. Introducción a Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_17_Variables_Tipos_Datos.html">17. Variables y Tipos de Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_18_Metodos_Listas_Strings.html">18. Métodos de Listas y Strings: Manipulando Datos Históricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_19_Condicionales_Ciclo_For.html">19. Condicionales y Ciclos For: Decisiones y Repeticiones en la Historia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_20_While_Control_Flujo.html">20. Ciclo While y Control de Flujo: Repetir Hasta que la Historia Cambie</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">21. Funciones con Parámetros: Organizando el Código Histórico</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ClaudioRojasMon/apuntes_2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ClaudioRojasMon/apuntes_2025/issues/new?title=Issue%20on%20page%20%2FCapitulo_21_Funciones_Parametros.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Capitulo_21_Funciones_Parametros.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Funciones con Parámetros: Organizando el Código Histórico</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">21.1. 🎯 Objetivos de Aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-son-las-funciones">21.2. ¿Qué son las Funciones?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-simple-sin-parametros">21.2.1. Función simple (sin parámetros)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomia-de-una-funcion">21.2.2. Anatomía de una función</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-con-parametros">21.3. Funciones con Parámetros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-parametro">21.3.1. Un parámetro</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiples-parametros">21.3.2. Múltiples parámetros</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-sentencia-return">21.4. La sentencia <code class="docutils literal notranslate"><span class="pre">return</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retornar-multiples-valores">21.4.1. Retornar múltiples valores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametros-con-valores-por-defecto">21.5. Parámetros con Valores por Defecto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-practicas-para-historia">21.6. Funciones Prácticas para Historia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificador-de-siglos">21.6.1. Clasificador de Siglos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificador-de-periodos-chilenos">21.6.2. Clasificador de Períodos Chilenos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generador-de-fichas-historicas">21.6.3. Generador de Fichas Históricas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-sistema-de-consulta-historica">21.7. 🏛️ Proyecto: Sistema de Consulta Histórica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividad-de-cierre">21.8. 📝 Actividad de Cierre</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-funcion-de-area">21.8.1. Ejercicio 1: Función de Área</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-verificador-de-ano-bisiesto">21.8.2. Ejercicio 2: Verificador de Año Bisiesto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-calculadora-de-promedios">21.8.3. Ejercicio 3: Calculadora de Promedios</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-del-capitulo">21.9. 📚 Resumen del Capítulo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos-clave">21.9.1. Conceptos Clave</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">21.10. 📖 Referencias</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="funciones-con-parametros-organizando-el-codigo-historico">
+<h1><span class="section-number">21. </span>Funciones con Parámetros: Organizando el Código Histórico<a class="headerlink" href="#funciones-con-parametros-organizando-el-codigo-historico" title="Link to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>“Divide y vencerás.”</p>
+<p class="attribution">—Atribuido a Julio César (100-44 a.C.)</p>
+</div></blockquote>
+<section id="objetivos-de-aprendizaje">
+<h2><span class="section-number">21.1. </span>🎯 Objetivos de Aprendizaje<a class="headerlink" href="#objetivos-de-aprendizaje" title="Link to this heading">#</a></h2>
+<p>Al finalizar este capítulo, serás capaz de:</p>
+<ol class="arabic simple">
+<li><p>Crear funciones que reciben información (parámetros)</p></li>
+<li><p>Usar <code class="docutils literal notranslate"><span class="pre">return</span></code> para que las funciones devuelvan resultados</p></li>
+<li><p>Entender la diferencia entre parámetros y argumentos</p></li>
+<li><p>Organizar código en funciones reutilizables</p></li>
+<li><p>Combinar funciones con todo lo aprendido anteriormente</p></li>
+</ol>
+<div class="tip admonition">
+<p class="admonition-title">⏱️ Tiempo estimado</p>
+<p>90 minutos de lectura y práctica</p>
+</div>
+</section>
+<section id="que-son-las-funciones">
+<h2><span class="section-number">21.2. </span>¿Qué son las Funciones?<a class="headerlink" href="#que-son-las-funciones" title="Link to this heading">#</a></h2>
+<p>Una <strong>función</strong> es un bloque de código reutilizable que realiza una tarea específica. Las funciones nos permiten:</p>
+<ul class="simple">
+<li><p><strong>Organizar</strong> el código en piezas más pequeñas</p></li>
+<li><p><strong>Reutilizar</strong> código sin tener que escribirlo varias veces</p></li>
+<li><p><strong>Abstraer</strong> la complejidad (usar sin saber cómo funciona internamente)</p></li>
+</ul>
+<div class="note admonition">
+<p class="admonition-title">🏛️ Analogía Histórica</p>
+<p>Imagina que las funciones son como <strong>departamentos en un museo</strong>: el departamento de arqueología, el de arte colonial, el de historia republicana. Cada uno tiene una tarea específica, pero trabajan juntos para el objetivo del museo.</p>
+</div>
+<section id="funcion-simple-sin-parametros">
+<h3><span class="section-number">21.2.1. </span>Función simple (sin parámetros)<a class="headerlink" href="#funcion-simple-sin-parametros" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definir una función</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">saludar_historiador</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;¡Bienvenido al estudio de la Historia con Python!&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prepárate para analizar datos del pasado.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Llamar (usar) la función</span>
+<span class="n">saludar_historiador</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>¡Bienvenido al estudio de la Historia con Python!
+Prepárate para analizar datos del pasado.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="anatomia-de-una-funcion">
+<h3><span class="section-number">21.2.2. </span>Anatomía de una función<a class="headerlink" href="#anatomia-de-una-funcion" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">nombre_funcion</span><span class="p">(</span><span class="n">parametros</span><span class="p">):</span>  <span class="c1"># Definición</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Descripción de lo que hace (docstring)&quot;&quot;&quot;</span>  <span class="c1"># Documentación</span>
+    <span class="c1"># Código de la función</span>
+    <span class="k">return</span> <span class="n">resultado</span>  <span class="c1"># Valor que devuelve (opcional)</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Elemento</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">def</span></code></p></td>
+<td><p>Palabra clave para definir funciones</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nombre_funcion</span></code></p></td>
+<td><p>Nombre descriptivo (snake_case)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">parametros</span></code></p></td>
+<td><p>Información que recibe la función</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">docstring</span></code></p></td>
+<td><p>Descripción de la función</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">return</span></code></p></td>
+<td><p>Valor que devuelve la función</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Tabla 19.1: Elementos de una función en Python</em></p>
+</section>
+</section>
+<section id="funciones-con-parametros">
+<h2><span class="section-number">21.3. </span>Funciones con Parámetros<a class="headerlink" href="#funciones-con-parametros" title="Link to this heading">#</a></h2>
+<p>Los <strong>parámetros</strong> son como “espacios en blanco” que llenamos cuando usamos la función.</p>
+<section id="un-parametro">
+<h3><span class="section-number">21.3.1. </span>Un parámetro<a class="headerlink" href="#un-parametro" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Función que saluda a un prócer específico</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">saludar_procer</span><span class="p">(</span><span class="n">nombre</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Saluda a un prócer de la independencia.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;¡Honor al prócer </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+
+<span class="c1"># Usar la función con diferentes argumentos</span>
+<span class="n">saludar_procer</span><span class="p">(</span><span class="s2">&quot;Bernardo O&#39;Higgins&quot;</span><span class="p">)</span>
+<span class="n">saludar_procer</span><span class="p">(</span><span class="s2">&quot;José de San Martín&quot;</span><span class="p">)</span>
+<span class="n">saludar_procer</span><span class="p">(</span><span class="s2">&quot;Manuel Rodríguez&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>¡Honor al prócer Bernardo O&#39;Higgins!
+¡Honor al prócer José de San Martín!
+¡Honor al prócer Manuel Rodríguez!
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="multiples-parametros">
+<h3><span class="section-number">21.3.2. </span>Múltiples parámetros<a class="headerlink" href="#multiples-parametros" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Función para presentar información de un personaje histórico</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">presentar_personaje</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">anio_nacimiento</span><span class="p">,</span> <span class="n">cargo</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Presenta información básica de un personaje histórico.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nombre: </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Año de nacimiento: </span><span class="si">{</span><span class="n">anio_nacimiento</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cargo principal: </span><span class="si">{</span><span class="n">cargo</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+
+<span class="c1"># Usar la función</span>
+<span class="n">presentar_personaje</span><span class="p">(</span><span class="s2">&quot;Bernardo O&#39;Higgins&quot;</span><span class="p">,</span> <span class="mi">1778</span><span class="p">,</span> <span class="s2">&quot;Director Supremo&quot;</span><span class="p">)</span>
+<span class="n">presentar_personaje</span><span class="p">(</span><span class="s2">&quot;José Miguel Carrera&quot;</span><span class="p">,</span> <span class="mi">1785</span><span class="p">,</span> <span class="s2">&quot;Jefe del Gobierno&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Nombre: Bernardo O&#39;Higgins
+Año de nacimiento: 1778
+Cargo principal: Director Supremo
+----------------------------------------
+Nombre: José Miguel Carrera
+Año de nacimiento: 1785
+Cargo principal: Jefe del Gobierno
+----------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="la-sentencia-return">
+<h2><span class="section-number">21.4. </span>La sentencia <code class="docutils literal notranslate"><span class="pre">return</span></code><a class="headerlink" href="#la-sentencia-return" title="Link to this heading">#</a></h2>
+<p>La sentencia <code class="docutils literal notranslate"><span class="pre">return</span></code> permite que una función <strong>devuelva un valor</strong> que podemos usar después.</p>
+<div class="tip admonition">
+<p class="admonition-title">💡 Diferencia importante</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">print()</span></code> solo <strong>muestra</strong> información en pantalla</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">return</span></code> <strong>devuelve</strong> un valor que puede ser usado en otras operaciones</p></li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Función que calcula años transcurridos</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calcular_anos_transcurridos</span><span class="p">(</span><span class="n">anio_evento</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calcula cuántos años han pasado desde un evento.&quot;&quot;&quot;</span>
+    <span class="n">anio_actual</span> <span class="o">=</span> <span class="mi">2025</span>
+    <span class="n">diferencia</span> <span class="o">=</span> <span class="n">anio_actual</span> <span class="o">-</span> <span class="n">anio_evento</span>
+    <span class="k">return</span> <span class="n">diferencia</span>  <span class="c1"># Devuelve el resultado</span>
+
+<span class="c1"># Usar el valor retornado</span>
+<span class="n">anos_independencia</span> <span class="o">=</span> <span class="n">calcular_anos_transcurridos</span><span class="p">(</span><span class="mi">1818</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Han pasado </span><span class="si">{</span><span class="n">anos_independencia</span><span class="si">}</span><span class="s2"> años desde la Independencia&quot;</span><span class="p">)</span>
+
+<span class="n">anos_guerra</span> <span class="o">=</span> <span class="n">calcular_anos_transcurridos</span><span class="p">(</span><span class="mi">1879</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Han pasado </span><span class="si">{</span><span class="n">anos_guerra</span><span class="si">}</span><span class="s2"> años desde la Guerra del Pacífico&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Han pasado 207 años desde la Independencia
+Han pasado 146 años desde la Guerra del Pacífico
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Diferencia entre print y return</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sumar_con_print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># Solo muestra, no devuelve</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sumar_con_return</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>  <span class="c1"># Devuelve el valor</span>
+
+<span class="c1"># Con print no podemos usar el resultado</span>
+<span class="n">resultado1</span> <span class="o">=</span> <span class="n">sumar_con_print</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># Imprime 8</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;resultado1 = </span><span class="si">{</span><span class="n">resultado1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># None (no hay return)</span>
+
+<span class="c1"># Con return podemos usar el resultado</span>
+<span class="n">resultado2</span> <span class="o">=</span> <span class="n">sumar_con_return</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;resultado2 = </span><span class="si">{</span><span class="n">resultado2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># 8</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;resultado2 * 2 = </span><span class="si">{</span><span class="n">resultado2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Podemos operarlo</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+resultado1 = None
+resultado2 = 8
+resultado2 * 2 = 16
+</pre></div>
+</div>
+</div>
+</div>
+<section id="retornar-multiples-valores">
+<h3><span class="section-number">21.4.1. </span>Retornar múltiples valores<a class="headerlink" href="#retornar-multiples-valores" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Función que analiza un período histórico</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">analizar_periodo</span><span class="p">(</span><span class="n">anio_inicio</span><span class="p">,</span> <span class="n">anio_fin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analiza un período histórico y retorna estadísticas.&quot;&quot;&quot;</span>
+    <span class="n">duracion</span> <span class="o">=</span> <span class="n">anio_fin</span> <span class="o">-</span> <span class="n">anio_inicio</span>
+    <span class="n">punto_medio</span> <span class="o">=</span> <span class="n">anio_inicio</span> <span class="o">+</span> <span class="p">(</span><span class="n">duracion</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">duracion</span><span class="p">,</span> <span class="n">punto_medio</span>  <span class="c1"># Retorna dos valores</span>
+
+<span class="c1"># Desempaquetar los valores retornados</span>
+<span class="n">duracion</span><span class="p">,</span> <span class="n">medio</span> <span class="o">=</span> <span class="n">analizar_periodo</span><span class="p">(</span><span class="mi">1810</span><span class="p">,</span> <span class="mi">1830</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Período: 1810-1830&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Duración: </span><span class="si">{</span><span class="n">duracion</span><span class="si">}</span><span class="s2"> años&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Punto medio: </span><span class="si">{</span><span class="n">medio</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Período: 1810-1830
+Duración: 20 años
+Punto medio: 1820
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="parametros-con-valores-por-defecto">
+<h2><span class="section-number">21.5. </span>Parámetros con Valores por Defecto<a class="headerlink" href="#parametros-con-valores-por-defecto" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Función con valor por defecto</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calcular_edad_en_anio</span><span class="p">(</span><span class="n">anio_nacimiento</span><span class="p">,</span> <span class="n">anio_referencia</span><span class="o">=</span><span class="mi">2025</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calcula la edad que tendría alguien en un año dado.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">anio_referencia</span> <span class="o">-</span> <span class="n">anio_nacimiento</span>
+
+<span class="c1"># Usando el valor por defecto</span>
+<span class="n">edad_ohiggins_hoy</span> <span class="o">=</span> <span class="n">calcular_edad_en_anio</span><span class="p">(</span><span class="mi">1778</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;O&#39;Higgins tendría </span><span class="si">{</span><span class="n">edad_ohiggins_hoy</span><span class="si">}</span><span class="s2"> años hoy&quot;</span><span class="p">)</span>
+
+<span class="c1"># Especificando el año de referencia</span>
+<span class="n">edad_ohiggins_1818</span> <span class="o">=</span> <span class="n">calcular_edad_en_anio</span><span class="p">(</span><span class="mi">1778</span><span class="p">,</span> <span class="mi">1818</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;O&#39;Higgins tenía </span><span class="si">{</span><span class="n">edad_ohiggins_1818</span><span class="si">}</span><span class="s2"> años en 1818&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>O&#39;Higgins tendría 247 años hoy
+O&#39;Higgins tenía 40 años en 1818
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="funciones-practicas-para-historia">
+<h2><span class="section-number">21.6. </span>Funciones Prácticas para Historia<a class="headerlink" href="#funciones-practicas-para-historia" title="Link to this heading">#</a></h2>
+<section id="clasificador-de-siglos">
+<h3><span class="section-number">21.6.1. </span>Clasificador de Siglos<a class="headerlink" href="#clasificador-de-siglos" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">obtener_siglo</span><span class="p">(</span><span class="n">anio</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Determina a qué siglo pertenece un año.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">anio</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">siglo</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">anio</span><span class="p">)</span> <span class="o">//</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Siglo </span><span class="si">{</span><span class="n">siglo</span><span class="si">}</span><span class="s2"> a.C.&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">siglo</span> <span class="o">=</span> <span class="p">(</span><span class="n">anio</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Siglo </span><span class="si">{</span><span class="n">siglo</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Probar la función</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1492 → </span><span class="si">{</span><span class="n">obtener_siglo</span><span class="p">(</span><span class="mi">1492</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1810 → </span><span class="si">{</span><span class="n">obtener_siglo</span><span class="p">(</span><span class="mi">1810</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2025 → </span><span class="si">{</span><span class="n">obtener_siglo</span><span class="p">(</span><span class="mi">2025</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;-44 → </span><span class="si">{</span><span class="n">obtener_siglo</span><span class="p">(</span><span class="o">-</span><span class="mi">44</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1492 → Siglo 15
+1810 → Siglo 19
+2025 → Siglo 21
+-44 → Siglo 1 a.C.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="clasificador-de-periodos-chilenos">
+<h3><span class="section-number">21.6.2. </span>Clasificador de Períodos Chilenos<a class="headerlink" href="#clasificador-de-periodos-chilenos" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">clasificar_periodo_chileno</span><span class="p">(</span><span class="n">anio</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clasifica un año en su período de la historia de Chile.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">anio</span> <span class="o">&lt;</span> <span class="mi">1541</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Período Precolombino&quot;</span>
+    <span class="k">elif</span> <span class="n">anio</span> <span class="o">&lt;</span> <span class="mi">1810</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Período Colonial&quot;</span>
+    <span class="k">elif</span> <span class="n">anio</span> <span class="o">&lt;</span> <span class="mi">1818</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Proceso de Independencia&quot;</span>
+    <span class="k">elif</span> <span class="n">anio</span> <span class="o">&lt;</span> <span class="mi">1830</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Organización de la República&quot;</span>
+    <span class="k">elif</span> <span class="n">anio</span> <span class="o">&lt;</span> <span class="mi">1861</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;República Conservadora&quot;</span>
+    <span class="k">elif</span> <span class="n">anio</span> <span class="o">&lt;</span> <span class="mi">1891</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;República Liberal&quot;</span>
+    <span class="k">elif</span> <span class="n">anio</span> <span class="o">&lt;</span> <span class="mi">1925</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;República Parlamentaria&quot;</span>
+    <span class="k">elif</span> <span class="n">anio</span> <span class="o">&lt;</span> <span class="mi">1973</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;República Presidencial&quot;</span>
+    <span class="k">elif</span> <span class="n">anio</span> <span class="o">&lt;</span> <span class="mi">1990</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Régimen Militar&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Retorno a la Democracia&quot;</span>
+
+<span class="c1"># Probar con varios años</span>
+<span class="n">anios_prueba</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">1750</span><span class="p">,</span> <span class="mi">1814</span><span class="p">,</span> <span class="mi">1879</span><span class="p">,</span> <span class="mi">1970</span><span class="p">,</span> <span class="mi">1985</span><span class="p">,</span> <span class="mi">2020</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">anio</span> <span class="ow">in</span> <span class="n">anios_prueba</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">anio</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">clasificar_periodo_chileno</span><span class="p">(</span><span class="n">anio</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1500 → Período Precolombino
+1750 → Período Colonial
+1814 → Proceso de Independencia
+1879 → República Liberal
+1970 → República Presidencial
+1985 → Régimen Militar
+2020 → Retorno a la Democracia
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="generador-de-fichas-historicas">
+<h3><span class="section-number">21.6.3. </span>Generador de Fichas Históricas<a class="headerlink" href="#generador-de-fichas-historicas" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">crear_ficha_historica</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">nacimiento</span><span class="p">,</span> <span class="n">muerte</span><span class="p">,</span> <span class="n">cargo</span><span class="p">,</span> <span class="n">logro_principal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Genera una ficha histórica formateada.&quot;&quot;&quot;</span>
+    <span class="n">anos_vida</span> <span class="o">=</span> <span class="n">muerte</span> <span class="o">-</span> <span class="n">nacimiento</span>
+    
+    <span class="n">ficha</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">50</span><span class="si">}</span>
+<span class="s2">          FICHA HISTÓRICA</span>
+<span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">50</span><span class="si">}</span>
+<span class="s2">Nombre: </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span>
+<span class="s2">Vida: </span><span class="si">{</span><span class="n">nacimiento</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">muerte</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">anos_vida</span><span class="si">}</span><span class="s2"> años)</span>
+<span class="s2">Cargo: </span><span class="si">{</span><span class="n">cargo</span><span class="si">}</span>
+<span class="s2">Logro principal: </span><span class="si">{</span><span class="n">logro_principal</span><span class="si">}</span>
+<span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">50</span><span class="si">}</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ficha</span>
+
+<span class="c1"># Crear fichas</span>
+<span class="n">ficha1</span> <span class="o">=</span> <span class="n">crear_ficha_historica</span><span class="p">(</span>
+    <span class="s2">&quot;Bernardo O&#39;Higgins&quot;</span><span class="p">,</span>
+    <span class="mi">1778</span><span class="p">,</span> <span class="mi">1842</span><span class="p">,</span>
+    <span class="s2">&quot;Director Supremo de Chile&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Consolidar la Independencia de Chile&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ficha1</span><span class="p">)</span>
+
+<span class="n">ficha2</span> <span class="o">=</span> <span class="n">crear_ficha_historica</span><span class="p">(</span>
+    <span class="s2">&quot;Arturo Prat Chacón&quot;</span><span class="p">,</span>
+    <span class="mi">1848</span><span class="p">,</span> <span class="mi">1879</span><span class="p">,</span>
+    <span class="s2">&quot;Capitán de Fragata&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Heroísmo en el Combate Naval de Iquique&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ficha2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==================================================
+          FICHA HISTÓRICA
+==================================================
+Nombre: Bernardo O&#39;Higgins
+Vida: 1778 - 1842 (64 años)
+Cargo: Director Supremo de Chile
+Logro principal: Consolidar la Independencia de Chile
+==================================================
+    
+
+==================================================
+          FICHA HISTÓRICA
+==================================================
+Nombre: Arturo Prat Chacón
+Vida: 1848 - 1879 (31 años)
+Cargo: Capitán de Fragata
+Logro principal: Heroísmo en el Combate Naval de Iquique
+==================================================
+    
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="proyecto-sistema-de-consulta-historica">
+<h2><span class="section-number">21.7. </span>🏛️ Proyecto: Sistema de Consulta Histórica<a class="headerlink" href="#proyecto-sistema-de-consulta-historica" title="Link to this heading">#</a></h2>
+<p>Combinemos todo lo aprendido en un proyecto completo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sistema de Consulta Histórica de Chile</span>
+
+<span class="c1"># Base de datos (diccionarios)</span>
+<span class="n">PERSONAJES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;ohiggins&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Bernardo O&#39;Higgins&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;nacimiento&quot;</span><span class="p">:</span> <span class="mi">1778</span><span class="p">,</span>
+        <span class="s2">&quot;muerte&quot;</span><span class="p">:</span> <span class="mi">1842</span><span class="p">,</span>
+        <span class="s2">&quot;cargo&quot;</span><span class="p">:</span> <span class="s2">&quot;Director Supremo&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;carrera&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;José Miguel Carrera&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;nacimiento&quot;</span><span class="p">:</span> <span class="mi">1785</span><span class="p">,</span>
+        <span class="s2">&quot;muerte&quot;</span><span class="p">:</span> <span class="mi">1821</span><span class="p">,</span>
+        <span class="s2">&quot;cargo&quot;</span><span class="p">:</span> <span class="s2">&quot;Jefe del Gobierno&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;prat&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Arturo Prat&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;nacimiento&quot;</span><span class="p">:</span> <span class="mi">1848</span><span class="p">,</span>
+        <span class="s2">&quot;muerte&quot;</span><span class="p">:</span> <span class="mi">1879</span><span class="p">,</span>
+        <span class="s2">&quot;cargo&quot;</span><span class="p">:</span> <span class="s2">&quot;Capitán de Fragata&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Funciones del sistema</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mostrar_menu</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Muestra el menú principal.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  SISTEMA DE CONSULTA HISTÓRICA&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. Buscar personaje&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. Calcular años desde evento&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3. Clasificar año en período&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;4. Salir&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">buscar_personaje</span><span class="p">(</span><span class="n">clave</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Busca y muestra información de un personaje.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">clave</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">PERSONAJES</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">PERSONAJES</span><span class="p">[</span><span class="n">clave</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
+        <span class="n">edad</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;muerte&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;nacimiento&quot;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📜 </span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;nombre&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Vida: </span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;nacimiento&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;muerte&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">edad</span><span class="si">}</span><span class="s2"> años)&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Cargo: </span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;cargo&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">❌ Personaje no encontrado.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Disponibles: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PERSONAJES</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">calcular_anos_desde</span><span class="p">(</span><span class="n">anio</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calcula años transcurridos desde un evento.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">2025</span> <span class="o">-</span> <span class="n">anio</span>
+
+<span class="c1"># Programa principal</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;¡Bienvenido al Sistema de Consulta Histórica!&quot;</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">mostrar_menu</span><span class="p">()</span>
+    <span class="n">opcion</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Elige una opción (1-4): &quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">opcion</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+        <span class="n">nombre</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Ingresa el nombre del personaje: &quot;</span><span class="p">)</span>
+        <span class="n">buscar_personaje</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+    
+    <span class="k">elif</span> <span class="n">opcion</span> <span class="o">==</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">anio</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Ingresa el año del evento: &quot;</span><span class="p">))</span>
+            <span class="n">anos</span> <span class="o">=</span> <span class="n">calcular_anos_desde</span><span class="p">(</span><span class="n">anio</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📅 Han pasado </span><span class="si">{</span><span class="n">anos</span><span class="si">}</span><span class="s2"> años desde </span><span class="si">{</span><span class="n">anio</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">⚠️ Por favor ingresa un año válido.&quot;</span><span class="p">)</span>
+    
+    <span class="k">elif</span> <span class="n">opcion</span> <span class="o">==</span> <span class="s2">&quot;3&quot;</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">anio</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Ingresa un año: &quot;</span><span class="p">))</span>
+            <span class="n">periodo</span> <span class="o">=</span> <span class="n">clasificar_periodo_chileno</span><span class="p">(</span><span class="n">anio</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📚 El año </span><span class="si">{</span><span class="n">anio</span><span class="si">}</span><span class="s2"> corresponde al: </span><span class="si">{</span><span class="n">periodo</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">⚠️ Por favor ingresa un año válido.&quot;</span><span class="p">)</span>
+    
+    <span class="k">elif</span> <span class="n">opcion</span> <span class="o">==</span> <span class="s2">&quot;4&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">¡Hasta pronto, historiador! 📖&quot;</span><span class="p">)</span>
+        <span class="k">break</span>
+    
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">❌ Opción no válida. Intenta de nuevo.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="actividad-de-cierre">
+<h2><span class="section-number">21.8. </span>📝 Actividad de Cierre<a class="headerlink" href="#actividad-de-cierre" title="Link to this heading">#</a></h2>
+<section id="ejercicio-1-funcion-de-area">
+<h3><span class="section-number">21.8.1. </span>Ejercicio 1: Función de Área<a class="headerlink" href="#ejercicio-1-funcion-de-area" title="Link to this heading">#</a></h3>
+<p>Crea una función <code class="docutils literal notranslate"><span class="pre">calcular_area_rectangulo(base,</span> <span class="pre">altura)</span></code> que retorne el área.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tu código aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-2-verificador-de-ano-bisiesto">
+<h3><span class="section-number">21.8.2. </span>Ejercicio 2: Verificador de Año Bisiesto<a class="headerlink" href="#ejercicio-2-verificador-de-ano-bisiesto" title="Link to this heading">#</a></h3>
+<p>Crea una función <code class="docutils literal notranslate"><span class="pre">es_bisiesto(anio)</span></code> que retorne <code class="docutils literal notranslate"><span class="pre">True</span></code> si es bisiesto, <code class="docutils literal notranslate"><span class="pre">False</span></code> si no.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tu código aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-3-calculadora-de-promedios">
+<h3><span class="section-number">21.8.3. </span>Ejercicio 3: Calculadora de Promedios<a class="headerlink" href="#ejercicio-3-calculadora-de-promedios" title="Link to this heading">#</a></h3>
+<p>Crea una función que reciba una lista de notas y retorne el promedio y si aprueba (promedio &gt;= 4.0).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tu código aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="resumen-del-capitulo">
+<h2><span class="section-number">21.9. </span>📚 Resumen del Capítulo<a class="headerlink" href="#resumen-del-capitulo" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concepto</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">nombre():</span></code></p></td>
+<td><p>Define una función</p></td>
+</tr>
+<tr class="row-odd"><td><p>Parámetros</p></td>
+<td><p>Variables que recibe la función</p></td>
+</tr>
+<tr class="row-even"><td><p>Argumentos</p></td>
+<td><p>Valores que pasamos al llamar</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">return</span></code></p></td>
+<td><p>Devuelve un valor de la función</p></td>
+</tr>
+<tr class="row-even"><td><p>Valores por defecto</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">f(x=10):</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Docstring</p></td>
+<td><p>Documentación de la función</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Tabla 19.2: Resumen de conceptos del capítulo</em></p>
+<section id="conceptos-clave">
+<h3><span class="section-number">21.9.1. </span>Conceptos Clave<a class="headerlink" href="#conceptos-clave" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Reutilización</strong>: Escribir código una vez, usarlo muchas veces</p></li>
+<li><p><strong>Organización</strong>: Código más limpio y fácil de mantener</p></li>
+<li><p><strong>Abstracción</strong>: Usar funciones sin conocer su implementación interna</p></li>
+<li><p><strong>Modularidad</strong>: Dividir problemas grandes en problemas pequeños</p></li>
+</ul>
+</section>
+</section>
+<section id="referencias">
+<h2><span class="section-number">21.10. </span>📖 Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Python Software Foundation. (2024). <em>Defining Functions</em>. <a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#defining-functions">https://docs.python.org/3/tutorial/controlflow.html#defining-functions</a></p></li>
+<li><p>Downey, A. (2015). <em>Think Python: How to Think Like a Computer Scientist</em>. O’Reilly Media.</p></li>
+<li><p>Programming Historian. (2024). <em>Introduction to Python</em>. <a class="reference external" href="https://programminghistorian.org/">https://programminghistorian.org/</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Capitulo_20_While_Control_Flujo.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">20. </span>Ciclo While y Control de Flujo: Repetir Hasta que la Historia Cambie</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">21.1. 🎯 Objetivos de Aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-son-las-funciones">21.2. ¿Qué son las Funciones?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-simple-sin-parametros">21.2.1. Función simple (sin parámetros)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomia-de-una-funcion">21.2.2. Anatomía de una función</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-con-parametros">21.3. Funciones con Parámetros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-parametro">21.3.1. Un parámetro</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiples-parametros">21.3.2. Múltiples parámetros</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-sentencia-return">21.4. La sentencia <code class="docutils literal notranslate"><span class="pre">return</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retornar-multiples-valores">21.4.1. Retornar múltiples valores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametros-con-valores-por-defecto">21.5. Parámetros con Valores por Defecto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-practicas-para-historia">21.6. Funciones Prácticas para Historia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificador-de-siglos">21.6.1. Clasificador de Siglos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificador-de-periodos-chilenos">21.6.2. Clasificador de Períodos Chilenos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generador-de-fichas-historicas">21.6.3. Generador de Fichas Históricas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-sistema-de-consulta-historica">21.7. 🏛️ Proyecto: Sistema de Consulta Histórica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividad-de-cierre">21.8. 📝 Actividad de Cierre</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-funcion-de-area">21.8.1. Ejercicio 1: Función de Área</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-verificador-de-ano-bisiesto">21.8.2. Ejercicio 2: Verificador de Año Bisiesto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-calculadora-de-promedios">21.8.3. Ejercicio 3: Calculadora de Promedios</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-del-capitulo">21.9. 📚 Resumen del Capítulo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos-clave">21.9.1. Conceptos Clave</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">21.10. 📖 Referencias</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Claudio Rojas Monsalves
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1269 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>17. Variables y Tipos de Datos &#8212; Programando la Historia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Capitulo_17_Variables_Tipos_Datos';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="18. Métodos de Listas y Strings: Manipulando Datos Históricos" href="Capitulo_18_Metodos_Listas_Strings.html" />
+    <link rel="prev" title="16. Introducción a Python" href="Capitulo_16_Introduccion_Python.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Original.png" class="logo__image only-light" alt="Programando la Historia - Home"/>
+    <script>document.write(`<img src="_static/Original.png" class="logo__image only-dark" alt="Programando la Historia - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Programando la Historia.
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Inteligencia Artificial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20I.html">1. ¿Qué es la Inteligencia Artificial?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20II.html">2. Historia de la Inteligencia Artificial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20III.html">3. Inteligencia Artificial Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades.html">4. Mitos vs. Realidad: ¿La IA nos reemplazará?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades%20II.html">5. La IA Revolucionando la Investigación Histórica y la Educación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sesgos.html">6. Sesgos Algorítmicos: El uso de Compas en el Sistemas de Justicia de EEUU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deepfakes.html">7. Desinformación y Deepfakes en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datos.html">8. Privacidad y Datos Personales en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Elecci%C3%B3n%20de%20IA.html">9. ¿Cómo mejorar tus tareas escolares sin hacer trampa?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Herramientas%20para%20la%20IA%20Generativa.html">10. Herramientas de IA Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Prompt.html">11. Prompting Efectivo: El arte de “conversar” con la IA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyectos.html">12. Proyectos Estudiantiles Potenciados por IA</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Programación Básica</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Markdown_II_final.html">13. ¿Qué es Markdown?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Google_Sheets_Formulas.html">14. Fórmulas Básicas en Google Sheets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mini_Dashboard_Crisis.html">15. Mini Dashboard de Crisis Históricas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_16_Introduccion_Python.html">16. Introducción a Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">17. Variables y Tipos de Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_18_Metodos_Listas_Strings.html">18. Métodos de Listas y Strings: Manipulando Datos Históricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_19_Condicionales_Ciclo_For.html">19. Condicionales y Ciclos For: Decisiones y Repeticiones en la Historia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_20_While_Control_Flujo.html">20. Ciclo While y Control de Flujo: Repetir Hasta que la Historia Cambie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_21_Funciones_Parametros.html">21. Funciones con Parámetros: Organizando el Código Histórico</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ClaudioRojasMon/apuntes_2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ClaudioRojasMon/apuntes_2025/issues/new?title=Issue%20on%20page%20%2FCapitulo_17_Variables_Tipos_Datos.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Capitulo_17_Variables_Tipos_Datos.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Variables y Tipos de Datos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">17.1. Objetivos de Aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-son-las-variables">17.2. ¿Qué son las Variables?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creando-variables-el-operador-de-asignacion">17.2.1. Creando variables: el operador de asignación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reglas-para-nombrar-variables">17.3. Reglas para Nombrar Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convencion-snake-case">17.3.1. Convención snake_case</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-datos-basicos">17.4. Tipos de Datos Básicos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enteros-int">17.4.1. Enteros (<code class="docutils literal notranslate"><span class="pre">int</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flotantes-float">17.4.2. Flotantes (<code class="docutils literal notranslate"><span class="pre">float</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cadenas-de-texto-str">17.4.3. Cadenas de texto (<code class="docutils literal notranslate"><span class="pre">str</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#booleanos-bool">17.4.4. Booleanos (<code class="docutils literal notranslate"><span class="pre">bool</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificar-y-convertir-tipos">17.5. Verificar y Convertir Tipos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-funcion-type">17.5.1. La función <code class="docutils literal notranslate"><span class="pre">type()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-tipos-casting">17.5.2. Conversión de tipos (<em>casting</em>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrada-de-datos-la-funcion-input">17.6. Entrada de Datos: la función <code class="docutils literal notranslate"><span class="pre">input()</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-errores-en-input">17.6.1. Manejo de errores en <code class="docutils literal notranslate"><span class="pre">input()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-integrador-ficha-biografica-interactiva">17.7. Ejemplo Integrador: Ficha Biográfica Interactiva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividad-de-cierre">17.8. Actividad de Cierre</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-variables-de-la-guerra-del-pacifico">17.8.1. Ejercicio 1: Variables de la Guerra del Pacífico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-conversion-de-tipos">17.8.2. Ejercicio 2: Conversión de tipos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-ficha-de-batalla">17.8.3. Ejercicio 3: Ficha de batalla</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4-verificacion-de-tipos">17.8.4. Ejercicio 4: Verificación de tipos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-5-calculadora-historica-interactiva">17.8.5. Ejercicio 5: Calculadora histórica interactiva</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-del-capitulo">17.9. Resumen del Capítulo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">17.10. Referencias</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="variables-y-tipos-de-datos">
+<h1><span class="section-number">17. </span>Variables y Tipos de Datos<a class="headerlink" href="#variables-y-tipos-de-datos" title="Link to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>“Los archivos son la memoria de los pueblos.”</p>
+<p class="attribution">—Adaptado del principio archivístico</p>
+</div></blockquote>
+<div class="tip admonition">
+<p class="admonition-title">Información del Capítulo</p>
+<p><strong>Tiempo estimado:</strong> 80 minutos<br />
+<strong>Nivel:</strong> Introductorio<br />
+<strong>Prerrequisitos:</strong> Capítulo 14 - Introducción a Python</p>
+</div>
+<section id="objetivos-de-aprendizaje">
+<h2><span class="section-number">17.1. </span>Objetivos de Aprendizaje<a class="headerlink" href="#objetivos-de-aprendizaje" title="Link to this heading">#</a></h2>
+<p>Al finalizar este capítulo, serás capaz de:</p>
+<ol class="arabic simple">
+<li><p>Comprender qué son las variables y cómo funcionan como “archivos digitales”</p></li>
+<li><p>Aplicar las reglas correctas para nombrar variables en Python</p></li>
+<li><p>Distinguir y utilizar los cuatro tipos de datos básicos: <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code> y <code class="docutils literal notranslate"><span class="pre">bool</span></code></p></li>
+<li><p>Convertir datos entre diferentes tipos usando funciones de conversión</p></li>
+<li><p>Capturar información del usuario con la función <code class="docutils literal notranslate"><span class="pre">input()</span></code></p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="que-son-las-variables">
+<h2><span class="section-number">17.2. </span>¿Qué son las Variables?<a class="headerlink" href="#que-son-las-variables" title="Link to this heading">#</a></h2>
+<p>Imagina que eres un <strong>archivero</strong> en la Biblioteca Nacional de Chile. Tu trabajo es organizar documentos históricos en carpetas etiquetadas. Cada carpeta tiene:</p>
+<ul class="simple">
+<li><p>Una <strong>etiqueta</strong> (nombre) que identifica su contenido</p></li>
+<li><p>Un <strong>documento</strong> (valor) guardado dentro</p></li>
+</ul>
+<p>En Python, las <strong>variables</strong> funcionan exactamente así: son contenedores con nombre que almacenan datos.</p>
+<div class="note admonition">
+<p class="admonition-title">Definición formal</p>
+<p>Una <strong>variable</strong> es un espacio en la memoria del computador que tiene un nombre y almacena un valor. Este valor puede cambiar durante la ejecución del programa.</p>
+</div>
+<section id="creando-variables-el-operador-de-asignacion">
+<h3><span class="section-number">17.2.1. </span>Creando variables: el operador de asignación<a class="headerlink" href="#creando-variables-el-operador-de-asignacion" title="Link to this heading">#</a></h3>
+<p>Para crear una variable usamos el <strong>operador de asignación</strong> (<code class="docutils literal notranslate"><span class="pre">=</span></code>). Este operador “guarda” el valor de la derecha en la variable de la izquierda.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creamos variables con datos históricos de Chile</span>
+<span class="n">ano_primera_junta</span> <span class="o">=</span> <span class="mi">1810</span>
+<span class="n">nombre_libertador</span> <span class="o">=</span> <span class="s2">&quot;Bernardo O&#39;Higgins&quot;</span>
+<span class="n">poblacion_chile_1810</span> <span class="o">=</span> <span class="mi">800000</span>  <span class="c1"># aproximadamente</span>
+
+<span class="c1"># Mostramos los valores</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Año de la Primera Junta:&quot;</span><span class="p">,</span> <span class="n">ano_primera_junta</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nombre del Libertador:&quot;</span><span class="p">,</span> <span class="n">nombre_libertador</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Población aproximada en 1810:&quot;</span><span class="p">,</span> <span class="n">poblacion_chile_1810</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">¡Importante! El signo = no significa “igual”</p>
+<p>En matemáticas, <code class="docutils literal notranslate"><span class="pre">=</span></code> significa igualdad (5 = 5). En Python, <code class="docutils literal notranslate"><span class="pre">=</span></code> significa <strong>asignación</strong>: “guarda este valor en esta variable”.</p>
+<p>Por ejemplo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>      <span class="c1"># Guarda 5 en x</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># Toma el valor de x (5), súmale 1, y guarda el resultado (6) en x</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Demostración: las variables pueden cambiar de valor</span>
+<span class="n">ano_evento</span> <span class="o">=</span> <span class="mi">1810</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Primera Junta de Gobierno:&quot;</span><span class="p">,</span> <span class="n">ano_evento</span><span class="p">)</span>
+
+<span class="n">ano_evento</span> <span class="o">=</span> <span class="mi">1814</span>  <span class="c1"># Cambiamos el valor</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Desastre de Rancagua:&quot;</span><span class="p">,</span> <span class="n">ano_evento</span><span class="p">)</span>
+
+<span class="n">ano_evento</span> <span class="o">=</span> <span class="mi">1818</span>  <span class="c1"># Cambiamos nuevamente</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Declaración de Independencia:&quot;</span><span class="p">,</span> <span class="n">ano_evento</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="reglas-para-nombrar-variables">
+<h2><span class="section-number">17.3. </span>Reglas para Nombrar Variables<a class="headerlink" href="#reglas-para-nombrar-variables" title="Link to this heading">#</a></h2>
+<p>Así como un archivero debe seguir normas para etiquetar carpetas, Python tiene reglas estrictas para nombrar variables.</p>
+<p><strong>Tabla 15.1: Reglas para nombres de variables</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Regla</p></th>
+<th class="head"><p>Ejemplo válido</p></th>
+<th class="head"><p>Ejemplo inválido</p></th>
+<th class="head"><p>Razón</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Solo letras, números y guion bajo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ano_1810</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">año-1810</span></code></p></td>
+<td><p>No usar guión ni ñ</p></td>
+</tr>
+<tr class="row-odd"><td><p>No comenzar con número</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">batalla1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1batalla</span></code></p></td>
+<td><p>Error de sintaxis</p></td>
+</tr>
+<tr class="row-even"><td><p>Sin espacios</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">primer_presidente</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">primer</span> <span class="pre">presidente</span></code></p></td>
+<td><p>Error de sintaxis</p></td>
+</tr>
+<tr class="row-odd"><td><p>No usar palabras reservadas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mi_class</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">class</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">class</span></code> es palabra de Python</p></td>
+</tr>
+<tr class="row-even"><td><p>Distingue mayúsculas/minúsculas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Edad</span></code> ≠ <code class="docutils literal notranslate"><span class="pre">edad</span></code></p></td>
+<td><p>-</p></td>
+<td><p>Son variables diferentes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="convencion-snake-case">
+<h3><span class="section-number">17.3.1. </span>Convención snake_case<a class="headerlink" href="#convencion-snake-case" title="Link to this heading">#</a></h3>
+<p>En Python, la convención más usada es <strong>snake_case</strong>: palabras en minúsculas separadas por guiones bajos.</p>
+<div class="tip admonition">
+<p class="admonition-title">Buenas prácticas</p>
+<ul class="simple">
+<li><p>✅ <code class="docutils literal notranslate"><span class="pre">fecha_nacimiento</span></code></p></li>
+<li><p>✅ <code class="docutils literal notranslate"><span class="pre">ano_independencia</span></code></p></li>
+<li><p>✅ <code class="docutils literal notranslate"><span class="pre">poblacion_total</span></code></p></li>
+<li><p>❌ <code class="docutils literal notranslate"><span class="pre">FechaNacimiento</span></code> (esto es CamelCase, usado en otros lenguajes)</p></li>
+<li><p>❌ <code class="docutils literal notranslate"><span class="pre">FECHA_NACIMIENTO</span></code> (esto es para constantes)</p></li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplos de buenos nombres de variables con contexto histórico</span>
+<span class="n">presidente_actual</span> <span class="o">=</span> <span class="s2">&quot;Gabriel Boric&quot;</span>
+<span class="n">ano_eleccion</span> <span class="o">=</span> <span class="mi">2021</span>
+<span class="n">numero_presidentes_chile</span> <span class="o">=</span> <span class="mi">34</span>  <span class="c1"># hasta 2024</span>
+<span class="n">es_republica</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Ejemplo de nombres descriptivos para una batalla</span>
+<span class="n">nombre_batalla</span> <span class="o">=</span> <span class="s2">&quot;Batalla de Maipú&quot;</span>
+<span class="n">fecha_batalla</span> <span class="o">=</span> <span class="s2">&quot;5 de abril de 1818&quot;</span>
+<span class="n">soldados_patriotas</span> <span class="o">=</span> <span class="mi">5000</span>  <span class="c1"># aproximado</span>
+<span class="n">soldados_realistas</span> <span class="o">=</span> <span class="mi">4500</span>  <span class="c1"># aproximado</span>
+<span class="n">victoria_patriota</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="tipos-de-datos-basicos">
+<h2><span class="section-number">17.4. </span>Tipos de Datos Básicos<a class="headerlink" href="#tipos-de-datos-basicos" title="Link to this heading">#</a></h2>
+<p>En un archivo histórico, no todos los documentos son iguales: hay actas, fotografías, mapas, registros numéricos. De manera similar, Python maneja diferentes <strong>tipos de datos</strong>.</p>
+<div class="important admonition">
+<p class="admonition-title">Los cuatro tipos básicos</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">int</span></code></strong> (entero): Números sin decimales → años, cantidades, poblaciones</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">float</span></code></strong> (flotante): Números con decimales → porcentajes, coordenadas</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">str</span></code></strong> (string): Texto → nombres, documentos, descripciones</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">bool</span></code></strong> (booleano): Verdadero/Falso → verificación de hechos</p></li>
+</ol>
+</div>
+<section id="enteros-int">
+<h3><span class="section-number">17.4.1. </span>Enteros (<code class="docutils literal notranslate"><span class="pre">int</span></code>)<a class="headerlink" href="#enteros-int" title="Link to this heading">#</a></h3>
+<p>Los <strong>enteros</strong> son números sin parte decimal. Son ideales para representar años, poblaciones, cantidades exactas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enteros en contexto histórico chileno</span>
+<span class="n">ano_fundacion_santiago</span> <span class="o">=</span> <span class="mi">1541</span>
+<span class="n">poblacion_chile_2024</span> <span class="o">=</span> <span class="mi">19500000</span>  <span class="c1"># aproximadamente 19.5 millones</span>
+<span class="n">numero_regiones</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">dias_guerra_pacifico</span> <span class="o">=</span> <span class="mi">1825</span>  <span class="c1"># duración aproximada en días (1879-1884)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tipo de ano_fundacion_santiago:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">ano_fundacion_santiago</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tipo de poblacion_chile_2024:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">poblacion_chile_2024</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="flotantes-float">
+<h3><span class="section-number">17.4.2. </span>Flotantes (<code class="docutils literal notranslate"><span class="pre">float</span></code>)<a class="headerlink" href="#flotantes-float" title="Link to this heading">#</a></h3>
+<p>Los <strong>flotantes</strong> son números con parte decimal. Útiles para estadísticas, porcentajes, coordenadas geográficas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Flotantes en contexto histórico</span>
+<span class="n">latitud_santiago</span> <span class="o">=</span> <span class="o">-</span><span class="mf">33.4489</span>   <span class="c1"># coordenada geográfica</span>
+<span class="n">longitud_santiago</span> <span class="o">=</span> <span class="o">-</span><span class="mf">70.6693</span>
+<span class="n">porcentaje_alfabetizacion_1900</span> <span class="o">=</span> <span class="mf">43.8</span>  <span class="c1"># porcentaje aproximado</span>
+<span class="n">superficie_chile_km2</span> <span class="o">=</span> <span class="mf">756102.4</span>  <span class="c1"># km²</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tipo de latitud_santiago:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">latitud_santiago</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Santiago se ubica en latitud </span><span class="si">{</span><span class="n">latitud_santiago</span><span class="si">}</span><span class="s2">, longitud </span><span class="si">{</span><span class="n">longitud_santiago</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cadenas-de-texto-str">
+<h3><span class="section-number">17.4.3. </span>Cadenas de texto (<code class="docutils literal notranslate"><span class="pre">str</span></code>)<a class="headerlink" href="#cadenas-de-texto-str" title="Link to this heading">#</a></h3>
+<p>Las <strong>cadenas</strong> (<em>strings</em>) almacenan texto. Se escriben entre comillas simples <code class="docutils literal notranslate"><span class="pre">'...'</span></code> o dobles <code class="docutils literal notranslate"><span class="pre">&quot;...&quot;</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Strings con información histórica</span>
+<span class="n">nombre_heroe</span> <span class="o">=</span> <span class="s2">&quot;Manuel Rodríguez&quot;</span>
+<span class="n">apodo</span> <span class="o">=</span> <span class="s1">&#39;El Húsar de la Muerte&#39;</span>
+<span class="n">cita_historica</span> <span class="o">=</span> <span class="s2">&quot;La Patria está en peligro&quot;</span>  <span class="c1"># Atribuida a José Miguel Carrera</span>
+
+<span class="c1"># Strings multilínea con triple comilla</span>
+<span class="n">descripcion</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Manuel Rodríguez Erdoíza fue un abogado y guerrillero chileno,</span>
+<span class="s2">considerado uno de los principales gestores de la independencia de Chile.</span>
+<span class="s2">Nació en Santiago en 1785 y murió en Tiltil en 1818.&quot;&quot;&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tipo de nombre_heroe:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">nombre_heroe</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Descripción:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">descripcion</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="booleanos-bool">
+<h3><span class="section-number">17.4.4. </span>Booleanos (<code class="docutils literal notranslate"><span class="pre">bool</span></code>)<a class="headerlink" href="#booleanos-bool" title="Link to this heading">#</a></h3>
+<p>Los <strong>booleanos</strong> solo pueden tener dos valores: <code class="docutils literal notranslate"><span class="pre">True</span></code> (verdadero) o <code class="docutils literal notranslate"><span class="pre">False</span></code> (falso). Son esenciales para verificar hechos históricos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Booleanos para verificar hechos históricos</span>
+<span class="n">chile_independiente_1817</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># La independencia formal fue en 1818</span>
+<span class="n">chile_independiente_1818</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">o_higgins_primer_presidente</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Fue Director Supremo, no presidente</span>
+<span class="n">santiago_es_capital</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;¿Chile era independiente en 1817?&quot;</span><span class="p">,</span> <span class="n">chile_independiente_1817</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;¿Chile era independiente en 1818?&quot;</span><span class="p">,</span> <span class="n">chile_independiente_1818</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tipo de dato:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">chile_independiente_1818</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Tabla 15.2: Resumen de tipos de datos con ejemplos históricos</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tipo</p></th>
+<th class="head"><p>Símbolo</p></th>
+<th class="head"><p>Ejemplo</p></th>
+<th class="head"><p>Uso en Historia</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Entero</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1810</span></code></p></td>
+<td><p>Años, poblaciones, cantidades</p></td>
+</tr>
+<tr class="row-odd"><td><p>Flotante</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-33.4489</span></code></p></td>
+<td><p>Coordenadas, porcentajes, estadísticas</p></td>
+</tr>
+<tr class="row-even"><td><p>Cadena</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;O'Higgins&quot;</span></code></p></td>
+<td><p>Nombres, documentos, descripciones</p></td>
+</tr>
+<tr class="row-odd"><td><p>Booleano</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>Verificación de hechos</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="verificar-y-convertir-tipos">
+<h2><span class="section-number">17.5. </span>Verificar y Convertir Tipos<a class="headerlink" href="#verificar-y-convertir-tipos" title="Link to this heading">#</a></h2>
+<section id="la-funcion-type">
+<h3><span class="section-number">17.5.1. </span>La función <code class="docutils literal notranslate"><span class="pre">type()</span></code><a class="headerlink" href="#la-funcion-type" title="Link to this heading">#</a></h3>
+<p>Podemos verificar el tipo de cualquier variable usando <code class="docutils literal notranslate"><span class="pre">type()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verificando tipos de datos</span>
+<span class="n">dato1</span> <span class="o">=</span> <span class="mi">1541</span>
+<span class="n">dato2</span> <span class="o">=</span> <span class="mf">19.5</span>
+<span class="n">dato3</span> <span class="o">=</span> <span class="s2">&quot;Pedro de Valdivia&quot;</span>
+<span class="n">dato4</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">dato1</span><span class="si">}</span><span class="s2">&#39; es de tipo: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">dato1</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">dato2</span><span class="si">}</span><span class="s2">&#39; es de tipo: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">dato2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">dato3</span><span class="si">}</span><span class="s2">&#39; es de tipo: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">dato3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">dato4</span><span class="si">}</span><span class="s2">&#39; es de tipo: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">dato4</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conversion-de-tipos-casting">
+<h3><span class="section-number">17.5.2. </span>Conversión de tipos (<em>casting</em>)<a class="headerlink" href="#conversion-de-tipos-casting" title="Link to this heading">#</a></h3>
+<p>A veces necesitamos convertir un tipo de dato en otro. Python ofrece funciones para esto:</p>
+<p><strong>Tabla 15.3: Funciones de conversión de tipos</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Función</p></th>
+<th class="head"><p>Convierte a</p></th>
+<th class="head"><p>Ejemplo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">int()</span></code></p></td>
+<td><p>Entero</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int(&quot;1810&quot;)</span></code> → <code class="docutils literal notranslate"><span class="pre">1810</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">float()</span></code></p></td>
+<td><p>Flotante</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float(1810)</span></code> → <code class="docutils literal notranslate"><span class="pre">1810.0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">str()</span></code></p></td>
+<td><p>Cadena</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str(1810)</span></code> → <code class="docutils literal notranslate"><span class="pre">&quot;1810&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bool()</span></code></p></td>
+<td><p>Booleano</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool(1)</span></code> → <code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Conversiones útiles para datos históricos</span>
+
+<span class="c1"># De string a entero (cuando leemos años de un archivo de texto)</span>
+<span class="n">ano_texto</span> <span class="o">=</span> <span class="s2">&quot;1818&quot;</span>
+<span class="n">ano_numero</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ano_texto</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Año como texto: &#39;</span><span class="si">{</span><span class="n">ano_texto</span><span class="si">}</span><span class="s2">&#39; → Año como número: </span><span class="si">{</span><span class="n">ano_numero</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Puedo calcular: 2024 - </span><span class="si">{</span><span class="n">ano_numero</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="mi">2024</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ano_numero</span><span class="si">}</span><span class="s2"> años&quot;</span><span class="p">)</span>
+
+<span class="c1"># De número a string (para formatear salidas)</span>
+<span class="n">poblacion</span> <span class="o">=</span> <span class="mi">800000</span>
+<span class="n">mensaje</span> <span class="o">=</span> <span class="s2">&quot;La población de Chile en 1810 era de &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">poblacion</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; habitantes&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mensaje</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Conversión a booleano: reglas importantes</span>
+<span class="c1"># - Cero (0) y cadena vacía (&quot;&quot;) se convierten en False</span>
+<span class="c1"># - Cualquier otro valor se convierte en True</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conversión a booleano:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bool(0) = </span><span class="si">{</span><span class="nb">bool</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bool(1) = </span><span class="si">{</span><span class="nb">bool</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bool(-5) = </span><span class="si">{</span><span class="nb">bool</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bool(&#39;&#39;) = </span><span class="si">{</span><span class="nb">bool</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bool(&#39;Hola&#39;) = </span><span class="si">{</span><span class="nb">bool</span><span class="p">(</span><span class="s1">&#39;Hola&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="danger admonition">
+<p class="admonition-title">¡Cuidado con las conversiones!</p>
+<p>No todas las conversiones son posibles. Intentar convertir texto no numérico a número produce un error:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;Chile&quot;</span><span class="p">)</span>  <span class="c1"># ❌ ValueError: invalid literal for int()</span>
+<span class="nb">int</span><span class="p">(</span><span class="s2">&quot;18.5&quot;</span><span class="p">)</span>   <span class="c1"># ❌ ValueError: no puede convertir decimal en string a int</span>
+<span class="nb">float</span><span class="p">(</span><span class="s2">&quot;18.5&quot;</span><span class="p">)</span> <span class="c1"># ✓ Esto sí funciona: 18.5</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="entrada-de-datos-la-funcion-input">
+<h2><span class="section-number">17.6. </span>Entrada de Datos: la función <code class="docutils literal notranslate"><span class="pre">input()</span></code><a class="headerlink" href="#entrada-de-datos-la-funcion-input" title="Link to this heading">#</a></h2>
+<p>La función <code class="docutils literal notranslate"><span class="pre">input()</span></code> permite que el usuario ingrese datos desde el teclado. Es como un <strong>formulario</strong> que el usuario completa.</p>
+<div class="warning admonition">
+<p class="admonition-title">Importante</p>
+<p><code class="docutils literal notranslate"><span class="pre">input()</span></code> <strong>siempre devuelve un string</strong>, incluso si el usuario escribe un número. Debes convertirlo si necesitas hacer cálculos.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplo básico de input</span>
+<span class="n">nombre</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;¿Cuál es tu nombre? &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;¡Hola, </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">! Bienvenido al estudio de la historia de Chile.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input con conversión para cálculos históricos</span>
+<span class="n">ano_nacimiento</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;¿En qué año naciste? &quot;</span><span class="p">)</span>
+<span class="n">ano_nacimiento</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ano_nacimiento</span><span class="p">)</span>  <span class="c1"># Convertimos a entero</span>
+
+<span class="c1"># Calculamos cuántos años tenías en fechas históricas importantes</span>
+<span class="n">ano_bicentenario</span> <span class="o">=</span> <span class="mi">2010</span>  <span class="c1"># Bicentenario de Chile</span>
+
+<span class="k">if</span> <span class="n">ano_nacimiento</span> <span class="o">&lt;=</span> <span class="n">ano_bicentenario</span><span class="p">:</span>
+    <span class="n">edad_bicentenario</span> <span class="o">=</span> <span class="n">ano_bicentenario</span> <span class="o">-</span> <span class="n">ano_nacimiento</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;En el Bicentenario de Chile (2010) tenías </span><span class="si">{</span><span class="n">edad_bicentenario</span><span class="si">}</span><span class="s2"> años&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Naciste después del Bicentenario de Chile&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="manejo-de-errores-en-input">
+<h3><span class="section-number">17.6.1. </span>Manejo de errores en <code class="docutils literal notranslate"><span class="pre">input()</span></code><a class="headerlink" href="#manejo-de-errores-en-input" title="Link to this heading">#</a></h3>
+<p>¿Qué pasa si el usuario escribe texto cuando esperamos un número? El programa falla. Podemos prevenir esto:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Forma segura de pedir un número</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">ano</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Ingresa un año histórico: &quot;</span><span class="p">)</span>
+    <span class="n">ano</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ano</span><span class="p">)</span>
+    
+    <span class="c1"># Si llegamos aquí, la conversión fue exitosa</span>
+    <span class="k">if</span> <span class="n">ano</span> <span class="o">&lt;</span> <span class="mi">1810</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El año </span><span class="si">{</span><span class="n">ano</span><span class="si">}</span><span class="s2"> es anterior a la Independencia de Chile&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">ano</span> <span class="o">&lt;</span> <span class="mi">1818</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El año </span><span class="si">{</span><span class="n">ano</span><span class="si">}</span><span class="s2"> corresponde al período de la Patria Vieja o Reconquista&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El año </span><span class="si">{</span><span class="n">ano</span><span class="si">}</span><span class="s2"> es posterior a la Declaración de Independencia&quot;</span><span class="p">)</span>
+        
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Debes ingresar un número válido&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ejemplo-integrador-ficha-biografica-interactiva">
+<h2><span class="section-number">17.7. </span>Ejemplo Integrador: Ficha Biográfica Interactiva<a class="headerlink" href="#ejemplo-integrador-ficha-biografica-interactiva" title="Link to this heading">#</a></h2>
+<p>Combinemos todo lo aprendido para crear una ficha biográfica de un personaje histórico:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ═══════════════════════════════════════════════════════════════</span>
+<span class="c1"># SISTEMA DE FICHAS BIOGRÁFICAS HISTÓRICAS</span>
+<span class="c1"># ═══════════════════════════════════════════════════════════════</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;╔&quot;</span> <span class="o">+</span> <span class="s2">&quot;═&quot;</span><span class="o">*</span><span class="mi">50</span> <span class="o">+</span> <span class="s2">&quot;╗&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;║&quot;</span> <span class="o">+</span> <span class="s2">&quot; CREACIÓN DE FICHA BIOGRÁFICA HISTÓRICA &quot;</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;║&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;╚&quot;</span> <span class="o">+</span> <span class="s2">&quot;═&quot;</span><span class="o">*</span><span class="mi">50</span> <span class="o">+</span> <span class="s2">&quot;╝&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># Recopilamos datos (en un programa real, estos vendrían de input())</span>
+<span class="c1"># Aquí usamos datos de ejemplo para José Miguel Carrera</span>
+<span class="n">nombre_completo</span> <span class="o">=</span> <span class="s2">&quot;José Miguel Carrera Verdugo&quot;</span>
+<span class="n">ano_nacimiento</span> <span class="o">=</span> <span class="mi">1785</span>
+<span class="n">ano_fallecimiento</span> <span class="o">=</span> <span class="mi">1821</span>
+<span class="n">lugar_nacimiento</span> <span class="o">=</span> <span class="s2">&quot;Santiago de Chile&quot;</span>
+<span class="n">ocupacion</span> <span class="o">=</span> <span class="s2">&quot;Militar y político&quot;</span>
+<span class="n">cargo_principal</span> <span class="o">=</span> <span class="s2">&quot;Presidente de la Junta de Gobierno&quot;</span>
+<span class="n">periodo_cargo</span> <span class="o">=</span> <span class="s2">&quot;1811-1813&quot;</span>
+<span class="n">es_procer</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Cálculos</span>
+<span class="n">edad_fallecimiento</span> <span class="o">=</span> <span class="n">ano_fallecimiento</span> <span class="o">-</span> <span class="n">ano_nacimiento</span>
+<span class="n">anos_desde_muerte</span> <span class="o">=</span> <span class="mi">2025</span> <span class="o">-</span> <span class="n">ano_fallecimiento</span>
+
+<span class="c1"># Generamos la ficha</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;┌&quot;</span> <span class="o">+</span> <span class="s2">&quot;─&quot;</span><span class="o">*</span><span class="mi">50</span> <span class="o">+</span> <span class="s2">&quot;┐&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;│&quot;</span> <span class="o">+</span> <span class="s2">&quot; FICHA BIOGRÁFICA &quot;</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;│&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;├&quot;</span> <span class="o">+</span> <span class="s2">&quot;─&quot;</span><span class="o">*</span><span class="mi">50</span> <span class="o">+</span> <span class="s2">&quot;┤&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;│ Nombre: </span><span class="si">{</span><span class="n">nombre_completo</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span><span class="si">}</span><span class="s2"> │&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;│ Nacimiento: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ano_nacimiento</span><span class="p">)</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">37</span><span class="p">)</span><span class="si">}</span><span class="s2"> │&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;│ Fallecimiento: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">ano_fallecimiento</span><span class="p">)</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">34</span><span class="p">)</span><span class="si">}</span><span class="s2"> │&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;│ Edad al morir: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">edad_fallecimiento</span><span class="p">)</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">34</span><span class="p">)</span><span class="si">}</span><span class="s2"> │&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;│ Lugar de nacimiento: </span><span class="si">{</span><span class="n">lugar_nacimiento</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">28</span><span class="p">)</span><span class="si">}</span><span class="s2"> │&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;│ Ocupación: </span><span class="si">{</span><span class="n">ocupacion</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">38</span><span class="p">)</span><span class="si">}</span><span class="s2"> │&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;│ Cargo principal: </span><span class="si">{</span><span class="n">cargo_principal</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">31</span><span class="p">)</span><span class="si">}</span><span class="s2"> │&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;│ Período: </span><span class="si">{</span><span class="n">periodo_cargo</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span><span class="si">}</span><span class="s2"> │&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;│ ¿Es prócer?: </span><span class="si">{</span><span class="s1">&#39;Sí&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">es_procer</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;No&#39;</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">36</span><span class="p">)</span><span class="si">}</span><span class="s2"> │&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;├&quot;</span> <span class="o">+</span> <span class="s2">&quot;─&quot;</span><span class="o">*</span><span class="mi">50</span> <span class="o">+</span> <span class="s2">&quot;┤&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;│ Han pasado </span><span class="si">{</span><span class="n">anos_desde_muerte</span><span class="si">}</span><span class="s2"> años desde su muerte.</span><span class="si">{</span><span class="s1">&#39; &#39;</span><span class="o">*</span><span class="mi">13</span><span class="si">}</span><span class="s2"> │&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;└&quot;</span> <span class="o">+</span> <span class="s2">&quot;─&quot;</span><span class="o">*</span><span class="mi">50</span> <span class="o">+</span> <span class="s2">&quot;┘&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="actividad-de-cierre">
+<h2><span class="section-number">17.8. </span>Actividad de Cierre<a class="headerlink" href="#actividad-de-cierre" title="Link to this heading">#</a></h2>
+<div class="important admonition">
+<p class="admonition-title">Instrucciones</p>
+<p>Resuelve los siguientes ejercicios aplicando lo aprendido sobre variables y tipos de datos.</p>
+</div>
+<section id="ejercicio-1-variables-de-la-guerra-del-pacifico">
+<h3><span class="section-number">17.8.1. </span>Ejercicio 1: Variables de la Guerra del Pacífico<a class="headerlink" href="#ejercicio-1-variables-de-la-guerra-del-pacifico" title="Link to this heading">#</a></h3>
+<p>Crea variables con la siguiente información de la Guerra del Pacífico (1879-1884):</p>
+<ul class="simple">
+<li><p>Año de inicio: 1879</p></li>
+<li><p>Año de término: 1884</p></li>
+<li><p>Países involucrados: Chile, Perú, Bolivia (como lista)</p></li>
+<li><p>Victoria chilena: verdadero</p></li>
+</ul>
+<p>Luego calcula e imprime la duración de la guerra.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribe tu código aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-2-conversion-de-tipos">
+<h3><span class="section-number">17.8.2. </span>Ejercicio 2: Conversión de tipos<a class="headerlink" href="#ejercicio-2-conversion-de-tipos" title="Link to this heading">#</a></h3>
+<p>Tienes los siguientes datos como texto (strings). Conviértelos al tipo apropiado y realiza los cálculos:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ano_fundacion</span> <span class="o">=</span> <span class="s2">&quot;1541&quot;</span>  <span class="c1"># Fundación de Santiago</span>
+<span class="n">poblacion_inicial</span> <span class="o">=</span> <span class="s2">&quot;150&quot;</span>  <span class="c1"># Primeros colonos aproximados</span>
+<span class="n">latitud</span> <span class="o">=</span> <span class="s2">&quot;-33.45&quot;</span>  <span class="c1"># Latitud de Santiago</span>
+</pre></div>
+</div>
+<p>Calcula cuántos años han pasado desde la fundación hasta 2025.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribe tu código aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-3-ficha-de-batalla">
+<h3><span class="section-number">17.8.3. </span>Ejercicio 3: Ficha de batalla<a class="headerlink" href="#ejercicio-3-ficha-de-batalla" title="Link to this heading">#</a></h3>
+<p>Crea variables para almacenar información de la <strong>Batalla de Iquique</strong> (21 de mayo de 1879):</p>
+<ul class="simple">
+<li><p>Nombre de la batalla</p></li>
+<li><p>Día, mes y año (como variables separadas)</p></li>
+<li><p>Comandante chileno: Arturo Prat</p></li>
+<li><p>Barco chileno: Esmeralda</p></li>
+<li><p>Victoria chilena: False (tácticamente fue derrota, pero victoria moral)</p></li>
+</ul>
+<p>Imprime toda la información de forma organizada.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribe tu código aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-4-verificacion-de-tipos">
+<h3><span class="section-number">17.8.4. </span>Ejercicio 4: Verificación de tipos<a class="headerlink" href="#ejercicio-4-verificacion-de-tipos" title="Link to this heading">#</a></h3>
+<p>Dado el siguiente código, predice qué tipo de dato tendrá cada variable, luego verifica con <code class="docutils literal notranslate"><span class="pre">type()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">2024</span> <span class="o">-</span> <span class="mi">1810</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">/</span> <span class="mi">3</span>
+<span class="n">c</span> <span class="o">=</span> <span class="s2">&quot;Independencia&quot;</span> <span class="o">+</span> <span class="s2">&quot; de Chile&quot;</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mi">1810</span> <span class="o">&gt;</span> <span class="mi">1800</span>
+<span class="n">e</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mi">1818</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; fue el año de la independencia&quot;</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribe tu código aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-5-calculadora-historica-interactiva">
+<h3><span class="section-number">17.8.5. </span>Ejercicio 5: Calculadora histórica interactiva<a class="headerlink" href="#ejercicio-5-calculadora-historica-interactiva" title="Link to this heading">#</a></h3>
+<p>Crea un programa que:</p>
+<ol class="arabic simple">
+<li><p>Pida al usuario un año histórico</p></li>
+<li><p>Calcule cuántos años han pasado desde ese año hasta 2025</p></li>
+<li><p>Determine si el año es anterior o posterior a la independencia de Chile (1818)</p></li>
+<li><p>Muestre toda la información de forma clara</p></li>
+</ol>
+<p><em>Usa manejo de errores para evitar que el programa falle si el usuario ingresa texto.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribe tu código aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="resumen-del-capitulo">
+<h2><span class="section-number">17.9. </span>Resumen del Capítulo<a class="headerlink" href="#resumen-del-capitulo" title="Link to this heading">#</a></h2>
+<p><strong>Tabla 15.4: Resumen de conceptos aprendidos</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concepto</p></th>
+<th class="head"><p>Descripción</p></th>
+<th class="head"><p>Ejemplo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Variable</p></td>
+<td><p>Contenedor con nombre para datos</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ano</span> <span class="pre">=</span> <span class="pre">1810</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Asignación (<code class="docutils literal notranslate"><span class="pre">=</span></code>)</p></td>
+<td><p>Guarda un valor en una variable</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">5</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>Entero (sin decimales)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1818</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p>Flotante (con decimales)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-33.45</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>Cadena de texto</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;O'Higgins&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p>Booleano (True/False)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type()</span></code></p></td>
+<td><p>Verifica el tipo de dato</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">type(1810)</span></code> → <code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Conversión</p></td>
+<td><p>Cambia el tipo de dato</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int(&quot;1810&quot;)</span></code> → <code class="docutils literal notranslate"><span class="pre">1810</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">input()</span></code></p></td>
+<td><p>Recibe datos del usuario</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">input(&quot;Año:</span> <span class="pre">&quot;)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="seealso admonition">
+<p class="admonition-title">¿Qué sigue?</p>
+<p>En el <strong>Capítulo 16</strong> aprenderemos sobre <strong>métodos de listas y strings</strong>, herramientas poderosas para manipular colecciones de datos históricos y procesar textos de documentos.</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="referencias">
+<h2><span class="section-number">17.10. </span>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Amazon Web Services (2024). <em>¿Qué es Python?</em> AWS Documentation. <a class="reference external" href="https://aws.amazon.com/es/what-is/python/">https://aws.amazon.com/es/what-is/python/</a></p></li>
+<li><p>Downey, A. (2015). <em>Think Python: How to Think Like a Computer Scientist</em> (2nd ed.). O’Reilly Media.</p></li>
+<li><p>Memoria Chilena (2024). <em>Independencia de Chile</em>. Biblioteca Nacional de Chile. <a class="reference external" href="https://www.memoriachilena.gob.cl/">https://www.memoriachilena.gob.cl/</a></p></li>
+<li><p>Python Software Foundation (2024). <em>The Python Tutorial</em>. <a class="reference external" href="https://docs.python.org/3/tutorial/">https://docs.python.org/3/tutorial/</a></p></li>
+<li><p>Programming Historian (2024). <em>Introducción a Python</em>. <a class="reference external" href="https://programminghistorian.org/es/">https://programminghistorian.org/es/</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Capitulo_16_Introduccion_Python.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Introducción a Python</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Capitulo_18_Metodos_Listas_Strings.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Métodos de Listas y Strings: Manipulando Datos Históricos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">17.1. Objetivos de Aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-son-las-variables">17.2. ¿Qué son las Variables?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creando-variables-el-operador-de-asignacion">17.2.1. Creando variables: el operador de asignación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reglas-para-nombrar-variables">17.3. Reglas para Nombrar Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convencion-snake-case">17.3.1. Convención snake_case</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-datos-basicos">17.4. Tipos de Datos Básicos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enteros-int">17.4.1. Enteros (<code class="docutils literal notranslate"><span class="pre">int</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flotantes-float">17.4.2. Flotantes (<code class="docutils literal notranslate"><span class="pre">float</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cadenas-de-texto-str">17.4.3. Cadenas de texto (<code class="docutils literal notranslate"><span class="pre">str</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#booleanos-bool">17.4.4. Booleanos (<code class="docutils literal notranslate"><span class="pre">bool</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificar-y-convertir-tipos">17.5. Verificar y Convertir Tipos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-funcion-type">17.5.1. La función <code class="docutils literal notranslate"><span class="pre">type()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-tipos-casting">17.5.2. Conversión de tipos (<em>casting</em>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrada-de-datos-la-funcion-input">17.6. Entrada de Datos: la función <code class="docutils literal notranslate"><span class="pre">input()</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-errores-en-input">17.6.1. Manejo de errores en <code class="docutils literal notranslate"><span class="pre">input()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-integrador-ficha-biografica-interactiva">17.7. Ejemplo Integrador: Ficha Biográfica Interactiva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividad-de-cierre">17.8. Actividad de Cierre</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-variables-de-la-guerra-del-pacifico">17.8.1. Ejercicio 1: Variables de la Guerra del Pacífico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-conversion-de-tipos">17.8.2. Ejercicio 2: Conversión de tipos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-ficha-de-batalla">17.8.3. Ejercicio 3: Ficha de batalla</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4-verificacion-de-tipos">17.8.4. Ejercicio 4: Verificación de tipos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-5-calculadora-historica-interactiva">17.8.5. Ejercicio 5: Calculadora histórica interactiva</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-del-capitulo">17.9. Resumen del Capítulo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">17.10. Referencias</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Claudio Rojas Monsalves
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
