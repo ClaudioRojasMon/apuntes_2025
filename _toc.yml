@@ -31,3 +31,5 @@ parts:
       - file: Capitulo_19_Condicionales_Ciclo_For
       - file: Capitulo_20_While_Control_Flujo
       - file: Capitulo_21_Funciones_Parametros
+      - file: Capitulo_22_Introduccion_Pandas
+      - file: Capitulo_23_Pandas_Avanzado
