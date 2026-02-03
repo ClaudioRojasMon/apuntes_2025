@@ -22,3 +22,12 @@ parts:
       - file: Markdown_II_final
       - file: Google_Sheets_Formulas
       - file: Mini_Dashboard_Crisis
+  - caption: Python
+    numbered: true
+    chapters:
+      - file: Capitulo_16_Introduccion_Python
+      - file: Capitulo_17_Variables_Tipos_Datos
+      - file: Capitulo_18_Metodos_Listas_Strings
+      - file: Capitulo_19_Condicionales_Ciclo_For
+      - file: Capitulo_20_While_Control_Flujo
+      - file: Capitulo_21_Funciones_Parametros
