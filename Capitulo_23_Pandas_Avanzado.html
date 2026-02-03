@@ -1,0 +1,2959 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>23. Pandas Avanzado - Filtrado, Agrupación y Análisis &#8212; Programando la Historia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Capitulo_23_Pandas_Avanzado';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="22. Introducción a Pandas" href="Capitulo_22_Introduccion_Pandas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Original.png" class="logo__image only-light" alt="Programando la Historia - Home"/>
+    <script>document.write(`<img src="_static/Original.png" class="logo__image only-dark" alt="Programando la Historia - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Programando la Historia.
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Inteligencia Artificial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20I.html">1. ¿Qué es la Inteligencia Artificial?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20II.html">2. Historia de la Inteligencia Artificial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20III.html">3. Inteligencia Artificial Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades.html">4. Mitos vs. Realidad: ¿La IA nos reemplazará?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades%20II.html">5. La IA Revolucionando la Investigación Histórica y la Educación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sesgos.html">6. Sesgos Algorítmicos: El uso de Compas en el Sistemas de Justicia de EEUU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deepfakes.html">7. Desinformación y Deepfakes en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datos.html">8. Privacidad y Datos Personales en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Elecci%C3%B3n%20de%20IA.html">9. ¿Cómo mejorar tus tareas escolares sin hacer trampa?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Herramientas%20para%20la%20IA%20Generativa.html">10. Herramientas de IA Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Prompt.html">11. Prompting Efectivo: El arte de “conversar” con la IA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyectos.html">12. Proyectos Estudiantiles Potenciados por IA</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Programación Básica</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Markdown_II_final.html">13. ¿Qué es Markdown?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Google_Sheets_Formulas.html">14. Fórmulas Básicas en Google Sheets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mini_Dashboard_Crisis.html">15. Mini Dashboard de Crisis Históricas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_16_Introduccion_Python.html">16. Introducción a Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_17_Variables_Tipos_Datos.html">17. Variables y Tipos de Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_18_Metodos_Listas_Strings.html">18. Métodos de Listas y Strings: Manipulando Datos Históricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_19_Condicionales_Ciclo_For.html">19. Condicionales y Ciclos For: Decisiones y Repeticiones en la Historia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_20_While_Control_Flujo.html">20. Ciclo While y Control de Flujo: Repetir Hasta que la Historia Cambie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_21_Funciones_Parametros.html">21. Funciones con Parámetros: Organizando el Código Histórico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_22_Introduccion_Pandas.html">22. Introducción a Pandas</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">23. Pandas Avanzado - Filtrado, Agrupación y Análisis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ClaudioRojasMon/apuntes_2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ClaudioRojasMon/apuntes_2025/issues/new?title=Issue%20on%20page%20%2FCapitulo_23_Pandas_Avanzado.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Capitulo_23_Pandas_Avanzado.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pandas Avanzado - Filtrado, Agrupación y Análisis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">23.1. Objetivos de Aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-del-entorno">23.2. Preparación del Entorno</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entendiendo-las-columnas-del-dataset">23.2.1. Entendiendo las Columnas del Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtrado-de-datos">23.3. Filtrado de Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analogia-historica-el-censo-colonial">23.3.1. Analogía Histórica: El Censo Colonial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtrado-simple-una-condicion">23.3.2. Filtrado Simple: Una Condición</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtrado-multiple-combinando-condiciones">23.3.3. Filtrado Múltiple: Combinando Condiciones</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ordenando-datos">23.4. Ordenando Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agrupacion-con-groupby">23.5. Agrupación con <code class="docutils literal notranslate"><span class="pre">groupby()</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analogia-historica-el-catastro">23.5.1. Analogía Histórica: El Catastro</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas-dinamicas-con-pivot-table">23.6. Tablas Dinámicas con <code class="docutils literal notranslate"><span class="pre">pivot_table()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-valores-faltantes">23.7. Manejo de Valores Faltantes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creando-nuevas-columnas">23.8. Creando Nuevas Columnas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-practico-analisis-comparativo">23.9. Ejercicio Práctico: Análisis Comparativo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exportando-resultados">23.10. Exportando Resultados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-del-capitulo">23.11. Resumen del Capítulo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">23.12. Referencias</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pandas-avanzado-filtrado-agrupacion-y-analisis">
+<h1><span class="section-number">23. </span>Pandas Avanzado - Filtrado, Agrupación y Análisis<a class="headerlink" href="#pandas-avanzado-filtrado-agrupacion-y-analisis" title="Link to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>“La historia es la suma total de todas aquellas cosas que podrían haberse evitado.”</p>
+<p class="attribution">—Konrad Adenauer, político alemán</p>
+</div></blockquote>
+<section id="objetivos-de-aprendizaje">
+<h2><span class="section-number">23.1. </span>Objetivos de Aprendizaje<a class="headerlink" href="#objetivos-de-aprendizaje" title="Link to this heading">#</a></h2>
+<div class="tip admonition">
+<p class="admonition-title">Al finalizar este capítulo, serás capaz de:</p>
+<ol class="arabic simple">
+<li><p>Filtrar datos usando condiciones simples y múltiples</p></li>
+<li><p>Ordenar DataFrames por una o más columnas</p></li>
+<li><p>Agrupar datos con <code class="docutils literal notranslate"><span class="pre">groupby()</span></code> para calcular estadísticas</p></li>
+<li><p>Crear tablas dinámicas con <code class="docutils literal notranslate"><span class="pre">pivot_table()</span></code></p></li>
+<li><p>Manejar valores faltantes (NaN)</p></li>
+<li><p>Analizar datos religiosos por país y región</p></li>
+</ol>
+</div>
+</section>
+<section id="preparacion-del-entorno">
+<h2><span class="section-number">23.2. </span>Preparación del Entorno<a class="headerlink" href="#preparacion-del-entorno" title="Link to this heading">#</a></h2>
+<p>En este capítulo trabajaremos con el dataset <strong>WRP National</strong>, que contiene datos de religiones por país desde 1945 hasta 2010.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="c1"># Configuración para mostrar más columnas</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cargar el dataset de religiones por país</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;WRP_national.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Exploración inicial</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dimensiones: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> filas x </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> columnas&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Países únicos: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Período: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dimensiones: 1995 filas x 84 columnas
+Países únicos: 200
+Período: 1945 - 2010
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ver las primeras filas</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>state</th>
+      <th>name</th>
+      <th>chrstprot</th>
+      <th>chrstcat</th>
+      <th>chrstorth</th>
+      <th>chrstang</th>
+      <th>...</th>
+      <th>dualrelig</th>
+      <th>datatype</th>
+      <th>sourcereliab</th>
+      <th>recreliab</th>
+      <th>reliabilevel</th>
+      <th>Version</th>
+      <th>sourcecode</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1945</td>
+      <td>2</td>
+      <td>USA</td>
+      <td>66069671</td>
+      <td>38716742</td>
+      <td>1121898</td>
+      <td>2400000</td>
+      <td>...</td>
+      <td>0</td>
+      <td>34</td>
+      <td>2</td>
+      <td>10</td>
+      <td>Medium</td>
+      <td>1.1</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1950</td>
+      <td>2</td>
+      <td>USA</td>
+      <td>73090083</td>
+      <td>42635882</td>
+      <td>3045420</td>
+      <td>3045420</td>
+      <td>...</td>
+      <td>0</td>
+      <td>34</td>
+      <td>6</td>
+      <td>28</td>
+      <td>Low</td>
+      <td>1.1</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1955</td>
+      <td>2</td>
+      <td>USA</td>
+      <td>79294628</td>
+      <td>46402368</td>
+      <td>3454916</td>
+      <td>2572767</td>
+      <td>...</td>
+      <td>0</td>
+      <td>134</td>
+      <td>5</td>
+      <td>10</td>
+      <td>Medium</td>
+      <td>1.1</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1960</td>
+      <td>2</td>
+      <td>USA</td>
+      <td>90692928</td>
+      <td>50587880</td>
+      <td>3334535</td>
+      <td>2710065</td>
+      <td>...</td>
+      <td>0</td>
+      <td>134</td>
+      <td>2</td>
+      <td>10</td>
+      <td>Medium</td>
+      <td>1.1</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1965</td>
+      <td>2</td>
+      <td>USA</td>
+      <td>94165803</td>
+      <td>64761783</td>
+      <td>4792868</td>
+      <td>2822149</td>
+      <td>...</td>
+      <td>0</td>
+      <td>134</td>
+      <td>8</td>
+      <td>28</td>
+      <td>Low</td>
+      <td>1.1</td>
+      <td>20</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 84 columns</p>
+</div></div></div>
+</div>
+<section id="entendiendo-las-columnas-del-dataset">
+<h3><span class="section-number">23.2.1. </span>Entendiendo las Columnas del Dataset<a class="headerlink" href="#entendiendo-las-columnas-del-dataset" title="Link to this heading">#</a></h3>
+<div class="note admonition">
+<p class="admonition-title">Fuente de los Datos</p>
+<p><strong>Zeev Maoz y Errol A. Henderson (2013)</strong>. “The World Religion Dataset, 1945-2010: Logic, Estimates, and Trends”. <em>International Interactions</em>, 39: 265-291.</p>
+<p>Disponible en: <a class="reference external" href="https://correlatesofwar.org/data-sets/world-religion-data/">https://correlatesofwar.org/data-sets/world-religion-data/</a></p>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Columna</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+<td><p>Año del registro</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">state</span></code></p></td>
+<td><p>Código numérico del país (COW)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>Código de 3 letras del país</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pop</span></code></p></td>
+<td><p>Población total</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">chrstgenpct</span></code></p></td>
+<td><p>% de cristianos</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">islmgenpct</span></code></p></td>
+<td><p>% de musulmanes</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">budgenpct</span></code></p></td>
+<td><p>% de budistas</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hindgenpct</span></code></p></td>
+<td><p>% de hindúes</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">nonreligpct</span></code></p></td>
+<td><p>% sin religión</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="filtrado-de-datos">
+<h2><span class="section-number">23.3. </span>Filtrado de Datos<a class="headerlink" href="#filtrado-de-datos" title="Link to this heading">#</a></h2>
+<section id="analogia-historica-el-censo-colonial">
+<h3><span class="section-number">23.3.1. </span>Analogía Histórica: El Censo Colonial<a class="headerlink" href="#analogia-historica-el-censo-colonial" title="Link to this heading">#</a></h3>
+<p>Imagina que eres un funcionario colonial en el siglo XVIII y necesitas encontrar información específica en los registros del censo. Por ejemplo, quieres saber cuántas personas vivían en pueblos con más de 1,000 habitantes.</p>
+<p>El <strong>filtrado</strong> en Pandas funciona de manera similar: te permite seleccionar solo las filas que cumplen ciertas condiciones.</p>
+</section>
+<section id="filtrado-simple-una-condicion">
+<h3><span class="section-number">23.3.2. </span>Filtrado Simple: Una Condición<a class="headerlink" href="#filtrado-simple-una-condicion" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filtrar datos de Chile (código: CHL)</span>
+<span class="n">chile</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;CHL&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Registros de Chile: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">chile</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">chile</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="s1">&#39;chrstgenpct&#39;</span><span class="p">,</span> <span class="s1">&#39;nonreligpct&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registros de Chile: 14
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>name</th>
+      <th>pop</th>
+      <th>chrstgenpct</th>
+      <th>nonreligpct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>371</th>
+      <td>1945</td>
+      <td>CHL</td>
+      <td>5540000</td>
+      <td>0.9196</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>372</th>
+      <td>1950</td>
+      <td>CHL</td>
+      <td>6091000</td>
+      <td>0.9118</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>373</th>
+      <td>1955</td>
+      <td>CHL</td>
+      <td>6743000</td>
+      <td>0.9436</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>374</th>
+      <td>1960</td>
+      <td>CHL</td>
+      <td>7614000</td>
+      <td>0.9822</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>375</th>
+      <td>1965</td>
+      <td>CHL</td>
+      <td>8579000</td>
+      <td>0.9373</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>376</th>
+      <td>1970</td>
+      <td>CHL</td>
+      <td>9504000</td>
+      <td>0.9395</td>
+      <td>0.0338</td>
+    </tr>
+    <tr>
+      <th>377</th>
+      <td>1975</td>
+      <td>CHL</td>
+      <td>10350000</td>
+      <td>0.9325</td>
+      <td>0.0338</td>
+    </tr>
+    <tr>
+      <th>378</th>
+      <td>1980</td>
+      <td>CHL</td>
+      <td>11145000</td>
+      <td>0.9396</td>
+      <td>0.0383</td>
+    </tr>
+    <tr>
+      <th>379</th>
+      <td>1985</td>
+      <td>CHL</td>
+      <td>12122000</td>
+      <td>0.9367</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>380</th>
+      <td>1990</td>
+      <td>CHL</td>
+      <td>13100000</td>
+      <td>0.9430</td>
+      <td>0.0334</td>
+    </tr>
+    <tr>
+      <th>381</th>
+      <td>1995</td>
+      <td>CHL</td>
+      <td>14210000</td>
+      <td>0.9560</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>382</th>
+      <td>2000</td>
+      <td>CHL</td>
+      <td>15211000</td>
+      <td>0.9334</td>
+      <td>0.0300</td>
+    </tr>
+    <tr>
+      <th>383</th>
+      <td>2005</td>
+      <td>CHL</td>
+      <td>16267000</td>
+      <td>0.8775</td>
+      <td>0.0830</td>
+    </tr>
+    <tr>
+      <th>384</th>
+      <td>2010</td>
+      <td>CHL</td>
+      <td>17077416</td>
+      <td>0.9128</td>
+      <td>0.0600</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filtrar datos del año 2010</span>
+<span class="n">datos_2010</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2010</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Países en 2010: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">datos_2010</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">datos_2010</span><span class="p">[[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="s1">&#39;chrstgenpct&#39;</span><span class="p">,</span> <span class="s1">&#39;islmgenpct&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Países en 2010: 194
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>pop</th>
+      <th>chrstgenpct</th>
+      <th>islmgenpct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13</th>
+      <td>USA</td>
+      <td>312750000</td>
+      <td>0.7454</td>
+      <td>0.0090</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>CAN</td>
+      <td>34500000</td>
+      <td>0.7661</td>
+      <td>0.0194</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>BHM</td>
+      <td>313312</td>
+      <td>0.9660</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>CUB</td>
+      <td>11241161</td>
+      <td>0.6589</td>
+      <td>0.0007</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>HAI</td>
+      <td>9760832</td>
+      <td>0.8200</td>
+      <td>0.0002</td>
+    </tr>
+    <tr>
+      <th>77</th>
+      <td>DOM</td>
+      <td>9956648</td>
+      <td>0.8700</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>88</th>
+      <td>JAM</td>
+      <td>2868630</td>
+      <td>0.6881</td>
+      <td>0.0005</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>TRI</td>
+      <td>1305000</td>
+      <td>0.5588</td>
+      <td>0.0503</td>
+    </tr>
+    <tr>
+      <th>108</th>
+      <td>BAR</td>
+      <td>288705</td>
+      <td>0.6434</td>
+      <td>0.0080</td>
+    </tr>
+    <tr>
+      <th>115</th>
+      <td>DMA</td>
+      <td>73000</td>
+      <td>0.9200</td>
+      <td>0.0000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filtrar países con más del 90% de cristianos en 2010</span>
+<span class="n">muy_cristianos</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2010</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;chrstgenpct&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.90</span><span class="p">)]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Países con más del 90% de cristianos en 2010: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">muy_cristianos</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">muy_cristianos</span><span class="p">[[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;chrstgenpct&#39;</span><span class="p">,</span> <span class="s1">&#39;pop&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;chrstgenpct&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Países con más del 90% de cristianos en 2010: 40
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>chrstgenpct</th>
+      <th>pop</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1905</th>
+      <td>ETM</td>
+      <td>0.9800</td>
+      <td>1127779</td>
+    </tr>
+    <tr>
+      <th>255</th>
+      <td>PAN</td>
+      <td>0.9793</td>
+      <td>4255000</td>
+    </tr>
+    <tr>
+      <th>759</th>
+      <td>ROM</td>
+      <td>0.9751</td>
+      <td>21433182</td>
+    </tr>
+    <tr>
+      <th>656</th>
+      <td>MLT</td>
+      <td>0.9727</td>
+      <td>412911</td>
+    </tr>
+    <tr>
+      <th>269</th>
+      <td>COL</td>
+      <td>0.9701</td>
+      <td>46295000</td>
+    </tr>
+    <tr>
+      <th>1975</th>
+      <td>NAU</td>
+      <td>0.9699</td>
+      <td>9937</td>
+    </tr>
+    <tr>
+      <th>1960</th>
+      <td>TUV</td>
+      <td>0.9699</td>
+      <td>10067</td>
+    </tr>
+    <tr>
+      <th>164</th>
+      <td>MEX</td>
+      <td>0.9686</td>
+      <td>112336538</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>BHM</td>
+      <td>0.9660</td>
+      <td>313312</td>
+    </tr>
+    <tr>
+      <th>1957</th>
+      <td>KIR</td>
+      <td>0.9600</td>
+      <td>103000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="filtrado-multiple-combinando-condiciones">
+<h3><span class="section-number">23.3.3. </span>Filtrado Múltiple: Combinando Condiciones<a class="headerlink" href="#filtrado-multiple-combinando-condiciones" title="Link to this heading">#</a></h3>
+<p>Usamos operadores lógicos:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code> → AND (ambas condiciones deben cumplirse)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">|</span></code> → OR (al menos una condición debe cumplirse)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~</span></code> → NOT (negación)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Países de América Latina en 2010</span>
+<span class="n">paises_latam</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MEX&#39;</span><span class="p">,</span> <span class="s1">&#39;ARG&#39;</span><span class="p">,</span> <span class="s1">&#39;BRA&#39;</span><span class="p">,</span> <span class="s1">&#39;CHL&#39;</span><span class="p">,</span> <span class="s1">&#39;COL&#39;</span><span class="p">,</span> <span class="s1">&#39;PER&#39;</span><span class="p">,</span> <span class="s1">&#39;VEN&#39;</span><span class="p">,</span> <span class="s1">&#39;ECU&#39;</span><span class="p">,</span> <span class="s1">&#39;BOL&#39;</span><span class="p">,</span> <span class="s1">&#39;URU&#39;</span><span class="p">,</span> <span class="s1">&#39;PAR&#39;</span><span class="p">]</span>
+
+<span class="n">latam_2010</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2010</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">paises_latam</span><span class="p">))]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;América Latina en 2010:&quot;</span><span class="p">)</span>
+<span class="n">latam_2010</span><span class="p">[[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="s1">&#39;chrstgenpct&#39;</span><span class="p">,</span> <span class="s1">&#39;chrstcatpct&#39;</span><span class="p">,</span> <span class="s1">&#39;chrstprotpct&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>América Latina en 2010:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>pop</th>
+      <th>chrstgenpct</th>
+      <th>chrstcatpct</th>
+      <th>chrstprotpct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>342</th>
+      <td>BRA</td>
+      <td>190755800</td>
+      <td>0.8823</td>
+      <td>0.5960</td>
+      <td>0.2680</td>
+    </tr>
+    <tr>
+      <th>164</th>
+      <td>MEX</td>
+      <td>112336538</td>
+      <td>0.9686</td>
+      <td>0.8272</td>
+      <td>0.1414</td>
+    </tr>
+    <tr>
+      <th>269</th>
+      <td>COL</td>
+      <td>46295000</td>
+      <td>0.9701</td>
+      <td>0.8200</td>
+      <td>0.1500</td>
+    </tr>
+    <tr>
+      <th>398</th>
+      <td>ARG</td>
+      <td>40399992</td>
+      <td>0.8515</td>
+      <td>0.7500</td>
+      <td>0.1000</td>
+    </tr>
+    <tr>
+      <th>328</th>
+      <td>PER</td>
+      <td>29402646</td>
+      <td>0.9380</td>
+      <td>0.8130</td>
+      <td>0.1250</td>
+    </tr>
+    <tr>
+      <th>283</th>
+      <td>VEN</td>
+      <td>28834000</td>
+      <td>0.9500</td>
+      <td>0.8000</td>
+      <td>0.1500</td>
+    </tr>
+    <tr>
+      <th>384</th>
+      <td>CHL</td>
+      <td>17077416</td>
+      <td>0.9128</td>
+      <td>0.7586</td>
+      <td>0.1061</td>
+    </tr>
+    <tr>
+      <th>314</th>
+      <td>ECU</td>
+      <td>14209151</td>
+      <td>0.9030</td>
+      <td>0.8700</td>
+      <td>0.0200</td>
+    </tr>
+    <tr>
+      <th>356</th>
+      <td>BOL</td>
+      <td>10312315</td>
+      <td>0.9426</td>
+      <td>0.8088</td>
+      <td>0.1332</td>
+    </tr>
+    <tr>
+      <th>370</th>
+      <td>PAR</td>
+      <td>6455292</td>
+      <td>0.9510</td>
+      <td>0.8800</td>
+      <td>0.0400</td>
+    </tr>
+    <tr>
+      <th>412</th>
+      <td>URU</td>
+      <td>3356679</td>
+      <td>0.8183</td>
+      <td>0.4710</td>
+      <td>0.1100</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Países con mayoría musulmana (&gt;50%) Y población mayor a 50 millones en 2010</span>
+<span class="n">grandes_musulmanes</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2010</span><span class="p">)</span> <span class="o">&amp;</span> 
+                        <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;islmgenpct&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.50</span><span class="p">)</span> <span class="o">&amp;</span> 
+                        <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pop&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">50000000</span><span class="p">)]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grandes países de mayoría musulmana en 2010:&quot;</span><span class="p">)</span>
+<span class="n">grandes_musulmanes</span><span class="p">[[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="s1">&#39;islmgenpct&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Grandes países de mayoría musulmana en 2010:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>pop</th>
+      <th>islmgenpct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1903</th>
+      <td>INS</td>
+      <td>239960000</td>
+      <td>0.8399</td>
+    </tr>
+    <tr>
+      <th>1740</th>
+      <td>PAK</td>
+      <td>168446576</td>
+      <td>0.9569</td>
+    </tr>
+    <tr>
+      <th>1074</th>
+      <td>NIG</td>
+      <td>154110416</td>
+      <td>0.5080</td>
+    </tr>
+    <tr>
+      <th>1748</th>
+      <td>BNG</td>
+      <td>147290688</td>
+      <td>0.8970</td>
+    </tr>
+    <tr>
+      <th>1456</th>
+      <td>EGY</td>
+      <td>81277560</td>
+      <td>0.8643</td>
+    </tr>
+    <tr>
+      <th>1428</th>
+      <td>TUR</td>
+      <td>76787632</td>
+      <td>0.9858</td>
+    </tr>
+    <tr>
+      <th>1414</th>
+      <td>IRN</td>
+      <td>74073560</td>
+      <td>0.9900</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="ordenando-datos">
+<h2><span class="section-number">23.4. </span>Ordenando Datos<a class="headerlink" href="#ordenando-datos" title="Link to this heading">#</a></h2>
+<p>El método <code class="docutils literal notranslate"><span class="pre">sort_values()</span></code> permite ordenar un DataFrame por una o más columnas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ordenar países por población en 2010 (descendente)</span>
+<span class="n">top_poblacion</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2010</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los 10 países más poblados en 2010:&quot;</span><span class="p">)</span>
+<span class="n">top_poblacion</span><span class="p">[[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;pop&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Los 10 países más poblados en 2010:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>pop</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1639</th>
+      <td>CHN</td>
+      <td>1345174272</td>
+    </tr>
+    <tr>
+      <th>1719</th>
+      <td>IND</td>
+      <td>1195000000</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>USA</td>
+      <td>312750000</td>
+    </tr>
+    <tr>
+      <th>1903</th>
+      <td>INS</td>
+      <td>239960000</td>
+    </tr>
+    <tr>
+      <th>342</th>
+      <td>BRA</td>
+      <td>190755800</td>
+    </tr>
+    <tr>
+      <th>1740</th>
+      <td>PAK</td>
+      <td>168446576</td>
+    </tr>
+    <tr>
+      <th>1074</th>
+      <td>NIG</td>
+      <td>154110416</td>
+    </tr>
+    <tr>
+      <th>1748</th>
+      <td>BNG</td>
+      <td>147290688</td>
+    </tr>
+    <tr>
+      <th>773</th>
+      <td>RUS</td>
+      <td>142400000</td>
+    </tr>
+    <tr>
+      <th>1706</th>
+      <td>JPN</td>
+      <td>127451704</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ordenar por múltiples columnas</span>
+<span class="c1"># Primero por año, luego por porcentaje de cristianos</span>
+<span class="n">ordenado</span> <span class="o">=</span> <span class="n">chile</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;chrstgenpct&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
+<span class="n">ordenado</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;chrstgenpct&#39;</span><span class="p">,</span> <span class="s1">&#39;nonreligpct&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>chrstgenpct</th>
+      <th>nonreligpct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>371</th>
+      <td>1945</td>
+      <td>0.9196</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>372</th>
+      <td>1950</td>
+      <td>0.9118</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>373</th>
+      <td>1955</td>
+      <td>0.9436</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>374</th>
+      <td>1960</td>
+      <td>0.9822</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>375</th>
+      <td>1965</td>
+      <td>0.9373</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>376</th>
+      <td>1970</td>
+      <td>0.9395</td>
+      <td>0.0338</td>
+    </tr>
+    <tr>
+      <th>377</th>
+      <td>1975</td>
+      <td>0.9325</td>
+      <td>0.0338</td>
+    </tr>
+    <tr>
+      <th>378</th>
+      <td>1980</td>
+      <td>0.9396</td>
+      <td>0.0383</td>
+    </tr>
+    <tr>
+      <th>379</th>
+      <td>1985</td>
+      <td>0.9367</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>380</th>
+      <td>1990</td>
+      <td>0.9430</td>
+      <td>0.0334</td>
+    </tr>
+    <tr>
+      <th>381</th>
+      <td>1995</td>
+      <td>0.9560</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>382</th>
+      <td>2000</td>
+      <td>0.9334</td>
+      <td>0.0300</td>
+    </tr>
+    <tr>
+      <th>383</th>
+      <td>2005</td>
+      <td>0.8775</td>
+      <td>0.0830</td>
+    </tr>
+    <tr>
+      <th>384</th>
+      <td>2010</td>
+      <td>0.9128</td>
+      <td>0.0600</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="agrupacion-con-groupby">
+<h2><span class="section-number">23.5. </span>Agrupación con <code class="docutils literal notranslate"><span class="pre">groupby()</span></code><a class="headerlink" href="#agrupacion-con-groupby" title="Link to this heading">#</a></h2>
+<section id="analogia-historica-el-catastro">
+<h3><span class="section-number">23.5.1. </span>Analogía Histórica: El Catastro<a class="headerlink" href="#analogia-historica-el-catastro" title="Link to this heading">#</a></h3>
+<p>En el Chile colonial, el <strong>catastro</strong> agrupaba propiedades por tipo (haciendas, chacras, solares) para calcular impuestos. De manera similar, <code class="docutils literal notranslate"><span class="pre">groupby()</span></code> agrupa filas por valores comunes y permite calcular estadísticas para cada grupo.</p>
+<div class="note admonition">
+<p class="admonition-title">Proceso de groupby()</p>
+<ol class="arabic simple">
+<li><p><strong>Dividir</strong>: Separar los datos en grupos según una columna</p></li>
+<li><p><strong>Aplicar</strong>: Calcular una función (suma, promedio, etc.) para cada grupo</p></li>
+<li><p><strong>Combinar</strong>: Unir los resultados en una nueva estructura</p></li>
+</ol>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Promedio de porcentaje cristiano por año (nivel mundial)</span>
+<span class="n">cristianos_por_año</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)[</span><span class="s1">&#39;chrstgenpct&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Porcentaje promedio de cristianos por año:&quot;</span><span class="p">)</span>
+<span class="n">cristianos_por_año</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Porcentaje promedio de cristianos por año:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year
+1945    0.701698
+1950    0.608386
+1955    0.582484
+1960    0.519113
+1965    0.506852
+1970    0.498916
+1975    0.510285
+1980    0.537344
+1985    0.537712
+1990    0.537367
+1995    0.551703
+2000    0.550735
+2005    0.553080
+2010    0.550301
+Name: chrstgenpct, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Múltiples estadísticas a la vez</span>
+<span class="n">stats_religiones</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+    <span class="s1">&#39;chrstgenpct&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;islmgenpct&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;nonreligpct&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pop&#39;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span>
+<span class="p">})</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">stats_religiones</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Cristianos %&#39;</span><span class="p">,</span> <span class="s1">&#39;Musulmanes %&#39;</span><span class="p">,</span> <span class="s1">&#39;Sin Religión %&#39;</span><span class="p">,</span> <span class="s1">&#39;Población Total&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estadísticas por año:&quot;</span><span class="p">)</span>
+<span class="n">stats_religiones</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estadísticas por año:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Cristianos %</th>
+      <th>Musulmanes %</th>
+      <th>Sin Religión %</th>
+      <th>Población Total</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1945</th>
+      <td>0.7017</td>
+      <td>0.1459</td>
+      <td>0.0295</td>
+      <td>1607867655</td>
+    </tr>
+    <tr>
+      <th>1950</th>
+      <td>0.6084</td>
+      <td>0.1738</td>
+      <td>0.0323</td>
+      <td>2220573024</td>
+    </tr>
+    <tr>
+      <th>1955</th>
+      <td>0.5825</td>
+      <td>0.1779</td>
+      <td>0.0473</td>
+      <td>2535824000</td>
+    </tr>
+    <tr>
+      <th>1960</th>
+      <td>0.5191</td>
+      <td>0.2185</td>
+      <td>0.0435</td>
+      <td>2920787124</td>
+    </tr>
+    <tr>
+      <th>1965</th>
+      <td>0.5069</td>
+      <td>0.2285</td>
+      <td>0.0420</td>
+      <td>3279601467</td>
+    </tr>
+    <tr>
+      <th>1970</th>
+      <td>0.4989</td>
+      <td>0.2483</td>
+      <td>0.0472</td>
+      <td>3655452232</td>
+    </tr>
+    <tr>
+      <th>1975</th>
+      <td>0.5103</td>
+      <td>0.2490</td>
+      <td>0.0449</td>
+      <td>4022668800</td>
+    </tr>
+    <tr>
+      <th>1980</th>
+      <td>0.5373</td>
+      <td>0.2392</td>
+      <td>0.0438</td>
+      <td>4265381362</td>
+    </tr>
+    <tr>
+      <th>1985</th>
+      <td>0.5377</td>
+      <td>0.2403</td>
+      <td>0.0511</td>
+      <td>4669065357</td>
+    </tr>
+    <tr>
+      <th>1990</th>
+      <td>0.5374</td>
+      <td>0.2484</td>
+      <td>0.0530</td>
+      <td>5312671680</td>
+    </tr>
+    <tr>
+      <th>1995</th>
+      <td>0.5517</td>
+      <td>0.2449</td>
+      <td>0.0637</td>
+      <td>5669141533</td>
+    </tr>
+    <tr>
+      <th>2000</th>
+      <td>0.5507</td>
+      <td>0.2415</td>
+      <td>0.0638</td>
+      <td>6085782447</td>
+    </tr>
+    <tr>
+      <th>2005</th>
+      <td>0.5531</td>
+      <td>0.2434</td>
+      <td>0.0681</td>
+      <td>6435695175</td>
+    </tr>
+    <tr>
+      <th>2010</th>
+      <td>0.5503</td>
+      <td>0.2474</td>
+      <td>0.0734</td>
+      <td>6830615581</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Evolución religiosa en América Latina</span>
+<span class="n">latam</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">paises_latam</span><span class="p">)]</span>
+
+<span class="n">evolucion_latam</span> <span class="o">=</span> <span class="n">latam</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+    <span class="s1">&#39;chrstcatpct&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span>  <span class="c1"># Católicos</span>
+    <span class="s1">&#39;chrstprotpct&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span>  <span class="c1"># Protestantes</span>
+    <span class="s1">&#39;nonreligpct&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span>   <span class="c1"># Sin religión</span>
+<span class="p">})</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">evolucion_latam</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Católicos %&#39;</span><span class="p">,</span> <span class="s1">&#39;Protestantes %&#39;</span><span class="p">,</span> <span class="s1">&#39;Sin Religión %&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Evolución religiosa en América Latina:&quot;</span><span class="p">)</span>
+<span class="n">evolucion_latam</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evolución religiosa en América Latina:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Católicos %</th>
+      <th>Protestantes %</th>
+      <th>Sin Religión %</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1945</th>
+      <td>0.8868</td>
+      <td>0.0143</td>
+      <td>0.0003</td>
+    </tr>
+    <tr>
+      <th>1950</th>
+      <td>0.8973</td>
+      <td>0.0145</td>
+      <td>0.0013</td>
+    </tr>
+    <tr>
+      <th>1955</th>
+      <td>0.9072</td>
+      <td>0.0122</td>
+      <td>0.0004</td>
+    </tr>
+    <tr>
+      <th>1960</th>
+      <td>0.9234</td>
+      <td>0.0131</td>
+      <td>0.0005</td>
+    </tr>
+    <tr>
+      <th>1965</th>
+      <td>0.9149</td>
+      <td>0.0136</td>
+      <td>0.0002</td>
+    </tr>
+    <tr>
+      <th>1970</th>
+      <td>0.9190</td>
+      <td>0.0195</td>
+      <td>0.0094</td>
+    </tr>
+    <tr>
+      <th>1975</th>
+      <td>0.9118</td>
+      <td>0.0218</td>
+      <td>0.0151</td>
+    </tr>
+    <tr>
+      <th>1980</th>
+      <td>0.9135</td>
+      <td>0.0248</td>
+      <td>0.0167</td>
+    </tr>
+    <tr>
+      <th>1985</th>
+      <td>0.9033</td>
+      <td>0.0264</td>
+      <td>0.0225</td>
+    </tr>
+    <tr>
+      <th>1990</th>
+      <td>0.8870</td>
+      <td>0.0357</td>
+      <td>0.0238</td>
+    </tr>
+    <tr>
+      <th>1995</th>
+      <td>0.8898</td>
+      <td>0.0438</td>
+      <td>0.0072</td>
+    </tr>
+    <tr>
+      <th>2000</th>
+      <td>0.8047</td>
+      <td>0.0924</td>
+      <td>0.0513</td>
+    </tr>
+    <tr>
+      <th>2005</th>
+      <td>0.7734</td>
+      <td>0.1036</td>
+      <td>0.0682</td>
+    </tr>
+    <tr>
+      <th>2010</th>
+      <td>0.7631</td>
+      <td>0.1222</td>
+      <td>0.0653</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="tablas-dinamicas-con-pivot-table">
+<h2><span class="section-number">23.6. </span>Tablas Dinámicas con <code class="docutils literal notranslate"><span class="pre">pivot_table()</span></code><a class="headerlink" href="#tablas-dinamicas-con-pivot-table" title="Link to this heading">#</a></h2>
+<p>Las tablas dinámicas permiten reorganizar datos para analizar relaciones entre variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tabla dinámica: Porcentaje de cristianos por país y año (América Latina)</span>
+<span class="n">pivot_latam</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">latam</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span>      <span class="c1"># Filas: países</span>
+    <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>    <span class="c1"># Columnas: años</span>
+    <span class="n">values</span><span class="o">=</span><span class="s1">&#39;chrstgenpct&#39;</span><span class="p">,</span>  <span class="c1"># Valores: % cristianos</span>
+    <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span>     <span class="c1"># Función de agregación</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Porcentaje de cristianos en América Latina por año:&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">pivot_latam</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Convertir a porcentaje</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Porcentaje de cristianos en América Latina por año:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>year</th>
+      <th>1945</th>
+      <th>1950</th>
+      <th>1955</th>
+      <th>1960</th>
+      <th>1965</th>
+      <th>1970</th>
+      <th>1975</th>
+      <th>1980</th>
+      <th>1985</th>
+      <th>1990</th>
+      <th>1995</th>
+      <th>2000</th>
+      <th>2005</th>
+      <th>2010</th>
+    </tr>
+    <tr>
+      <th>name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ARG</th>
+      <td>98.4</td>
+      <td>94.4</td>
+      <td>91.0</td>
+      <td>95.2</td>
+      <td>96.1</td>
+      <td>96.9</td>
+      <td>96.0</td>
+      <td>94.0</td>
+      <td>92.5</td>
+      <td>90.6</td>
+      <td>92.0</td>
+      <td>89.9</td>
+      <td>84.5</td>
+      <td>85.2</td>
+    </tr>
+    <tr>
+      <th>BOL</th>
+      <td>89.8</td>
+      <td>96.0</td>
+      <td>99.8</td>
+      <td>94.5</td>
+      <td>94.5</td>
+      <td>95.0</td>
+      <td>98.2</td>
+      <td>98.8</td>
+      <td>97.2</td>
+      <td>95.4</td>
+      <td>98.5</td>
+      <td>94.2</td>
+      <td>95.8</td>
+      <td>94.3</td>
+    </tr>
+    <tr>
+      <th>BRA</th>
+      <td>99.2</td>
+      <td>95.0</td>
+      <td>91.6</td>
+      <td>97.7</td>
+      <td>95.6</td>
+      <td>98.6</td>
+      <td>98.8</td>
+      <td>98.7</td>
+      <td>97.8</td>
+      <td>95.4</td>
+      <td>97.2</td>
+      <td>86.1</td>
+      <td>85.8</td>
+      <td>88.2</td>
+    </tr>
+    <tr>
+      <th>CHL</th>
+      <td>92.0</td>
+      <td>91.2</td>
+      <td>94.4</td>
+      <td>98.2</td>
+      <td>93.7</td>
+      <td>94.0</td>
+      <td>93.2</td>
+      <td>94.0</td>
+      <td>93.7</td>
+      <td>94.3</td>
+      <td>95.6</td>
+      <td>93.3</td>
+      <td>87.8</td>
+      <td>91.3</td>
+    </tr>
+    <tr>
+      <th>COL</th>
+      <td>90.5</td>
+      <td>92.5</td>
+      <td>96.4</td>
+      <td>97.4</td>
+      <td>97.5</td>
+      <td>98.4</td>
+      <td>96.9</td>
+      <td>96.4</td>
+      <td>96.0</td>
+      <td>95.9</td>
+      <td>96.2</td>
+      <td>94.5</td>
+      <td>97.0</td>
+      <td>97.0</td>
+    </tr>
+    <tr>
+      <th>ECU</th>
+      <td>90.0</td>
+      <td>90.0</td>
+      <td>92.0</td>
+      <td>92.5</td>
+      <td>94.4</td>
+      <td>98.3</td>
+      <td>93.6</td>
+      <td>96.2</td>
+      <td>95.9</td>
+      <td>96.2</td>
+      <td>96.2</td>
+      <td>90.8</td>
+      <td>91.6</td>
+      <td>90.3</td>
+    </tr>
+    <tr>
+      <th>MEX</th>
+      <td>94.0</td>
+      <td>93.7</td>
+      <td>93.7</td>
+      <td>94.4</td>
+      <td>95.7</td>
+      <td>94.7</td>
+      <td>93.4</td>
+      <td>96.7</td>
+      <td>97.4</td>
+      <td>96.9</td>
+      <td>97.2</td>
+      <td>96.9</td>
+      <td>93.6</td>
+      <td>96.9</td>
+    </tr>
+    <tr>
+      <th>PAR</th>
+      <td>89.7</td>
+      <td>91.9</td>
+      <td>91.3</td>
+      <td>94.4</td>
+      <td>93.2</td>
+      <td>95.0</td>
+      <td>97.2</td>
+      <td>97.4</td>
+      <td>95.2</td>
+      <td>98.2</td>
+      <td>95.8</td>
+      <td>97.0</td>
+      <td>91.0</td>
+      <td>95.1</td>
+    </tr>
+    <tr>
+      <th>PER</th>
+      <td>93.0</td>
+      <td>96.2</td>
+      <td>93.0</td>
+      <td>96.3</td>
+      <td>96.1</td>
+      <td>98.6</td>
+      <td>96.0</td>
+      <td>98.4</td>
+      <td>97.5</td>
+      <td>99.0</td>
+      <td>99.0</td>
+      <td>91.7</td>
+      <td>96.0</td>
+      <td>93.8</td>
+    </tr>
+    <tr>
+      <th>URU</th>
+      <td>67.9</td>
+      <td>72.0</td>
+      <td>75.4</td>
+      <td>78.3</td>
+      <td>73.8</td>
+      <td>77.4</td>
+      <td>74.9</td>
+      <td>70.9</td>
+      <td>69.0</td>
+      <td>73.1</td>
+      <td>72.6</td>
+      <td>74.0</td>
+      <td>81.8</td>
+      <td>81.8</td>
+    </tr>
+    <tr>
+      <th>VEN</th>
+      <td>86.9</td>
+      <td>90.0</td>
+      <td>92.8</td>
+      <td>91.4</td>
+      <td>93.2</td>
+      <td>94.7</td>
+      <td>94.6</td>
+      <td>98.3</td>
+      <td>96.2</td>
+      <td>96.3</td>
+      <td>97.7</td>
+      <td>94.2</td>
+      <td>94.4</td>
+      <td>95.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comparar católicos vs protestantes en América Latina (2010)</span>
+<span class="n">latam_2010_detalle</span> <span class="o">=</span> <span class="n">latam</span><span class="p">[</span><span class="n">latam</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2010</span><span class="p">][[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;chrstcatpct&#39;</span><span class="p">,</span> <span class="s1">&#39;chrstprotpct&#39;</span><span class="p">,</span> <span class="s1">&#39;pop&#39;</span><span class="p">]]</span>
+<span class="n">latam_2010_detalle</span><span class="p">[</span><span class="s1">&#39;Católicos %&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">latam_2010_detalle</span><span class="p">[</span><span class="s1">&#39;chrstcatpct&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">latam_2010_detalle</span><span class="p">[</span><span class="s1">&#39;Protestantes %&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">latam_2010_detalle</span><span class="p">[</span><span class="s1">&#39;chrstprotpct&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">latam_2010_detalle</span><span class="p">[</span><span class="s1">&#39;Población (millones)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">latam_2010_detalle</span><span class="p">[</span><span class="s1">&#39;pop&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1000000</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Católicos vs Protestantes en América Latina (2010):&quot;</span><span class="p">)</span>
+<span class="n">latam_2010_detalle</span><span class="p">[[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;Católicos %&#39;</span><span class="p">,</span> <span class="s1">&#39;Protestantes %&#39;</span><span class="p">,</span> <span class="s1">&#39;Población (millones)&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Población (millones)&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Católicos vs Protestantes en América Latina (2010):
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>Católicos %</th>
+      <th>Protestantes %</th>
+      <th>Población (millones)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>342</th>
+      <td>BRA</td>
+      <td>59.6</td>
+      <td>26.8</td>
+      <td>190.8</td>
+    </tr>
+    <tr>
+      <th>164</th>
+      <td>MEX</td>
+      <td>82.7</td>
+      <td>14.1</td>
+      <td>112.3</td>
+    </tr>
+    <tr>
+      <th>269</th>
+      <td>COL</td>
+      <td>82.0</td>
+      <td>15.0</td>
+      <td>46.3</td>
+    </tr>
+    <tr>
+      <th>398</th>
+      <td>ARG</td>
+      <td>75.0</td>
+      <td>10.0</td>
+      <td>40.4</td>
+    </tr>
+    <tr>
+      <th>328</th>
+      <td>PER</td>
+      <td>81.3</td>
+      <td>12.5</td>
+      <td>29.4</td>
+    </tr>
+    <tr>
+      <th>283</th>
+      <td>VEN</td>
+      <td>80.0</td>
+      <td>15.0</td>
+      <td>28.8</td>
+    </tr>
+    <tr>
+      <th>384</th>
+      <td>CHL</td>
+      <td>75.9</td>
+      <td>10.6</td>
+      <td>17.1</td>
+    </tr>
+    <tr>
+      <th>314</th>
+      <td>ECU</td>
+      <td>87.0</td>
+      <td>2.0</td>
+      <td>14.2</td>
+    </tr>
+    <tr>
+      <th>356</th>
+      <td>BOL</td>
+      <td>80.9</td>
+      <td>13.3</td>
+      <td>10.3</td>
+    </tr>
+    <tr>
+      <th>370</th>
+      <td>PAR</td>
+      <td>88.0</td>
+      <td>4.0</td>
+      <td>6.5</td>
+    </tr>
+    <tr>
+      <th>412</th>
+      <td>URU</td>
+      <td>47.1</td>
+      <td>11.0</td>
+      <td>3.4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="manejo-de-valores-faltantes">
+<h2><span class="section-number">23.7. </span>Manejo de Valores Faltantes<a class="headerlink" href="#manejo-de-valores-faltantes" title="Link to this heading">#</a></h2>
+<p>Los datos reales a menudo tienen valores faltantes, representados como <code class="docutils literal notranslate"><span class="pre">NaN</span></code> (Not a Number).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verificar valores faltantes</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Valores faltantes por columna:&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="s1">&#39;chrstgenpct&#39;</span><span class="p">,</span> <span class="s1">&#39;islmgenpct&#39;</span><span class="p">,</span> <span class="s1">&#39;nonreligpct&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Valores faltantes por columna:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year           0
+name           0
+pop            0
+chrstgenpct    0
+islmgenpct     0
+nonreligpct    0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verificar si hay filas con algún valor faltante en columnas clave</span>
+<span class="n">filas_con_nan</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pop&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filas con población faltante: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">filas_con_nan</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filas con población faltante: 0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminar filas con valores faltantes en una columna específica</span>
+<span class="n">df_limpio</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pop&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filas originales: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filas después de limpiar: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_limpio</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filas originales: 1995
+Filas después de limpiar: 1995
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="creando-nuevas-columnas">
+<h2><span class="section-number">23.8. </span>Creando Nuevas Columnas<a class="headerlink" href="#creando-nuevas-columnas" title="Link to this heading">#</a></h2>
+<p>Podemos crear columnas calculadas a partir de datos existentes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear una copia para trabajar</span>
+<span class="n">df_analisis</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2010</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Crear columna: Población en millones</span>
+<span class="n">df_analisis</span><span class="p">[</span><span class="s1">&#39;pop_millones&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_analisis</span><span class="p">[</span><span class="s1">&#39;pop&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1000000</span>
+
+<span class="c1"># Crear columna: Religión predominante</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">religion_predominante</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="n">religiones</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;Cristiana&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;chrstgenpct&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;Musulmana&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;islmgenpct&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;Budista&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;budgenpct&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;Hindú&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;hindgenpct&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">religiones</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">religiones</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+
+<span class="n">df_analisis</span><span class="p">[</span><span class="s1">&#39;religion_predominante&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_analisis</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">religion_predominante</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Países con su religión predominante (2010):&quot;</span><span class="p">)</span>
+<span class="n">df_analisis</span><span class="p">[[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;pop_millones&#39;</span><span class="p">,</span> <span class="s1">&#39;religion_predominante&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Países con su religión predominante (2010):
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>pop_millones</th>
+      <th>religion_predominante</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13</th>
+      <td>USA</td>
+      <td>312.750000</td>
+      <td>Cristiana</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>CAN</td>
+      <td>34.500000</td>
+      <td>Cristiana</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>BHM</td>
+      <td>0.313312</td>
+      <td>Cristiana</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>CUB</td>
+      <td>11.241161</td>
+      <td>Cristiana</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>HAI</td>
+      <td>9.760832</td>
+      <td>Cristiana</td>
+    </tr>
+    <tr>
+      <th>77</th>
+      <td>DOM</td>
+      <td>9.956648</td>
+      <td>Cristiana</td>
+    </tr>
+    <tr>
+      <th>88</th>
+      <td>JAM</td>
+      <td>2.868630</td>
+      <td>Cristiana</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>TRI</td>
+      <td>1.305000</td>
+      <td>Cristiana</td>
+    </tr>
+    <tr>
+      <th>108</th>
+      <td>BAR</td>
+      <td>0.288705</td>
+      <td>Cristiana</td>
+    </tr>
+    <tr>
+      <th>115</th>
+      <td>DMA</td>
+      <td>0.073000</td>
+      <td>Cristiana</td>
+    </tr>
+    <tr>
+      <th>123</th>
+      <td>GRN</td>
+      <td>0.108419</td>
+      <td>Cristiana</td>
+    </tr>
+    <tr>
+      <th>130</th>
+      <td>SLU</td>
+      <td>0.164000</td>
+      <td>Cristiana</td>
+    </tr>
+    <tr>
+      <th>137</th>
+      <td>SVG</td>
+      <td>0.104000</td>
+      <td>Cristiana</td>
+    </tr>
+    <tr>
+      <th>144</th>
+      <td>AAB</td>
+      <td>0.086900</td>
+      <td>Cristiana</td>
+    </tr>
+    <tr>
+      <th>150</th>
+      <td>SKN</td>
+      <td>0.050700</td>
+      <td>Cristiana</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contar países por religión predominante</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distribución de países por religión predominante (2010):&quot;</span><span class="p">)</span>
+<span class="n">df_analisis</span><span class="p">[</span><span class="s1">&#39;religion_predominante&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distribución de países por religión predominante (2010):
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>religion_predominante
+Cristiana    129
+Musulmana     49
+Budista       13
+Hindú          3
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-practico-analisis-comparativo">
+<h2><span class="section-number">23.9. </span>Ejercicio Práctico: Análisis Comparativo<a class="headerlink" href="#ejercicio-practico-analisis-comparativo" title="Link to this heading">#</a></h2>
+<div class="hint admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Usando el dataset WRP National:</p>
+<ol class="arabic simple">
+<li><p>Compara la evolución del catolicismo en Chile vs México (1945-2010)</p></li>
+<li><p>Encuentra los 5 países con mayor crecimiento de personas sin religión entre 1945 y 2010</p></li>
+<li><p>Calcula el promedio de población musulmana por década</p></li>
+</ol>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solución Ejercicio 1: Chile vs México - Catolicismo</span>
+<span class="n">chile_mex</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;CHL&#39;</span><span class="p">,</span> <span class="s1">&#39;MEX&#39;</span><span class="p">])][[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;chrstcatpct&#39;</span><span class="p">]]</span>
+
+<span class="n">pivot_comparacion</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">chile_mex</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span>
+    <span class="n">values</span><span class="o">=</span><span class="s1">&#39;chrstcatpct&#39;</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Evolución del catolicismo: Chile vs México&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">pivot_comparacion</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evolución del catolicismo: Chile vs México
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>name</th>
+      <th>CHL</th>
+      <th>MEX</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1945</th>
+      <td>88.8</td>
+      <td>93.0</td>
+    </tr>
+    <tr>
+      <th>1950</th>
+      <td>87.2</td>
+      <td>92.5</td>
+    </tr>
+    <tr>
+      <th>1955</th>
+      <td>90.8</td>
+      <td>92.5</td>
+    </tr>
+    <tr>
+      <th>1960</th>
+      <td>95.0</td>
+      <td>93.2</td>
+    </tr>
+    <tr>
+      <th>1965</th>
+      <td>88.0</td>
+      <td>94.1</td>
+    </tr>
+    <tr>
+      <th>1970</th>
+      <td>89.6</td>
+      <td>93.0</td>
+    </tr>
+    <tr>
+      <th>1975</th>
+      <td>88.9</td>
+      <td>91.6</td>
+    </tr>
+    <tr>
+      <th>1980</th>
+      <td>89.0</td>
+      <td>94.9</td>
+    </tr>
+    <tr>
+      <th>1985</th>
+      <td>84.8</td>
+      <td>95.7</td>
+    </tr>
+    <tr>
+      <th>1990</th>
+      <td>83.4</td>
+      <td>93.4</td>
+    </tr>
+    <tr>
+      <th>1995</th>
+      <td>82.0</td>
+      <td>93.9</td>
+    </tr>
+    <tr>
+      <th>2000</th>
+      <td>81.4</td>
+      <td>93.8</td>
+    </tr>
+    <tr>
+      <th>2005</th>
+      <td>70.0</td>
+      <td>89.7</td>
+    </tr>
+    <tr>
+      <th>2010</th>
+      <td>75.9</td>
+      <td>82.7</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solución Ejercicio 2: Mayor crecimiento de &quot;sin religión&quot;</span>
+<span class="c1"># Obtener datos de 1945 y 2010</span>
+<span class="n">sin_religion_1945</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1945</span><span class="p">][[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;nonreligpct&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;nonreligpct&#39;</span><span class="p">:</span> <span class="s1">&#39;sin_rel_1945&#39;</span><span class="p">})</span>
+<span class="n">sin_religion_2010</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2010</span><span class="p">][[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;nonreligpct&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;nonreligpct&#39;</span><span class="p">:</span> <span class="s1">&#39;sin_rel_2010&#39;</span><span class="p">})</span>
+
+<span class="c1"># Unir los datasets</span>
+<span class="n">comparacion</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">sin_religion_1945</span><span class="p">,</span> <span class="n">sin_religion_2010</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+<span class="n">comparacion</span><span class="p">[</span><span class="s1">&#39;cambio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">comparacion</span><span class="p">[</span><span class="s1">&#39;sin_rel_2010&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">comparacion</span><span class="p">[</span><span class="s1">&#39;sin_rel_1945&#39;</span><span class="p">]</span>
+
+<span class="c1"># Top 5 con mayor crecimiento</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Top 5 países con mayor aumento de personas sin religión (1945-2010):&quot;</span><span class="p">)</span>
+<span class="n">top_cambio</span> <span class="o">=</span> <span class="n">comparacion</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;cambio&#39;</span><span class="p">)</span>
+<span class="n">top_cambio</span><span class="p">[</span><span class="s1">&#39;cambio_pct&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">top_cambio</span><span class="p">[</span><span class="s1">&#39;cambio&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">top_cambio</span><span class="p">[[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;cambio_pct&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Top 5 países con mayor aumento de personas sin religión (1945-2010):
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>cambio_pct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>62</th>
+      <td>NEW</td>
+      <td>38.1</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>AUL</td>
+      <td>28.1</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>CHN</td>
+      <td>27.1</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>UKG</td>
+      <td>21.8</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>GMY</td>
+      <td>21.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solución Ejercicio 3: Promedio de musulmanes por década</span>
+<span class="c1"># Crear columna de década</span>
+<span class="n">df_decadas</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_decadas</span><span class="p">[</span><span class="s1">&#39;decada&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_decadas</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">//</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+
+<span class="c1"># Calcular promedio por década</span>
+<span class="n">musulmanes_decada</span> <span class="o">=</span> <span class="n">df_decadas</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;decada&#39;</span><span class="p">)[</span><span class="s1">&#39;islmgenpct&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Porcentaje promedio de musulmanes por década:&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">musulmanes_decada</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Porcentaje promedio de musulmanes por década:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>decada
+1940    14.59
+1950    17.60
+1960    22.38
+1970    24.87
+1980    23.98
+1990    24.66
+2000    24.24
+2010    24.74
+Name: islmgenpct, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exportando-resultados">
+<h2><span class="section-number">23.10. </span>Exportando Resultados<a class="headerlink" href="#exportando-resultados" title="Link to this heading">#</a></h2>
+<p>Pandas permite guardar DataFrames en diversos formatos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exportar a CSV</span>
+<span class="n">latam_2010_detalle</span><span class="p">[[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;Católicos %&#39;</span><span class="p">,</span> <span class="s1">&#39;Protestantes %&#39;</span><span class="p">,</span> <span class="s1">&#39;Población (millones)&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+    <span class="s1">&#39;analisis_latam_2010.csv&#39;</span><span class="p">,</span> 
+    <span class="n">index</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Archivo exportado: analisis_latam_2010.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Archivo exportado: analisis_latam_2010.csv
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="resumen-del-capitulo">
+<h2><span class="section-number">23.11. </span>Resumen del Capítulo<a class="headerlink" href="#resumen-del-capitulo" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operación</p></th>
+<th class="head"><p>Código</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Filtrar simple</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df[df['col']</span> <span class="pre">==</span> <span class="pre">valor]</span></code></p></td>
+<td><p>Una condición</p></td>
+</tr>
+<tr class="row-odd"><td><p>Filtrar múltiple</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df[(cond1)</span> <span class="pre">&amp;</span> <span class="pre">(cond2)]</span></code></p></td>
+<td><p>AND: ambas condiciones</p></td>
+</tr>
+<tr class="row-even"><td><p>Filtrar OR</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df[(cond1)</span> <span class="pre">|</span> <span class="pre">(cond2)]</span></code></p></td>
+<td><p>OR: al menos una</p></td>
+</tr>
+<tr class="row-odd"><td><p>Filtrar lista</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df[df['col'].isin(lista)]</span></code></p></td>
+<td><p>Valores en una lista</p></td>
+</tr>
+<tr class="row-even"><td><p>Ordenar</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df.sort_values('col')</span></code></p></td>
+<td><p>Ascendente por defecto</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ordenar desc.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df.sort_values('col',</span> <span class="pre">ascending=False)</span></code></p></td>
+<td><p>Descendente</p></td>
+</tr>
+<tr class="row-even"><td><p>Agrupar</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df.groupby('col')['otra'].mean()</span></code></p></td>
+<td><p>Calcular por grupo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Múltiples stats</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df.groupby('col').agg({...})</span></code></p></td>
+<td><p>Varias estadísticas</p></td>
+</tr>
+<tr class="row-even"><td><p>Tabla dinámica</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pd.pivot_table(...)</span></code></p></td>
+<td><p>Reorganizar datos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Valores faltantes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df.isnull().sum()</span></code></p></td>
+<td><p>Contar NaN</p></td>
+</tr>
+<tr class="row-even"><td><p>Eliminar NaN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df.dropna()</span></code></p></td>
+<td><p>Quitar filas con NaN</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nueva columna</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df['nueva']</span> <span class="pre">=</span> <span class="pre">cálculo</span></code></p></td>
+<td><p>Columna calculada</p></td>
+</tr>
+<tr class="row-even"><td><p>Exportar CSV</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df.to_csv('archivo.csv')</span></code></p></td>
+<td><p>Guardar resultados</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="referencias">
+<h2><span class="section-number">23.12. </span>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<div class="docutils container" id="id1">
+<div role="list" class="citation-list">
+<div class="citation" id="id2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">MH13</a><span class="fn-bracket">]</span></span>
+<p>Zeev Maoz and Errol A. Henderson. The world religion dataset, 1945-2010: logic, estimates, and trends. <em>International Interactions</em>, 39(3):265–291, 2013. URL: <a class="reference external" href="https://correlatesofwar.org/data-sets/world-religion-data/">https://correlatesofwar.org/data-sets/world-religion-data/</a>, <a class="reference external" href="https://doi.org/10.1080/03050629.2013.782306">doi:10.1080/03050629.2013.782306</a>.</p>
+</div>
+<div class="citation" id="id4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">McK22</a><span class="fn-bracket">]</span></span>
+<p>Wes McKinney. <em>Python for Data Analysis: Data Wrangling with pandas, NumPy, and Jupyter</em>. O'Reilly Media, Sebastopol, CA, 3rd edition, 2022. ISBN 978-1098104030.</p>
+</div>
+<div class="citation" id="id3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">pandasdteam24</a><span class="fn-bracket">]</span></span>
+<p>pandas development team. Pandas documentation. 2024. Biblioteca de Python para análisis de datos. URL: <a class="reference external" href="https://pandas.pydata.org/docs/">https://pandas.pydata.org/docs/</a>.</p>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span id="id6">[<a class="reference internal" href="markdown.html#id3" title="Zeev Maoz and Errol A. Henderson. The world religion dataset, 1945-2010: logic, estimates, and trends. International Interactions, 39(3):265–291, 2013. URL: https://correlatesofwar.org/data-sets/world-religion-data/, doi:10.1080/03050629.2013.782306.">Maoz and Henderson, 2013</a>]</span></p></li>
+<li><p><span id="id7">[<a class="reference internal" href="markdown.html#id4" title="pandas development team. Pandas documentation. 2024. Biblioteca de Python para análisis de datos. URL: https://pandas.pydata.org/docs/.">pandas development team, 2024</a>]</span></p></li>
+<li><p><span id="id8">[<a class="reference internal" href="markdown.html#id5" title="Wes McKinney. Python for Data Analysis: Data Wrangling with pandas, NumPy, and Jupyter. O'Reilly Media, Sebastopol, CA, 3rd edition, 2022. ISBN 978-1098104030.">McKinney, 2022</a>]</span></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Capitulo_22_Introduccion_Pandas.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>Introducción a Pandas</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">23.1. Objetivos de Aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-del-entorno">23.2. Preparación del Entorno</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entendiendo-las-columnas-del-dataset">23.2.1. Entendiendo las Columnas del Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtrado-de-datos">23.3. Filtrado de Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analogia-historica-el-censo-colonial">23.3.1. Analogía Histórica: El Censo Colonial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtrado-simple-una-condicion">23.3.2. Filtrado Simple: Una Condición</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtrado-multiple-combinando-condiciones">23.3.3. Filtrado Múltiple: Combinando Condiciones</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ordenando-datos">23.4. Ordenando Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agrupacion-con-groupby">23.5. Agrupación con <code class="docutils literal notranslate"><span class="pre">groupby()</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analogia-historica-el-catastro">23.5.1. Analogía Histórica: El Catastro</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas-dinamicas-con-pivot-table">23.6. Tablas Dinámicas con <code class="docutils literal notranslate"><span class="pre">pivot_table()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-valores-faltantes">23.7. Manejo de Valores Faltantes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creando-nuevas-columnas">23.8. Creando Nuevas Columnas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-practico-analisis-comparativo">23.9. Ejercicio Práctico: Análisis Comparativo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exportando-resultados">23.10. Exportando Resultados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-del-capitulo">23.11. Resumen del Capítulo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">23.12. Referencias</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Claudio Rojas Monsalves
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

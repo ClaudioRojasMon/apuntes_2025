@@ -1,0 +1,2217 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>22. Introducción a Pandas &#8212; Programando la Historia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Capitulo_22_Introduccion_Pandas';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="23. Pandas Avanzado - Filtrado, Agrupación y Análisis" href="Capitulo_23_Pandas_Avanzado.html" />
+    <link rel="prev" title="21. Funciones con Parámetros: Organizando el Código Histórico" href="Capitulo_21_Funciones_Parametros.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Original.png" class="logo__image only-light" alt="Programando la Historia - Home"/>
+    <script>document.write(`<img src="_static/Original.png" class="logo__image only-dark" alt="Programando la Historia - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Programando la Historia.
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Inteligencia Artificial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20I.html">1. ¿Qué es la Inteligencia Artificial?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20II.html">2. Historia de la Inteligencia Artificial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20III.html">3. Inteligencia Artificial Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades.html">4. Mitos vs. Realidad: ¿La IA nos reemplazará?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades%20II.html">5. La IA Revolucionando la Investigación Histórica y la Educación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sesgos.html">6. Sesgos Algorítmicos: El uso de Compas en el Sistemas de Justicia de EEUU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deepfakes.html">7. Desinformación y Deepfakes en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datos.html">8. Privacidad y Datos Personales en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Elecci%C3%B3n%20de%20IA.html">9. ¿Cómo mejorar tus tareas escolares sin hacer trampa?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Herramientas%20para%20la%20IA%20Generativa.html">10. Herramientas de IA Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Prompt.html">11. Prompting Efectivo: El arte de “conversar” con la IA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyectos.html">12. Proyectos Estudiantiles Potenciados por IA</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Programación Básica</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Markdown_II_final.html">13. ¿Qué es Markdown?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Google_Sheets_Formulas.html">14. Fórmulas Básicas en Google Sheets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mini_Dashboard_Crisis.html">15. Mini Dashboard de Crisis Históricas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_16_Introduccion_Python.html">16. Introducción a Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_17_Variables_Tipos_Datos.html">17. Variables y Tipos de Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_18_Metodos_Listas_Strings.html">18. Métodos de Listas y Strings: Manipulando Datos Históricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_19_Condicionales_Ciclo_For.html">19. Condicionales y Ciclos For: Decisiones y Repeticiones en la Historia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_20_While_Control_Flujo.html">20. Ciclo While y Control de Flujo: Repetir Hasta que la Historia Cambie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_21_Funciones_Parametros.html">21. Funciones con Parámetros: Organizando el Código Histórico</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">22. Introducción a Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_23_Pandas_Avanzado.html">23. Pandas Avanzado - Filtrado, Agrupación y Análisis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ClaudioRojasMon/apuntes_2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ClaudioRojasMon/apuntes_2025/issues/new?title=Issue%20on%20page%20%2FCapitulo_22_Introduccion_Pandas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Capitulo_22_Introduccion_Pandas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introducción a Pandas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">22.1. Objetivos de Aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-pandas">22.2. ¿Qué es Pandas?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analogia-historica-el-archivo-nacional">22.2.1. Analogía Histórica: El Archivo Nacional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#las-dos-estructuras-fundamentales">22.2.2. Las Dos Estructuras Fundamentales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importando-pandas">22.3. Importando Pandas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series-la-estructura-unidimensional">22.4. Series: La Estructura Unidimensional</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-una-serie-desde-una-lista">22.4.1. Crear una Serie desde una Lista</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-una-serie">22.4.2. Atributos de una Serie</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-una-serie-desde-un-diccionario">22.4.3. Crear una Serie desde un Diccionario</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe-la-estructura-bidimensional">22.5. DataFrame: La Estructura Bidimensional</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-un-dataframe-desde-un-diccionario">22.5.1. Crear un DataFrame desde un Diccionario</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargando-datos-desde-un-archivo-csv">22.6. Cargando Datos desde un Archivo CSV</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-dataset-de-religiones-del-mundo-wrp">22.6.1. El Dataset de Religiones del Mundo (WRP)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entendiendo-las-columnas-del-dataset">22.6.2. Entendiendo las Columnas del Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explorando-los-datos">22.7. Explorando los Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccionando-columnas">22.8. Seleccionando Columnas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#renombrando-columnas-para-mayor-claridad">22.8.1. Renombrando Columnas para Mayor Claridad</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticas-descriptivas">22.9. Estadísticas Descriptivas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accediendo-a-filas-y-celdas-especificas">22.10. Accediendo a Filas y Celdas Específicas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-unicos-y-conteos">22.11. Valores Únicos y Conteos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-practico-analisis-de-tendencias-religiosas">22.12. Ejercicio Práctico: Análisis de Tendencias Religiosas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-del-capitulo">22.13. Resumen del Capítulo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">22.14. Referencias</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-a-pandas">
+<h1><span class="section-number">22. </span>Introducción a Pandas<a class="headerlink" href="#introduccion-a-pandas" title="Link to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>“Los datos son el nuevo petróleo. Es valioso, pero si no se refina, no puede realmente ser utilizado.”</p>
+<p class="attribution">—Clive Humby, matemático británico</p>
+</div></blockquote>
+<section id="objetivos-de-aprendizaje">
+<h2><span class="section-number">22.1. </span>Objetivos de Aprendizaje<a class="headerlink" href="#objetivos-de-aprendizaje" title="Link to this heading">#</a></h2>
+<div class="tip admonition">
+<p class="admonition-title">Al finalizar este capítulo, serás capaz de:</p>
+<ol class="arabic simple">
+<li><p>Comprender qué es Pandas y por qué es fundamental para el análisis de datos</p></li>
+<li><p>Crear y manipular <strong>Series</strong> (estructuras unidimensionales)</p></li>
+<li><p>Crear y manipular <strong>DataFrames</strong> (tablas de datos)</p></li>
+<li><p>Cargar datos desde archivos CSV</p></li>
+<li><p>Realizar operaciones básicas de exploración de datos</p></li>
+<li><p>Aplicar estos conocimientos a datos históricos reales sobre religiones del mundo</p></li>
+</ol>
+</div>
+</section>
+<section id="que-es-pandas">
+<h2><span class="section-number">22.2. </span>¿Qué es Pandas?<a class="headerlink" href="#que-es-pandas" title="Link to this heading">#</a></h2>
+<p><strong>Pandas</strong> es una biblioteca de Python diseñada para el análisis y manipulación de datos. Su nombre proviene de “Panel Data”, un término de econometría que se refiere a datos multidimensionales.</p>
+<section id="analogia-historica-el-archivo-nacional">
+<h3><span class="section-number">22.2.1. </span>Analogía Histórica: El Archivo Nacional<a class="headerlink" href="#analogia-historica-el-archivo-nacional" title="Link to this heading">#</a></h3>
+<p>Imagina que eres un historiador trabajando en el <strong>Archivo Nacional de Chile</strong>. Tienes miles de documentos sobre la población, censos y registros históricos. Sin un sistema de organización, encontrar información sería imposible.</p>
+<p>Pandas es como tener un sistema de catalogación digital que te permite:</p>
+<ul class="simple">
+<li><p><strong>Organizar</strong> datos en tablas estructuradas</p></li>
+<li><p><strong>Buscar</strong> información específica rápidamente</p></li>
+<li><p><strong>Filtrar</strong> registros según criterios</p></li>
+<li><p><strong>Calcular</strong> estadísticas automáticamente</p></li>
+</ul>
+</section>
+<section id="las-dos-estructuras-fundamentales">
+<h3><span class="section-number">22.2.2. </span>Las Dos Estructuras Fundamentales<a class="headerlink" href="#las-dos-estructuras-fundamentales" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Estructura</p></th>
+<th class="head"><p>Descripción</p></th>
+<th class="head"><p>Analogía</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Series</strong></p></td>
+<td><p>Columna única de datos</p></td>
+<td><p>Una lista de censos de un solo año</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>DataFrame</strong></p></td>
+<td><p>Tabla con filas y columnas</p></td>
+<td><p>Una hoja de cálculo completa</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="importando-pandas">
+<h2><span class="section-number">22.3. </span>Importando Pandas<a class="headerlink" href="#importando-pandas" title="Link to this heading">#</a></h2>
+<p>Por convención, Pandas se importa con el alias <code class="docutils literal notranslate"><span class="pre">pd</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importamos las librerías necesarias</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Verificamos la versión</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Versión de Pandas: </span><span class="si">{</span><span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Versión de Pandas: 2.0.3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="series-la-estructura-unidimensional">
+<h2><span class="section-number">22.4. </span>Series: La Estructura Unidimensional<a class="headerlink" href="#series-la-estructura-unidimensional" title="Link to this heading">#</a></h2>
+<p>Una <strong>Serie</strong> es como una columna de una tabla: tiene valores y un índice que identifica cada valor.</p>
+<section id="crear-una-serie-desde-una-lista">
+<h3><span class="section-number">22.4.1. </span>Crear una Serie desde una Lista<a class="headerlink" href="#crear-una-serie-desde-una-lista" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Población de Chile en millones (datos históricos aproximados)</span>
+<span class="n">poblacion_chile</span> <span class="o">=</span> <span class="p">[</span><span class="mf">6.1</span><span class="p">,</span> <span class="mf">7.6</span><span class="p">,</span> <span class="mf">9.5</span><span class="p">,</span> <span class="mf">11.1</span><span class="p">,</span> <span class="mf">13.2</span><span class="p">,</span> <span class="mf">15.4</span><span class="p">,</span> <span class="mf">17.1</span><span class="p">]</span>
+
+<span class="c1"># Crear una Serie básica</span>
+<span class="n">serie_poblacion</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">poblacion_chile</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Serie básica:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">serie_poblacion</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Serie básica:
+0     6.1
+1     7.6
+2     9.5
+3    11.1
+4    13.2
+5    15.4
+6    17.1
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear una Serie con índices personalizados (años)</span>
+<span class="n">años</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1950</span><span class="p">,</span> <span class="mi">1960</span><span class="p">,</span> <span class="mi">1970</span><span class="p">,</span> <span class="mi">1980</span><span class="p">,</span> <span class="mi">1990</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">2010</span><span class="p">]</span>
+
+<span class="n">serie_poblacion</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">poblacion_chile</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">años</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Serie con índices de años:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">serie_poblacion</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Serie con índices de años:
+1950     6.1
+1960     7.6
+1970     9.5
+1980    11.1
+1990    13.2
+2000    15.4
+2010    17.1
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Acceder a elementos de la Serie</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Población en 1970: </span><span class="si">{</span><span class="n">serie_poblacion</span><span class="p">[</span><span class="mi">1970</span><span class="p">]</span><span class="si">}</span><span class="s2"> millones&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Población en 2000: </span><span class="si">{</span><span class="n">serie_poblacion</span><span class="p">[</span><span class="mi">2000</span><span class="p">]</span><span class="si">}</span><span class="s2"> millones&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Población en 1970: 9.5 millones
+Población en 2000: 15.4 millones
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="atributos-de-una-serie">
+<h3><span class="section-number">22.4.2. </span>Atributos de una Serie<a class="headerlink" href="#atributos-de-una-serie" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Explorar atributos de la Serie</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Valores: </span><span class="si">{</span><span class="n">serie_poblacion</span><span class="o">.</span><span class="n">values</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Índices: </span><span class="si">{</span><span class="n">serie_poblacion</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tamaño: </span><span class="si">{</span><span class="n">serie_poblacion</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tipo de dato: </span><span class="si">{</span><span class="n">serie_poblacion</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Valores: [ 6.1  7.6  9.5 11.1 13.2 15.4 17.1]
+Índices: [1950, 1960, 1970, 1980, 1990, 2000, 2010]
+Tamaño: 7
+Tipo de dato: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="crear-una-serie-desde-un-diccionario">
+<h3><span class="section-number">22.4.3. </span>Crear una Serie desde un Diccionario<a class="headerlink" href="#crear-una-serie-desde-un-diccionario" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Religiones principales y su porcentaje aproximado en Chile (2010)</span>
+<span class="n">religiones_chile</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Católicos&quot;</span><span class="p">:</span> <span class="mf">66.7</span><span class="p">,</span>
+    <span class="s2">&quot;Evangélicos&quot;</span><span class="p">:</span> <span class="mf">16.4</span><span class="p">,</span>
+    <span class="s2">&quot;Sin religión&quot;</span><span class="p">:</span> <span class="mf">11.5</span><span class="p">,</span>
+    <span class="s2">&quot;Otras&quot;</span><span class="p">:</span> <span class="mf">5.4</span>
+<span class="p">}</span>
+
+<span class="n">serie_religiones</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">religiones_chile</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distribución religiosa en Chile (%)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">serie_religiones</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distribución religiosa en Chile (%)
+Católicos       66.7
+Evangélicos     16.4
+Sin religión    11.5
+Otras            5.4
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="dataframe-la-estructura-bidimensional">
+<h2><span class="section-number">22.5. </span>DataFrame: La Estructura Bidimensional<a class="headerlink" href="#dataframe-la-estructura-bidimensional" title="Link to this heading">#</a></h2>
+<p>Un <strong>DataFrame</strong> es una tabla de datos con filas y columnas, similar a una hoja de cálculo de Excel o una tabla de base de datos.</p>
+<section id="crear-un-dataframe-desde-un-diccionario">
+<h3><span class="section-number">22.5.1. </span>Crear un DataFrame desde un Diccionario<a class="headerlink" href="#crear-un-dataframe-desde-un-diccionario" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Datos históricos de batallas de la Independencia de Chile</span>
+<span class="n">datos_batallas</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Batalla&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Rancagua&quot;</span><span class="p">,</span> <span class="s2">&quot;Chacabuco&quot;</span><span class="p">,</span> <span class="s2">&quot;Cancha Rayada&quot;</span><span class="p">,</span> <span class="s2">&quot;Maipú&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Año&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1814</span><span class="p">,</span> <span class="mi">1817</span><span class="p">,</span> <span class="mi">1818</span><span class="p">,</span> <span class="mi">1818</span><span class="p">],</span>
+    <span class="s2">&quot;Resultado&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Derrota&quot;</span><span class="p">,</span> <span class="s2">&quot;Victoria&quot;</span><span class="p">,</span> <span class="s2">&quot;Derrota&quot;</span><span class="p">,</span> <span class="s2">&quot;Victoria&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Comandante&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;O&#39;Higgins&quot;</span><span class="p">,</span> <span class="s2">&quot;San Martín&quot;</span><span class="p">,</span> <span class="s2">&quot;San Martín&quot;</span><span class="p">,</span> <span class="s2">&quot;San Martín&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">df_batallas</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">datos_batallas</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Batallas de la Independencia de Chile:&quot;</span><span class="p">)</span>
+<span class="n">df_batallas</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Batallas de la Independencia de Chile:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Batalla</th>
+      <th>Año</th>
+      <th>Resultado</th>
+      <th>Comandante</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Rancagua</td>
+      <td>1814</td>
+      <td>Derrota</td>
+      <td>O'Higgins</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Chacabuco</td>
+      <td>1817</td>
+      <td>Victoria</td>
+      <td>San Martín</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cancha Rayada</td>
+      <td>1818</td>
+      <td>Derrota</td>
+      <td>San Martín</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Maipú</td>
+      <td>1818</td>
+      <td>Victoria</td>
+      <td>San Martín</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="cargando-datos-desde-un-archivo-csv">
+<h2><span class="section-number">22.6. </span>Cargando Datos desde un Archivo CSV<a class="headerlink" href="#cargando-datos-desde-un-archivo-csv" title="Link to this heading">#</a></h2>
+<p>En la práctica, los datos suelen venir en archivos. El formato <strong>CSV</strong> (Comma Separated Values) es uno de los más comunes.</p>
+<section id="el-dataset-de-religiones-del-mundo-wrp">
+<h3><span class="section-number">22.6.1. </span>El Dataset de Religiones del Mundo (WRP)<a class="headerlink" href="#el-dataset-de-religiones-del-mundo-wrp" title="Link to this heading">#</a></h3>
+<p>Vamos a trabajar con el <strong>World Religion Project</strong>, un conjunto de datos académicos que registra la distribución religiosa mundial desde 1945 hasta 2010.</p>
+<div class="note admonition">
+<p class="admonition-title">Fuente de los Datos</p>
+<p><strong>Zeev Maoz y Errol A. Henderson (2013)</strong>. “The World Religion Dataset, 1945-2010: Logic, Estimates, and Trends”. <em>International Interactions</em>, 39: 265-291.</p>
+<p>Disponible en: <a class="reference external" href="https://correlatesofwar.org/data-sets/world-religion-data/">https://correlatesofwar.org/data-sets/world-religion-data/</a></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cargar el dataset de religiones mundiales (datos globales agregados)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;WRP_global.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Ver las primeras filas</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Primeras 5 filas del dataset:&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Primeras 5 filas del dataset:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>chrstprot</th>
+      <th>chrstcat</th>
+      <th>chrstorth</th>
+      <th>chrstang</th>
+      <th>chrstothr</th>
+      <th>chrstgen</th>
+      <th>judorth</th>
+      <th>jdcons</th>
+      <th>judref</th>
+      <th>...</th>
+      <th>taogenpct</th>
+      <th>jaingenpct</th>
+      <th>confgenpct</th>
+      <th>syncgenpct</th>
+      <th>anmgenpct</th>
+      <th>nonreligpct</th>
+      <th>othrgenpct</th>
+      <th>sumreligpct</th>
+      <th>ptctotal</th>
+      <th>version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1945</td>
+      <td>160,887,585</td>
+      <td>391,332,035</td>
+      <td>98,501,171</td>
+      <td>36,955,033</td>
+      <td>13,674,466</td>
+      <td>701,350,290</td>
+      <td>856,827</td>
+      <td>1,426,350</td>
+      <td>1,929,388</td>
+      <td>...</td>
+      <td>0.0001</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.2666</td>
+      <td>0.0207</td>
+      <td>0.0955</td>
+      <td>0.0061</td>
+      <td>1.012061</td>
+      <td>0.718667</td>
+      <td>1.1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1950</td>
+      <td>133,301,043</td>
+      <td>401,935,856</td>
+      <td>106,610,911</td>
+      <td>38,307,544</td>
+      <td>16,324,768</td>
+      <td>696,480,122</td>
+      <td>2,204,231</td>
+      <td>1,860,297</td>
+      <td>2,528,641</td>
+      <td>...</td>
+      <td>0.0004</td>
+      <td>0.0008</td>
+      <td>0.0012</td>
+      <td>0.1945</td>
+      <td>0.0400</td>
+      <td>0.0869</td>
+      <td>0.0055</td>
+      <td>1.011166</td>
+      <td>0.802432</td>
+      <td>1.1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1955</td>
+      <td>189,347,338</td>
+      <td>474,378,130</td>
+      <td>111,661,338</td>
+      <td>38,177,572</td>
+      <td>22,437,724</td>
+      <td>836,002,102</td>
+      <td>2,496,432</td>
+      <td>1,653,007</td>
+      <td>2,225,241</td>
+      <td>...</td>
+      <td>0.0005</td>
+      <td>0.0006</td>
+      <td>0.0012</td>
+      <td>0.1521</td>
+      <td>0.0370</td>
+      <td>0.1199</td>
+      <td>0.0084</td>
+      <td>1.011792</td>
+      <td>0.834366</td>
+      <td>1.1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1960</td>
+      <td>220,293,770</td>
+      <td>541,957,872</td>
+      <td>118,268,109</td>
+      <td>41,846,700</td>
+      <td>44,601,144</td>
+      <td>966,967,595</td>
+      <td>2,818,847</td>
+      <td>1,716,903</td>
+      <td>2,300,405</td>
+      <td>...</td>
+      <td>0.0005</td>
+      <td>0.0007</td>
+      <td>0.0012</td>
+      <td>0.1113</td>
+      <td>0.0465</td>
+      <td>0.1488</td>
+      <td>0.0065</td>
+      <td>1.013598</td>
+      <td>0.873137</td>
+      <td>1.1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1965</td>
+      <td>234,437,703</td>
+      <td>614,115,021</td>
+      <td>125,954,494</td>
+      <td>45,086,639</td>
+      <td>55,119,929</td>
+      <td>1,074,713,786</td>
+      <td>3,295,632</td>
+      <td>1,760,345</td>
+      <td>2,348,076</td>
+      <td>...</td>
+      <td>0.0005</td>
+      <td>0.0007</td>
+      <td>0.0014</td>
+      <td>0.1094</td>
+      <td>0.0491</td>
+      <td>0.1446</td>
+      <td>0.0126</td>
+      <td>1.006728</td>
+      <td>0.884908</td>
+      <td>1.1</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 77 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="entendiendo-las-columnas-del-dataset">
+<h3><span class="section-number">22.6.2. </span>Entendiendo las Columnas del Dataset<a class="headerlink" href="#entendiendo-las-columnas-del-dataset" title="Link to this heading">#</a></h3>
+<p>El dataset contiene información sobre diferentes grupos religiosos:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Código</p></th>
+<th class="head"><p>Significado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">chrstgen</span></code></p></td>
+<td><p>Cristianos (total general)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">chrstcat</span></code></p></td>
+<td><p>Católicos</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">chrstprot</span></code></p></td>
+<td><p>Protestantes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">islmgen</span></code></p></td>
+<td><p>Musulmanes (total)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">budgen</span></code></p></td>
+<td><p>Budistas</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hindgen</span></code></p></td>
+<td><p>Hindúes</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">judgen</span></code></p></td>
+<td><p>Judíos</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nonrelig</span></code></p></td>
+<td><p>Sin religión</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pop</span></code></p></td>
+<td><p>Población mundial total</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="explorando-los-datos">
+<h2><span class="section-number">22.7. </span>Explorando los Datos<a class="headerlink" href="#explorando-los-datos" title="Link to this heading">#</a></h2>
+<p>Pandas ofrece varias funciones para explorar rápidamente un dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Información general del DataFrame</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Información del dataset:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Información del dataset:
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 14 entries, 0 to 13
+Data columns (total 77 columns):
+ #   Column        Non-Null Count  Dtype  
+---  ------        --------------  -----  
+ 0   year          14 non-null     int64  
+ 1   chrstprot     14 non-null     object 
+ 2   chrstcat      14 non-null     object 
+ 3   chrstorth     14 non-null     object 
+ 4   chrstang      14 non-null     object 
+ 5   chrstothr     14 non-null     object 
+ 6   chrstgen      14 non-null     object 
+ 7   judorth       14 non-null     object 
+ 8   jdcons        14 non-null     object 
+ 9   judref        14 non-null     object 
+ 10  judothr       14 non-null     object 
+ 11  judgen        14 non-null     object 
+ 12  islmsun       14 non-null     object 
+ 13  islmshi       14 non-null     object 
+ 14  islmibd       14 non-null     object 
+ 15  islmnat       14 non-null     int64  
+ 16  islmalw       14 non-null     object 
+ 17  islmahm       14 non-null     object 
+ 18  islmothr      14 non-null     object 
+ 19  islmgen       14 non-null     object 
+ 20  budmah        14 non-null     object 
+ 21  budthr        14 non-null     object 
+ 22  budothr       14 non-null     object 
+ 23  budgen        14 non-null     object 
+ 24  zorogen       14 non-null     object 
+ 25  hindgen       14 non-null     object 
+ 26  sikhgen       14 non-null     object 
+ 27  shntgen       14 non-null     object 
+ 28  bahgen        14 non-null     object 
+ 29  taogen        14 non-null     object 
+ 30  jaingen       14 non-null     object 
+ 31  confgen       14 non-null     object 
+ 32  syncgen       14 non-null     object 
+ 33  anmgen        14 non-null     object 
+ 34  nonrelig      14 non-null     object 
+ 35  othrgen       14 non-null     object 
+ 36  sumrelig      14 non-null     object 
+ 37  pop           14 non-null     object 
+ 38  worldpop      14 non-null     object 
+ 39  chrstprotpct  14 non-null     float64
+ 40  chrstcatpct   14 non-null     float64
+ 41  chrstorthpct  14 non-null     float64
+ 42  chrstangpct   14 non-null     float64
+ 43  chrstothrpct  14 non-null     float64
+ 44  chrstgenpct   14 non-null     float64
+ 45  judorthpct    14 non-null     float64
+ 46  judconspct    14 non-null     float64
+ 47  judrefpct     14 non-null     float64
+ 48  judothrpct    14 non-null     float64
+ 49  judgenpct     14 non-null     float64
+ 50  islmsunpct    14 non-null     float64
+ 51  islmshipct    14 non-null     float64
+ 52  islmibdpct    14 non-null     float64
+ 53  islmnatpct    14 non-null     int64  
+ 54  islmalwpct    14 non-null     float64
+ 55  islmahmpct    14 non-null     float64
+ 56  islmothrpct   14 non-null     float64
+ 57  islmgenpct    14 non-null     float64
+ 58  budmahpct     14 non-null     float64
+ 59  budthrpct     14 non-null     float64
+ 60  budothrpct    14 non-null     float64
+ 61  budgenpct     14 non-null     float64
+ 62  zorogenpct    14 non-null     float64
+ 63  hindgenpct    14 non-null     float64
+ 64  sikhgenpct    14 non-null     float64
+ 65  shntgenpct    14 non-null     float64
+ 66  bahgenpct     14 non-null     float64
+ 67  taogenpct     14 non-null     float64
+ 68  jaingenpct    14 non-null     float64
+ 69  confgenpct    14 non-null     float64
+ 70  syncgenpct    14 non-null     float64
+ 71  anmgenpct     14 non-null     float64
+ 72  nonreligpct   14 non-null     float64
+ 73  othrgenpct    14 non-null     float64
+ 74  sumreligpct   14 non-null     float64
+ 75  ptctotal      14 non-null     float64
+ 76  version       14 non-null     float64
+dtypes: float64(37), int64(3), object(37)
+memory usage: 8.5+ KB
+None
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dimensiones del DataFrame</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filas: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Columnas: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filas: 14
+Columnas: 77
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ver las últimas filas</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Últimas 3 filas:&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Últimas 3 filas:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>chrstprot</th>
+      <th>chrstcat</th>
+      <th>chrstorth</th>
+      <th>chrstang</th>
+      <th>chrstothr</th>
+      <th>chrstgen</th>
+      <th>judorth</th>
+      <th>jdcons</th>
+      <th>judref</th>
+      <th>...</th>
+      <th>taogenpct</th>
+      <th>jaingenpct</th>
+      <th>confgenpct</th>
+      <th>syncgenpct</th>
+      <th>anmgenpct</th>
+      <th>nonreligpct</th>
+      <th>othrgenpct</th>
+      <th>sumreligpct</th>
+      <th>ptctotal</th>
+      <th>version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>11</th>
+      <td>2000</td>
+      <td>443,610,594</td>
+      <td>978,633,933</td>
+      <td>264,356,291</td>
+      <td>68,291,261</td>
+      <td>136,031,105</td>
+      <td>1,890,923,184</td>
+      <td>5,433,428</td>
+      <td>1,849,587</td>
+      <td>2,306,902</td>
+      <td>...</td>
+      <td>0.0016</td>
+      <td>0.0007</td>
+      <td>0.0006</td>
+      <td>0.0925</td>
+      <td>0.0274</td>
+      <td>0.1286</td>
+      <td>0.0055</td>
+      <td>1.009635</td>
+      <td>0.999342</td>
+      <td>1.1</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2005</td>
+      <td>490,942,837</td>
+      <td>1,013,883,916</td>
+      <td>255,124,896</td>
+      <td>69,037,503</td>
+      <td>161,742,315</td>
+      <td>1,990,731,467</td>
+      <td>6,271,171</td>
+      <td>1,778,851</td>
+      <td>2,342,301</td>
+      <td>...</td>
+      <td>0.0019</td>
+      <td>0.0007</td>
+      <td>0.0006</td>
+      <td>0.0885</td>
+      <td>0.0266</td>
+      <td>0.1156</td>
+      <td>0.0061</td>
+      <td>1.008920</td>
+      <td>0.995949</td>
+      <td>1.1</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2010</td>
+      <td>557,830,085</td>
+      <td>1,049,709,823</td>
+      <td>268,783,851</td>
+      <td>71,770,419</td>
+      <td>163,818,774</td>
+      <td>2,111,912,953</td>
+      <td>6,637,406</td>
+      <td>1,899,567</td>
+      <td>2,509,660</td>
+      <td>...</td>
+      <td>0.0014</td>
+      <td>0.0007</td>
+      <td>0.0006</td>
+      <td>0.0865</td>
+      <td>0.0255</td>
+      <td>0.1154</td>
+      <td>0.0039</td>
+      <td>1.008162</td>
+      <td>0.999792</td>
+      <td>1.1</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 77 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lista de todas las columnas</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Columnas disponibles:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[:</span><span class="mi">20</span><span class="p">])</span>  <span class="c1"># Primeras 20 columnas</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Columnas disponibles:
+[&#39;year&#39;, &#39;chrstprot&#39;, &#39;chrstcat&#39;, &#39;chrstorth&#39;, &#39;chrstang&#39;, &#39;chrstothr&#39;, &#39;chrstgen&#39;, &#39;judorth&#39;, &#39;jdcons&#39;, &#39;judref&#39;, &#39;judothr&#39;, &#39;judgen&#39;, &#39;islmsun&#39;, &#39;islmshi&#39;, &#39;islmibd&#39;, &#39;islmnat&#39;, &#39;islmalw&#39;, &#39;islmahm&#39;, &#39;islmothr&#39;, &#39;islmgen&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="seleccionando-columnas">
+<h2><span class="section-number">22.8. </span>Seleccionando Columnas<a class="headerlink" href="#seleccionando-columnas" title="Link to this heading">#</a></h2>
+<p>Podemos seleccionar columnas específicas para trabajar con datos más manejables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionar una sola columna (retorna una Serie)</span>
+<span class="n">años</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Años en el dataset:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">años</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Años en el dataset:
+[1945 1950 1955 1960 1965 1970 1975 1980 1985 1990 1995 2000 2005 2010]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionar múltiples columnas (retorna un DataFrame)</span>
+<span class="c1"># Usamos las columnas de porcentajes para mejor visualización</span>
+<span class="n">columnas_interes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;chrstgenpct&quot;</span><span class="p">,</span> <span class="s2">&quot;islmgenpct&quot;</span><span class="p">,</span> <span class="s2">&quot;budgenpct&quot;</span><span class="p">,</span> <span class="s2">&quot;hindgenpct&quot;</span><span class="p">,</span> <span class="s2">&quot;nonreligpct&quot;</span><span class="p">]</span>
+
+<span class="n">df_seleccion</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">columnas_interes</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Porcentajes de las principales religiones por año:&quot;</span><span class="p">)</span>
+<span class="n">df_seleccion</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Porcentajes de las principales religiones por año:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>chrstgenpct</th>
+      <th>islmgenpct</th>
+      <th>budgenpct</th>
+      <th>hindgenpct</th>
+      <th>nonreligpct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1945</td>
+      <td>0.4362</td>
+      <td>0.0813</td>
+      <td>0.0723</td>
+      <td>0.0034</td>
+      <td>0.0955</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1950</td>
+      <td>0.3136</td>
+      <td>0.1325</td>
+      <td>0.0716</td>
+      <td>0.1357</td>
+      <td>0.0869</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1955</td>
+      <td>0.3297</td>
+      <td>0.1357</td>
+      <td>0.0707</td>
+      <td>0.1296</td>
+      <td>0.1199</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1960</td>
+      <td>0.3311</td>
+      <td>0.1490</td>
+      <td>0.0686</td>
+      <td>0.1237</td>
+      <td>0.1488</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1965</td>
+      <td>0.3277</td>
+      <td>0.1569</td>
+      <td>0.0648</td>
+      <td>0.1213</td>
+      <td>0.1446</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1970</td>
+      <td>0.3219</td>
+      <td>0.1620</td>
+      <td>0.0626</td>
+      <td>0.1231</td>
+      <td>0.1611</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1975</td>
+      <td>0.3232</td>
+      <td>0.1650</td>
+      <td>0.0647</td>
+      <td>0.1215</td>
+      <td>0.1716</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1980</td>
+      <td>0.3264</td>
+      <td>0.1517</td>
+      <td>0.0700</td>
+      <td>0.1260</td>
+      <td>0.1730</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1985</td>
+      <td>0.3227</td>
+      <td>0.1600</td>
+      <td>0.0723</td>
+      <td>0.1289</td>
+      <td>0.1688</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1990</td>
+      <td>0.3191</td>
+      <td>0.1882</td>
+      <td>0.0706</td>
+      <td>0.1242</td>
+      <td>0.1578</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>1995</td>
+      <td>0.3149</td>
+      <td>0.2037</td>
+      <td>0.0727</td>
+      <td>0.1272</td>
+      <td>0.1415</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2000</td>
+      <td>0.3107</td>
+      <td>0.2159</td>
+      <td>0.0638</td>
+      <td>0.1439</td>
+      <td>0.1286</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2005</td>
+      <td>0.3093</td>
+      <td>0.2216</td>
+      <td>0.0737</td>
+      <td>0.1472</td>
+      <td>0.1156</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2010</td>
+      <td>0.3092</td>
+      <td>0.2277</td>
+      <td>0.0710</td>
+      <td>0.1489</td>
+      <td>0.1154</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="renombrando-columnas-para-mayor-claridad">
+<h3><span class="section-number">22.8.1. </span>Renombrando Columnas para Mayor Claridad<a class="headerlink" href="#renombrando-columnas-para-mayor-claridad" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear una copia y renombrar columnas</span>
+<span class="n">df_religiones</span> <span class="o">=</span> <span class="n">df_seleccion</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">df_religiones</span> <span class="o">=</span> <span class="n">df_religiones</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="s2">&quot;Año&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;chrstgenpct&quot;</span><span class="p">:</span> <span class="s2">&quot;Cristianos %&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;islmgenpct&quot;</span><span class="p">:</span> <span class="s2">&quot;Musulmanes %&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;budgenpct&quot;</span><span class="p">:</span> <span class="s2">&quot;Budistas %&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;hindgenpct&quot;</span><span class="p">:</span> <span class="s2">&quot;Hindúes %&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;nonreligpct&quot;</span><span class="p">:</span> <span class="s2">&quot;Sin Religión %&quot;</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dataset con nombres más claros:&quot;</span><span class="p">)</span>
+<span class="n">df_religiones</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset con nombres más claros:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Año</th>
+      <th>Cristianos %</th>
+      <th>Musulmanes %</th>
+      <th>Budistas %</th>
+      <th>Hindúes %</th>
+      <th>Sin Religión %</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1945</td>
+      <td>0.4362</td>
+      <td>0.0813</td>
+      <td>0.0723</td>
+      <td>0.0034</td>
+      <td>0.0955</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1950</td>
+      <td>0.3136</td>
+      <td>0.1325</td>
+      <td>0.0716</td>
+      <td>0.1357</td>
+      <td>0.0869</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1955</td>
+      <td>0.3297</td>
+      <td>0.1357</td>
+      <td>0.0707</td>
+      <td>0.1296</td>
+      <td>0.1199</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1960</td>
+      <td>0.3311</td>
+      <td>0.1490</td>
+      <td>0.0686</td>
+      <td>0.1237</td>
+      <td>0.1488</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1965</td>
+      <td>0.3277</td>
+      <td>0.1569</td>
+      <td>0.0648</td>
+      <td>0.1213</td>
+      <td>0.1446</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1970</td>
+      <td>0.3219</td>
+      <td>0.1620</td>
+      <td>0.0626</td>
+      <td>0.1231</td>
+      <td>0.1611</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1975</td>
+      <td>0.3232</td>
+      <td>0.1650</td>
+      <td>0.0647</td>
+      <td>0.1215</td>
+      <td>0.1716</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1980</td>
+      <td>0.3264</td>
+      <td>0.1517</td>
+      <td>0.0700</td>
+      <td>0.1260</td>
+      <td>0.1730</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1985</td>
+      <td>0.3227</td>
+      <td>0.1600</td>
+      <td>0.0723</td>
+      <td>0.1289</td>
+      <td>0.1688</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1990</td>
+      <td>0.3191</td>
+      <td>0.1882</td>
+      <td>0.0706</td>
+      <td>0.1242</td>
+      <td>0.1578</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>1995</td>
+      <td>0.3149</td>
+      <td>0.2037</td>
+      <td>0.0727</td>
+      <td>0.1272</td>
+      <td>0.1415</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2000</td>
+      <td>0.3107</td>
+      <td>0.2159</td>
+      <td>0.0638</td>
+      <td>0.1439</td>
+      <td>0.1286</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2005</td>
+      <td>0.3093</td>
+      <td>0.2216</td>
+      <td>0.0737</td>
+      <td>0.1472</td>
+      <td>0.1156</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2010</td>
+      <td>0.3092</td>
+      <td>0.2277</td>
+      <td>0.0710</td>
+      <td>0.1489</td>
+      <td>0.1154</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="estadisticas-descriptivas">
+<h2><span class="section-number">22.9. </span>Estadísticas Descriptivas<a class="headerlink" href="#estadisticas-descriptivas" title="Link to this heading">#</a></h2>
+<p>Pandas facilita calcular estadísticas básicas sobre los datos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estadísticas descriptivas</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estadísticas del dataset:&quot;</span><span class="p">)</span>
+<span class="n">df_religiones</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estadísticas del dataset:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Año</th>
+      <th>Cristianos %</th>
+      <th>Musulmanes %</th>
+      <th>Budistas %</th>
+      <th>Hindúes %</th>
+      <th>Sin Religión %</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>14.000000</td>
+      <td>14.000000</td>
+      <td>14.000000</td>
+      <td>14.000000</td>
+      <td>14.000000</td>
+      <td>14.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1977.500000</td>
+      <td>0.328264</td>
+      <td>0.167943</td>
+      <td>0.069243</td>
+      <td>0.121757</td>
+      <td>0.137793</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>20.916501</td>
+      <td>0.031950</td>
+      <td>0.040281</td>
+      <td>0.003703</td>
+      <td>0.035354</td>
+      <td>0.028074</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1945.000000</td>
+      <td>0.309200</td>
+      <td>0.081300</td>
+      <td>0.062600</td>
+      <td>0.003400</td>
+      <td>0.086900</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1961.250000</td>
+      <td>0.313925</td>
+      <td>0.149675</td>
+      <td>0.065750</td>
+      <td>0.123250</td>
+      <td>0.116675</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1977.500000</td>
+      <td>0.322300</td>
+      <td>0.161000</td>
+      <td>0.070650</td>
+      <td>0.126600</td>
+      <td>0.143050</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1993.750000</td>
+      <td>0.327375</td>
+      <td>0.199825</td>
+      <td>0.072125</td>
+      <td>0.134175</td>
+      <td>0.160275</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>2010.000000</td>
+      <td>0.436200</td>
+      <td>0.227700</td>
+      <td>0.073700</td>
+      <td>0.148900</td>
+      <td>0.173000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calcular estadísticas específicas</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Porcentaje promedio de cristianos: </span><span class="si">{</span><span class="n">df_religiones</span><span class="p">[</span><span class="s1">&#39;Cristianos %&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Porcentaje máximo de musulmanes: </span><span class="si">{</span><span class="n">df_religiones</span><span class="p">[</span><span class="s1">&#39;Musulmanes %&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Porcentaje mínimo sin religión: </span><span class="si">{</span><span class="n">df_religiones</span><span class="p">[</span><span class="s1">&#39;Sin Religión %&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Porcentaje promedio de cristianos: 32.83%
+Porcentaje máximo de musulmanes: 22.77%
+Porcentaje mínimo sin religión: 8.69%
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="accediendo-a-filas-y-celdas-especificas">
+<h2><span class="section-number">22.10. </span>Accediendo a Filas y Celdas Específicas<a class="headerlink" href="#accediendo-a-filas-y-celdas-especificas" title="Link to this heading">#</a></h2>
+<p>Pandas ofrece dos métodos principales para acceder a datos:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">.loc[]</span></code></strong>: Acceso por etiquetas (nombres de índice)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">.iloc[]</span></code></strong>: Acceso por posición numérica</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Acceder a una fila por posición</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Primera fila (1945):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_religiones</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Primera fila (1945):
+Año               1945.0000
+Cristianos %         0.4362
+Musulmanes %         0.0813
+Budistas %           0.0723
+Hindúes %            0.0034
+Sin Religión %       0.0955
+Name: 0, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Acceder a un rango de filas</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Filas del índice 0 al 2 (primeras 3 décadas):&quot;</span><span class="p">)</span>
+<span class="n">df_religiones</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filas del índice 0 al 2 (primeras 3 décadas):
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Año</th>
+      <th>Cristianos %</th>
+      <th>Musulmanes %</th>
+      <th>Budistas %</th>
+      <th>Hindúes %</th>
+      <th>Sin Religión %</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1945</td>
+      <td>0.4362</td>
+      <td>0.0813</td>
+      <td>0.0723</td>
+      <td>0.0034</td>
+      <td>0.0955</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1950</td>
+      <td>0.3136</td>
+      <td>0.1325</td>
+      <td>0.0716</td>
+      <td>0.1357</td>
+      <td>0.0869</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1955</td>
+      <td>0.3297</td>
+      <td>0.1357</td>
+      <td>0.0707</td>
+      <td>0.1296</td>
+      <td>0.1199</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Acceder a una celda específica [fila, columna]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Porcentaje de cristianos en 1945: </span><span class="si">{</span><span class="n">df_religiones</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Porcentaje de musulmanes en 2010: </span><span class="si">{</span><span class="n">df_religiones</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Porcentaje de cristianos en 1945: 43.62%
+Porcentaje de musulmanes en 2010: 22.77%
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="valores-unicos-y-conteos">
+<h2><span class="section-number">22.11. </span>Valores Únicos y Conteos<a class="headerlink" href="#valores-unicos-y-conteos" title="Link to this heading">#</a></h2>
+<p>Para explorar datos categóricos, usamos <code class="docutils literal notranslate"><span class="pre">unique()</span></code> y <code class="docutils literal notranslate"><span class="pre">value_counts()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Valores únicos en la columna Año</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Años disponibles:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_religiones</span><span class="p">[</span><span class="s2">&quot;Año&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Años disponibles:
+[1945 1950 1955 1960 1965 1970 1975 1980 1985 1990 1995 2000 2005 2010]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cantidad de valores únicos</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cantidad de años registrados: </span><span class="si">{</span><span class="n">df_religiones</span><span class="p">[</span><span class="s1">&#39;Año&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cantidad de años registrados: 14
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-practico-analisis-de-tendencias-religiosas">
+<h2><span class="section-number">22.12. </span>Ejercicio Práctico: Análisis de Tendencias Religiosas<a class="headerlink" href="#ejercicio-practico-analisis-de-tendencias-religiosas" title="Link to this heading">#</a></h2>
+<div class="hint admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Usando el dataset de religiones mundiales:</p>
+<ol class="arabic simple">
+<li><p>¿En qué año el porcentaje de personas sin religión fue mayor?</p></li>
+<li><p>¿Cuál fue el cambio porcentual de cristianos entre 1945 y 2010?</p></li>
+<li><p>¿Cuál fue el promedio de población musulmana en el período?</p></li>
+</ol>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solución Ejercicio 1: Año con mayor porcentaje sin religión</span>
+<span class="n">idx_max</span> <span class="o">=</span> <span class="n">df_religiones</span><span class="p">[</span><span class="s2">&quot;Sin Religión %&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+<span class="n">año_max_sin_religion</span> <span class="o">=</span> <span class="n">df_religiones</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx_max</span><span class="p">,</span> <span class="s2">&quot;Año&quot;</span><span class="p">]</span>
+<span class="n">porcentaje_max</span> <span class="o">=</span> <span class="n">df_religiones</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx_max</span><span class="p">,</span> <span class="s2">&quot;Sin Religión %&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El año con mayor porcentaje sin religión fue </span><span class="si">{</span><span class="n">año_max_sin_religion</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Con un </span><span class="si">{</span><span class="n">porcentaje_max</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2"> de la población mundial&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El año con mayor porcentaje sin religión fue 1980
+Con un 17.30% de la población mundial
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solución Ejercicio 2: Cambio porcentual de cristianos</span>
+<span class="n">cristianos_1945</span> <span class="o">=</span> <span class="n">df_religiones</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;Cristianos %&quot;</span><span class="p">]</span>
+<span class="n">cristianos_2010</span> <span class="o">=</span> <span class="n">df_religiones</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;Cristianos %&quot;</span><span class="p">]</span>
+
+<span class="n">cambio</span> <span class="o">=</span> <span class="n">cristianos_2010</span> <span class="o">-</span> <span class="n">cristianos_1945</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cristianos en 1945: </span><span class="si">{</span><span class="n">cristianos_1945</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cristianos en 2010: </span><span class="si">{</span><span class="n">cristianos_2010</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cambio: </span><span class="si">{</span><span class="n">cambio</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cristianos en 1945: 43.62%
+Cristianos en 2010: 30.92%
+Cambio: -12.70%
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solución Ejercicio 3: Promedio de musulmanes</span>
+<span class="n">promedio_musulmanes</span> <span class="o">=</span> <span class="n">df_religiones</span><span class="p">[</span><span class="s2">&quot;Musulmanes %&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Porcentaje promedio de musulmanes (1945-2010): </span><span class="si">{</span><span class="n">promedio_musulmanes</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Porcentaje promedio de musulmanes (1945-2010): 16.79%
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="resumen-del-capitulo">
+<h2><span class="section-number">22.13. </span>Resumen del Capítulo<a class="headerlink" href="#resumen-del-capitulo" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concepto</p></th>
+<th class="head"><p>Función/Método</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Importar Pandas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span> <span class="pre">as</span> <span class="pre">pd</span></code></p></td>
+<td><p>Cargar la biblioteca</p></td>
+</tr>
+<tr class="row-odd"><td><p>Crear Serie</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pd.Series(datos,</span> <span class="pre">index)</span></code></p></td>
+<td><p>Estructura 1D</p></td>
+</tr>
+<tr class="row-even"><td><p>Crear DataFrame</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pd.DataFrame(diccionario)</span></code></p></td>
+<td><p>Estructura 2D</p></td>
+</tr>
+<tr class="row-odd"><td><p>Leer CSV</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pd.read_csv(&quot;archivo.csv&quot;)</span></code></p></td>
+<td><p>Cargar datos externos</p></td>
+</tr>
+<tr class="row-even"><td><p>Ver primeras filas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df.head(n)</span></code></p></td>
+<td><p>Primeras n filas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ver últimas filas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df.tail(n)</span></code></p></td>
+<td><p>Últimas n filas</p></td>
+</tr>
+<tr class="row-even"><td><p>Información</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df.info()</span></code></p></td>
+<td><p>Tipos de datos y memoria</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dimensiones</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df.shape</span></code></p></td>
+<td><p>(filas, columnas)</p></td>
+</tr>
+<tr class="row-even"><td><p>Columnas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df.columns</span></code></p></td>
+<td><p>Lista de columnas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Estadísticas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df.describe()</span></code></p></td>
+<td><p>Resumen estadístico</p></td>
+</tr>
+<tr class="row-even"><td><p>Seleccionar columna</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df[&quot;columna&quot;]</span></code></p></td>
+<td><p>Retorna Serie</p></td>
+</tr>
+<tr class="row-odd"><td><p>Seleccionar múltiples</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df[[&quot;col1&quot;,</span> <span class="pre">&quot;col2&quot;]]</span></code></p></td>
+<td><p>Retorna DataFrame</p></td>
+</tr>
+<tr class="row-even"><td><p>Acceso por posición</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df.iloc[fila,</span> <span class="pre">col]</span></code></p></td>
+<td><p>Por índice numérico</p></td>
+</tr>
+<tr class="row-odd"><td><p>Acceso por etiqueta</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df.loc[fila,</span> <span class="pre">col]</span></code></p></td>
+<td><p>Por nombre</p></td>
+</tr>
+<tr class="row-even"><td><p>Valores únicos</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df[&quot;col&quot;].unique()</span></code></p></td>
+<td><p>Lista de valores únicos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Contar únicos</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df[&quot;col&quot;].nunique()</span></code></p></td>
+<td><p>Cantidad de valores únicos</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="referencias">
+<h2><span class="section-number">22.14. </span>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<div class="docutils container" id="id1">
+<div role="list" class="citation-list">
+<div class="citation" id="id2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">MH13</a><span class="fn-bracket">]</span></span>
+<p>Zeev Maoz and Errol A. Henderson. The world religion dataset, 1945-2010: logic, estimates, and trends. <em>International Interactions</em>, 39(3):265–291, 2013. URL: <a class="reference external" href="https://correlatesofwar.org/data-sets/world-religion-data/">https://correlatesofwar.org/data-sets/world-religion-data/</a>, <a class="reference external" href="https://doi.org/10.1080/03050629.2013.782306">doi:10.1080/03050629.2013.782306</a>.</p>
+</div>
+<div class="citation" id="id4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">McK22</a><span class="fn-bracket">]</span></span>
+<p>Wes McKinney. <em>Python for Data Analysis: Data Wrangling with pandas, NumPy, and Jupyter</em>. O'Reilly Media, Sebastopol, CA, 3rd edition, 2022. ISBN 978-1098104030.</p>
+</div>
+<div class="citation" id="id3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">pandasdteam24</a><span class="fn-bracket">]</span></span>
+<p>pandas development team. Pandas documentation. 2024. Biblioteca de Python para análisis de datos. URL: <a class="reference external" href="https://pandas.pydata.org/docs/">https://pandas.pydata.org/docs/</a>.</p>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span id="id6">[<a class="reference internal" href="markdown.html#id3" title="Zeev Maoz and Errol A. Henderson. The world religion dataset, 1945-2010: logic, estimates, and trends. International Interactions, 39(3):265–291, 2013. URL: https://correlatesofwar.org/data-sets/world-religion-data/, doi:10.1080/03050629.2013.782306.">Maoz and Henderson, 2013</a>]</span></p></li>
+<li><p><span id="id7">[<a class="reference internal" href="markdown.html#id4" title="pandas development team. Pandas documentation. 2024. Biblioteca de Python para análisis de datos. URL: https://pandas.pydata.org/docs/.">pandas development team, 2024</a>]</span></p></li>
+<li><p><span id="id8">[<a class="reference internal" href="markdown.html#id5" title="Wes McKinney. Python for Data Analysis: Data Wrangling with pandas, NumPy, and Jupyter. O'Reilly Media, Sebastopol, CA, 3rd edition, 2022. ISBN 978-1098104030.">McKinney, 2022</a>]</span></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Capitulo_21_Funciones_Parametros.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">21. </span>Funciones con Parámetros: Organizando el Código Histórico</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Capitulo_23_Pandas_Avanzado.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">23. </span>Pandas Avanzado - Filtrado, Agrupación y Análisis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">22.1. Objetivos de Aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-pandas">22.2. ¿Qué es Pandas?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analogia-historica-el-archivo-nacional">22.2.1. Analogía Histórica: El Archivo Nacional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#las-dos-estructuras-fundamentales">22.2.2. Las Dos Estructuras Fundamentales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importando-pandas">22.3. Importando Pandas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series-la-estructura-unidimensional">22.4. Series: La Estructura Unidimensional</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-una-serie-desde-una-lista">22.4.1. Crear una Serie desde una Lista</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-una-serie">22.4.2. Atributos de una Serie</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-una-serie-desde-un-diccionario">22.4.3. Crear una Serie desde un Diccionario</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe-la-estructura-bidimensional">22.5. DataFrame: La Estructura Bidimensional</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-un-dataframe-desde-un-diccionario">22.5.1. Crear un DataFrame desde un Diccionario</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargando-datos-desde-un-archivo-csv">22.6. Cargando Datos desde un Archivo CSV</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-dataset-de-religiones-del-mundo-wrp">22.6.1. El Dataset de Religiones del Mundo (WRP)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entendiendo-las-columnas-del-dataset">22.6.2. Entendiendo las Columnas del Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explorando-los-datos">22.7. Explorando los Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccionando-columnas">22.8. Seleccionando Columnas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#renombrando-columnas-para-mayor-claridad">22.8.1. Renombrando Columnas para Mayor Claridad</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticas-descriptivas">22.9. Estadísticas Descriptivas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accediendo-a-filas-y-celdas-especificas">22.10. Accediendo a Filas y Celdas Específicas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-unicos-y-conteos">22.11. Valores Únicos y Conteos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-practico-analisis-de-tendencias-religiosas">22.12. Ejercicio Práctico: Análisis de Tendencias Religiosas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-del-capitulo">22.13. Resumen del Capítulo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">22.14. Referencias</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Claudio Rojas Monsalves
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
