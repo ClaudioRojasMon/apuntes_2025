@@ -1,0 +1,1367 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>24. Tokenización y Análisis de Texto: Dividiendo el Discurso Histórico &#8212; Programando la Historia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Capitulo_24_Tokenizacion_Stopwords';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="25. Análisis de Documentos PDF: Extrayendo Historia de los Archivos" href="Capitulo_25_Analisis_PDF.html" />
+    <link rel="prev" title="23. Pandas Avanzado - Filtrado, Agrupación y Análisis" href="Capitulo_23_Pandas_Avanzado.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Original.png" class="logo__image only-light" alt="Programando la Historia - Home"/>
+    <script>document.write(`<img src="_static/Original.png" class="logo__image only-dark" alt="Programando la Historia - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Programando la Historia.
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Inteligencia Artificial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20I.html">1. ¿Qué es la Inteligencia Artificial?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20II.html">2. Historia de la Inteligencia Artificial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20III.html">3. Inteligencia Artificial Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades.html">4. Mitos vs. Realidad: ¿La IA nos reemplazará?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades%20II.html">5. La IA Revolucionando la Investigación Histórica y la Educación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sesgos.html">6. Sesgos Algorítmicos: El uso de Compas en el Sistemas de Justicia de EEUU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deepfakes.html">7. Desinformación y Deepfakes en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datos.html">8. Privacidad y Datos Personales en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Elecci%C3%B3n%20de%20IA.html">9. ¿Cómo mejorar tus tareas escolares sin hacer trampa?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Herramientas%20para%20la%20IA%20Generativa.html">10. Herramientas de IA Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Prompt.html">11. Prompting Efectivo: El arte de “conversar” con la IA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyectos.html">12. Proyectos Estudiantiles Potenciados por IA</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Programación Básica</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Markdown_II_final.html">13. ¿Qué es Markdown?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Google_Sheets_Formulas.html">14. Fórmulas Básicas en Google Sheets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mini_Dashboard_Crisis.html">15. Mini Dashboard de Crisis Históricas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_16_Introduccion_Python.html">16. Introducción a Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_17_Variables_Tipos_Datos.html">17. Variables y Tipos de Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_18_Metodos_Listas_Strings.html">18. Métodos de Listas y Strings: Manipulando Datos Históricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_19_Condicionales_Ciclo_For.html">19. Condicionales y Ciclos For: Decisiones y Repeticiones en la Historia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_20_While_Control_Flujo.html">20. Ciclo While y Control de Flujo: Repetir Hasta que la Historia Cambie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_21_Funciones_Parametros.html">21. Funciones con Parámetros: Organizando el Código Histórico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_22_Introduccion_Pandas.html">22. Introducción a Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_23_Pandas_Avanzado.html">23. Pandas Avanzado - Filtrado, Agrupación y Análisis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">24. Tokenización y Análisis de Texto: Dividiendo el Discurso Histórico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_25_Analisis_PDF.html">25. Análisis de Documentos PDF: Extrayendo Historia de los Archivos</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ClaudioRojasMon/apuntes_2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ClaudioRojasMon/apuntes_2025/issues/new?title=Issue%20on%20page%20%2FCapitulo_24_Tokenizacion_Stopwords.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Capitulo_24_Tokenizacion_Stopwords.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tokenización y Análisis de Texto: Dividiendo el Discurso Histórico</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">24.1. Objetivos de Aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-el-procesamiento-del-lenguaje-natural-en-la-historia">24.2. Introducción: El Procesamiento del Lenguaje Natural en la Historia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-historico-andres-bello-y-la-universidad-de-chile">24.2.1. Contexto Histórico: Andrés Bello y la Universidad de Chile</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-del-entorno-instalando-nltk">24.3. Preparación del Entorno: Instalando NLTK</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-la-tokenizacion">24.4. ¿Qué es la Tokenización?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenizacion-en-oraciones-sent-tokenize">24.4.1. Tokenización en Oraciones: <code class="docutils literal notranslate"><span class="pre">sent_tokenize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenizacion-en-palabras-word-tokenize">24.4.2. Tokenización en Palabras: <code class="docutils literal notranslate"><span class="pre">word_tokenize()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analizando-el-discurso-completo-de-andres-bello">24.5. Analizando el Discurso Completo de Andrés Bello</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stopwords-filtrando-el-ruido-del-texto">24.6. Stopwords: Filtrando el Ruido del Texto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#personalizando-las-stopwords">24.7. Personalizando las Stopwords</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creando-una-funcion-de-analisis-reutilizable">24.8. Creando una Función de Análisis Reutilizable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-frases-y-contexto">24.9. Búsqueda de Frases y Contexto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividad-de-cierre">24.10. Actividad de Cierre</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-analiza-otro-fragmento">24.10.1. Ejercicio 1: Analiza otro fragmento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-compara-idiomas">24.10.2. Ejercicio 2: Compara idiomas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-stopwords-personalizadas">24.10.3. Ejercicio 3: Stopwords personalizadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-del-capitulo">24.11. Resumen del Capítulo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">24.12. Referencias</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tokenizacion-y-analisis-de-texto-dividiendo-el-discurso-historico">
+<h1><span class="section-number">24. </span>Tokenización y Análisis de Texto: Dividiendo el Discurso Histórico<a class="headerlink" href="#tokenizacion-y-analisis-de-texto-dividiendo-el-discurso-historico" title="Link to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>“El lenguaje es el instrumento más importante de la cooperación humana. Es el medio por el cual transmitimos información sobre el mundo, pero, más importante aún, nos permite transmitir información sobre cosas que no existen en absoluto.”</p>
+<p class="attribution">—Yuval Noah Harari, <em>De animales a dioses</em> (2014)</p>
+</div></blockquote>
+<div class="tip admonition">
+<p class="admonition-title">Información del Capítulo</p>
+<p><strong>Tiempo estimado:</strong> 90 minutos<br />
+<strong>Nivel:</strong> Intermedio<br />
+<strong>Prerrequisitos:</strong> Capítulo 21 - Funciones con Parámetros, conocimientos básicos de listas y strings</p>
+</div>
+<section id="objetivos-de-aprendizaje">
+<h2><span class="section-number">24.1. </span>Objetivos de Aprendizaje<a class="headerlink" href="#objetivos-de-aprendizaje" title="Link to this heading">#</a></h2>
+<p>Al finalizar este capítulo, serás capaz de:</p>
+<ol class="arabic simple">
+<li><p>Comprender qué es la <strong>tokenización</strong> y su importancia en el análisis de textos históricos</p></li>
+<li><p>Utilizar la biblioteca <strong>NLTK</strong> para dividir textos en oraciones y palabras</p></li>
+<li><p>Aplicar <strong>stopwords</strong> para filtrar palabras sin contenido semántico</p></li>
+<li><p>Personalizar listas de stopwords según el contexto histórico</p></li>
+<li><p>Analizar discursos históricos chilenos usando técnicas de procesamiento de lenguaje natural</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="introduccion-el-procesamiento-del-lenguaje-natural-en-la-historia">
+<h2><span class="section-number">24.2. </span>Introducción: El Procesamiento del Lenguaje Natural en la Historia<a class="headerlink" href="#introduccion-el-procesamiento-del-lenguaje-natural-en-la-historia" title="Link to this heading">#</a></h2>
+<p>El <strong>Procesamiento del Lenguaje Natural</strong> (NLP, por sus siglas en inglés) es una rama de la inteligencia artificial que permite a las computadoras entender, interpretar y manipular el lenguaje humano. Para los historiadores, esta tecnología abre posibilidades extraordinarias:</p>
+<ul class="simple">
+<li><p><strong>Analizar miles de documentos históricos</strong> en minutos</p></li>
+<li><p><strong>Detectar patrones</strong> en discursos políticos a través del tiempo</p></li>
+<li><p><strong>Comparar estilos de escritura</strong> de diferentes épocas</p></li>
+<li><p><strong>Identificar temas recurrentes</strong> en archivos históricos</p></li>
+</ul>
+<div class="note admonition">
+<p class="admonition-title">Nuestro documento de estudio</p>
+<p>En este capítulo trabajaremos con el <strong>Discurso Inaugural de Andrés Bello</strong> (1843), pronunciado en la instalación de la Universidad de Chile. Este documento es fundamental para entender la visión educativa y cultural del Chile republicano del siglo XIX.</p>
+</div>
+<section id="contexto-historico-andres-bello-y-la-universidad-de-chile">
+<h3><span class="section-number">24.2.1. </span>Contexto Histórico: Andrés Bello y la Universidad de Chile<a class="headerlink" href="#contexto-historico-andres-bello-y-la-universidad-de-chile" title="Link to this heading">#</a></h3>
+<p><strong>Andrés Bello</strong> (1781-1865) fue un humanista venezolano-chileno, considerado uno de los intelectuales más importantes de América Latina. El 17 de septiembre de 1843, pronunció el discurso inaugural de la Universidad de Chile, institución de la cual fue su primer rector.</p>
+<p>En su discurso, Bello defiende la importancia de las ciencias y las letras para el progreso de la nación, establece la misión de la universidad y reflexiona sobre el papel del conocimiento en la sociedad <span id="id1">[<a class="reference internal" href="markdown.html#id10" title="Andrés Bello. Discurso pronunciado en la instalación de la universidad de chile. Discurso inaugural, septiembre 1843. Discurso fundacional de la Universidad de Chile. URL: https://uchile.cl/presentacion/historia/discurso-inaugural.">Bello, 1843</a>]</span>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="preparacion-del-entorno-instalando-nltk">
+<h2><span class="section-number">24.3. </span>Preparación del Entorno: Instalando NLTK<a class="headerlink" href="#preparacion-del-entorno-instalando-nltk" title="Link to this heading">#</a></h2>
+<p><strong>NLTK</strong> (<em>Natural Language Toolkit</em>) es la biblioteca más utilizada para procesamiento de lenguaje natural en Python. Contiene herramientas para tokenización, análisis gramatical, clasificación de textos y mucho más <span id="id2">[<a class="reference internal" href="markdown.html#id7" title="Steven Bird, Ewan Klein, and Edward Loper. Natural Language Processing with Python: Analyzing Text with the Natural Language Toolkit. O'Reilly Media, Sebastopol, CA, 2009. ISBN 978-0596516499. URL: https://www.nltk.org/book/.">Bird <em>et al.</em>, 2009</a>]</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instalación de NLTK (ejecutar solo si no está instalado)</span>
+<span class="c1"># !pip install nltk</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importamos NLTK y descargamos los recursos necesarios</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nltk</span>
+
+<span class="c1"># Descargamos los tokenizadores y stopwords</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>        <span class="c1"># Para tokenización</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt_tab&#39;</span><span class="p">)</span>    <span class="c1"># Recurso adicional de tokenización</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>    <span class="c1"># Lista de palabras vacías</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package punkt to
+[nltk_data]     /Users/claudiorojas/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package punkt_tab to
+[nltk_data]     /Users/claudiorojas/nltk_data...
+[nltk_data]   Package punkt_tab is already up-to-date!
+[nltk_data] Downloading package stopwords to
+[nltk_data]     /Users/claudiorojas/nltk_data...
+[nltk_data]   Unzipping corpora/stopwords.zip.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="que-es-la-tokenizacion">
+<h2><span class="section-number">24.4. </span>¿Qué es la Tokenización?<a class="headerlink" href="#que-es-la-tokenizacion" title="Link to this heading">#</a></h2>
+<p>La <strong>tokenización</strong> es el proceso de dividir un texto en unidades más pequeñas llamadas <strong>tokens</strong>. Estos tokens pueden ser:</p>
+<ul class="simple">
+<li><p><strong>Oraciones</strong>: Dividir un párrafo en oraciones individuales</p></li>
+<li><p><strong>Palabras</strong>: Dividir una oración en palabras individuales</p></li>
+<li><p><strong>Caracteres</strong>: Dividir una palabra en letras individuales</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Analogía histórica</p>
+<p>Piensa en la tokenización como el trabajo de un <strong>paleógrafo</strong> que debe descifrar un manuscrito antiguo. Primero identifica los párrafos, luego las oraciones, y finalmente cada palabra. Solo así puede comprender el texto completo.</p>
+</div>
+<section id="tokenizacion-en-oraciones-sent-tokenize">
+<h3><span class="section-number">24.4.1. </span>Tokenización en Oraciones: <code class="docutils literal notranslate"><span class="pre">sent_tokenize()</span></code><a class="headerlink" href="#tokenizacion-en-oraciones-sent-tokenize" title="Link to this heading">#</a></h3>
+<p>La función <code class="docutils literal notranslate"><span class="pre">sent_tokenize()</span></code> divide un texto en oraciones, reconociendo los puntos, signos de interrogación y exclamación como delimitadores.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nltk.tokenize</span><span class="w"> </span><span class="kn">import</span> <span class="n">sent_tokenize</span>
+
+<span class="c1"># Fragmento del discurso de Andrés Bello</span>
+<span class="n">texto_bello</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">La Universidad, señores, no sería digna de ocupar un lugar en nuestras instituciones </span>
+<span class="s2">sociales, si el cultivo de las ciencias y de las letras pudiese mirarse como peligroso </span>
+<span class="s2">bajo un punto de vista moral, o bajo un punto de vista político. La moral es la vida </span>
+<span class="s2">misma de la sociedad; la libertad es el estímulo que da un vigor sano y una actividad </span>
+<span class="s2">fecunda a las instituciones sociales. ¿A qué se debe este progreso de civilización, </span>
+<span class="s2">esta ansia de mejoras sociales, esta sed de libertad?</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Tokenizamos en oraciones</span>
+<span class="n">oraciones</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">texto_bello</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s1">&#39;spanish&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ORACIONES ENCONTRADAS EN EL TEXTO DE ANDRÉS BELLO&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">oracion</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">oraciones</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Oración </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">oracion</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+ORACIONES ENCONTRADAS EN EL TEXTO DE ANDRÉS BELLO
+============================================================
+
+Oración 1:
+La Universidad, señores, no sería digna de ocupar un lugar en nuestras instituciones 
+sociales, si el cultivo de las ciencias y de las letras pudiese mirarse como peligroso 
+bajo un punto de vista moral, o bajo un punto de vista político.
+
+Oración 2:
+La moral es la vida 
+misma de la sociedad; la libertad es el estímulo que da un vigor sano y una actividad 
+fecunda a las instituciones sociales.
+
+Oración 3:
+¿A qué se debe este progreso de civilización, 
+esta ansia de mejoras sociales, esta sed de libertad?
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tokenizacion-en-palabras-word-tokenize">
+<h3><span class="section-number">24.4.2. </span>Tokenización en Palabras: <code class="docutils literal notranslate"><span class="pre">word_tokenize()</span></code><a class="headerlink" href="#tokenizacion-en-palabras-word-tokenize" title="Link to this heading">#</a></h3>
+<p>La función <code class="docutils literal notranslate"><span class="pre">word_tokenize()</span></code> divide un texto en palabras individuales. También separa los signos de puntuación como tokens independientes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nltk.tokenize</span><span class="w"> </span><span class="kn">import</span> <span class="n">word_tokenize</span>
+
+<span class="c1"># Tomamos la primera oración del discurso</span>
+<span class="n">primera_oracion</span> <span class="o">=</span> <span class="n">oraciones</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="c1"># Tokenizamos en palabras</span>
+<span class="n">palabras</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">primera_oracion</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s1">&#39;spanish&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Oración original:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">primera_oracion</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Palabras tokenizadas:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">palabras</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total de tokens: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">palabras</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Oración original:
+La Universidad, señores, no sería digna de ocupar un lugar en nuestras instituciones 
+sociales, si el cultivo de las ciencias y de las letras pudiese mirarse como peligroso 
+bajo un punto de vista moral, o bajo un punto de vista político.
+
+Palabras tokenizadas:
+[&#39;La&#39;, &#39;Universidad&#39;, &#39;,&#39;, &#39;señores&#39;, &#39;,&#39;, &#39;no&#39;, &#39;sería&#39;, &#39;digna&#39;, &#39;de&#39;, &#39;ocupar&#39;, &#39;un&#39;, &#39;lugar&#39;, &#39;en&#39;, &#39;nuestras&#39;, &#39;instituciones&#39;, &#39;sociales&#39;, &#39;,&#39;, &#39;si&#39;, &#39;el&#39;, &#39;cultivo&#39;, &#39;de&#39;, &#39;las&#39;, &#39;ciencias&#39;, &#39;y&#39;, &#39;de&#39;, &#39;las&#39;, &#39;letras&#39;, &#39;pudiese&#39;, &#39;mirarse&#39;, &#39;como&#39;, &#39;peligroso&#39;, &#39;bajo&#39;, &#39;un&#39;, &#39;punto&#39;, &#39;de&#39;, &#39;vista&#39;, &#39;moral&#39;, &#39;,&#39;, &#39;o&#39;, &#39;bajo&#39;, &#39;un&#39;, &#39;punto&#39;, &#39;de&#39;, &#39;vista&#39;, &#39;político&#39;, &#39;.&#39;]
+
+Total de tokens: 46
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="analizando-el-discurso-completo-de-andres-bello">
+<h2><span class="section-number">24.5. </span>Analizando el Discurso Completo de Andrés Bello<a class="headerlink" href="#analizando-el-discurso-completo-de-andres-bello" title="Link to this heading">#</a></h2>
+<p>Ahora trabajaremos con un fragmento más extenso del discurso inaugural para realizar un análisis más profundo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fragmento extenso del Discurso Inaugural de Andrés Bello (1843)</span>
+<span class="n">discurso_bello</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">La Universidad, señores, no sería digna de ocupar un lugar en nuestras instituciones </span>
+<span class="s2">sociales, si el cultivo de las ciencias y de las letras pudiese mirarse como peligroso </span>
+<span class="s2">bajo un punto de vista moral, o bajo un punto de vista político. La moral es la vida </span>
+<span class="s2">misma de la sociedad; la libertad es el estímulo que da un vigor sano y una actividad </span>
+<span class="s2">fecunda a las instituciones sociales.</span>
+
+<span class="s2">Lo sabéis, señores: todas las verdades se tocan, desde las que formulan el rumbo de </span>
+<span class="s2">los mundos en el piélago del espacio; desde las que determinan las agencias maravillosas </span>
+<span class="s2">de que dependen el movimiento y la vida en el universo de la materia; desde las que </span>
+<span class="s2">resumen la estructura del animal, de la planta, de la masa inorgánica que pisamos; </span>
+<span class="s2">desde las que revelan los fenómenos íntimos del alma en el teatro misterioso de la </span>
+<span class="s2">conciencia, hasta las que expresan las acciones y reacciones de las fuerzas políticas.</span>
+
+<span class="s2">Las ciencias y las letras, fuera de ese valor social, fuera de esta importancia que </span>
+<span class="s2">podemos llamar instrumental, fuera del barniz de amenidad y elegancia que dan a las </span>
+<span class="s2">sociedades humanas, tienen un mérito suyo, intrínseco, en cuanto aumentan los placeres </span>
+<span class="s2">y goces del individuo que las cultiva y las ama; placeres exquisitos, a que no llega </span>
+<span class="s2">el delirio de los sentidos.</span>
+
+<span class="s2">El fomento de las ciencias eclesiásticas, destinado a formar dignos ministros del </span>
+<span class="s2">culto, y en último resultado a proveer a los pueblos de la república de la competente </span>
+<span class="s2">educación religiosa y moral, es el primero de estos objetos y el de mayor trascendencia.</span>
+
+<span class="s2">La Universidad estudiará también las especialidades de la sociedad chilena bajo el </span>
+<span class="s2">punto de vista económico. La Universidad examinará los resultados de la estadística </span>
+<span class="s2">chilena, contribuirá a formarla, y leerá en sus guarismos la expresión de nuestros </span>
+<span class="s2">intereses materiales. Porque en este, como en los otros ramos, el programa de la </span>
+<span class="s2">Universidad es enteramente chileno: si toma prestadas a la Europa las deducciones </span>
+<span class="s2">de la ciencia, es para aplicarlas a Chile. Todas las sendas en que se propone dirigir </span>
+<span class="s2">las investigaciones de sus miembros, el estudio de sus alumnos, convergen a un centro: </span>
+<span class="s2">la patria.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longitud del texto: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">discurso_bello</span><span class="p">)</span><span class="si">}</span><span class="s2"> caracteres&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Longitud del texto: 2140 caracteres
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Análisis básico del discurso</span>
+<span class="n">oraciones_discurso</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">discurso_bello</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s1">&#39;spanish&#39;</span><span class="p">)</span>
+<span class="n">palabras_discurso</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">discurso_bello</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s1">&#39;spanish&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ANÁLISIS DEL DISCURSO DE ANDRÉS BELLO (1843)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Número de oraciones: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">oraciones_discurso</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Número de tokens (palabras + puntuación): </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">palabras_discurso</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Solo palabras (sin puntuación)</span>
+<span class="n">solo_palabras</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">palabras_discurso</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Número de palabras (sin puntuación): </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">solo_palabras</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Promedio de palabras por oración</span>
+<span class="n">promedio</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">solo_palabras</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">oraciones_discurso</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Promedio de palabras por oración: </span><span class="si">{</span><span class="n">promedio</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+ANÁLISIS DEL DISCURSO DE ANDRÉS BELLO (1843)
+============================================================
+
+Número de oraciones: 9
+Número de tokens (palabras + puntuación): 399
+Número de palabras (sin puntuación): 356
+Promedio de palabras por oración: 39.6
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="stopwords-filtrando-el-ruido-del-texto">
+<h2><span class="section-number">24.6. </span>Stopwords: Filtrando el Ruido del Texto<a class="headerlink" href="#stopwords-filtrando-el-ruido-del-texto" title="Link to this heading">#</a></h2>
+<p>Las <strong>stopwords</strong> (palabras vacías) son palabras muy frecuentes que generalmente no aportan significado al análisis del texto. Incluyen artículos, preposiciones, pronombres y conjunciones.</p>
+<div class="important admonition">
+<p class="admonition-title">¿Por qué eliminar stopwords?</p>
+<p>En un discurso histórico, palabras como “el”, “la”, “de”, “que” aparecen constantemente pero no nos dicen nada sobre el <strong>contenido</strong> del discurso. Al eliminarlas, podemos enfocarnos en las palabras que realmente transmiten el mensaje del autor.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nltk.corpus</span><span class="w"> </span><span class="kn">import</span> <span class="n">stopwords</span>
+
+<span class="c1"># Obtenemos las stopwords en español</span>
+<span class="n">stop_words_es</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;spanish&#39;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NLTK incluye </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">stop_words_es</span><span class="p">)</span><span class="si">}</span><span class="s2"> stopwords en español&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Ejemplos de stopwords:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">stop_words_es</span><span class="p">)[:</span><span class="mi">20</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NLTK incluye 313 stopwords en español
+
+Ejemplos de stopwords:
+[&#39;hubiesen&#39;, &#39;estaremos&#39;, &#39;estuvisteis&#39;, &#39;estuvieses&#39;, &#39;estos&#39;, &#39;no&#39;, &#39;son&#39;, &#39;ti&#39;, &#39;vuestros&#39;, &#39;ante&#39;, &#39;e&#39;, &#39;tendrás&#39;, &#39;fuerais&#39;, &#39;fuesen&#39;, &#39;sean&#39;, &#39;habían&#39;, &#39;nos&#39;, &#39;seas&#39;, &#39;seríamos&#39;, &#39;fuisteis&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filtramos las stopwords del discurso de Bello</span>
+<span class="n">palabras_filtradas</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">palabra</span> <span class="ow">in</span> <span class="n">solo_palabras</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">palabra</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words_es</span><span class="p">:</span>
+        <span class="n">palabras_filtradas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">palabra</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;COMPARACIÓN: CON Y SIN STOPWORDS&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Palabras originales: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">solo_palabras</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Palabras sin stopwords: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">palabras_filtradas</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stopwords eliminadas: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">solo_palabras</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">palabras_filtradas</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Porcentaje de reducción: </span><span class="si">{</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">solo_palabras</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">palabras_filtradas</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">solo_palabras</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+COMPARACIÓN: CON Y SIN STOPWORDS
+============================================================
+
+Palabras originales: 356
+Palabras sin stopwords: 165
+Stopwords eliminadas: 191
+Porcentaje de reducción: 53.7%
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Encontramos las palabras más frecuentes (sin stopwords)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="n">frecuencias</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">palabras_filtradas</span><span class="p">)</span>
+<span class="n">palabras_mas_comunes</span> <span class="o">=</span> <span class="n">frecuencias</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PALABRAS MÁS FRECUENTES EN EL DISCURSO DE BELLO&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(Sin stopwords)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">palabra</span><span class="p">,</span> <span class="n">frecuencia</span> <span class="ow">in</span> <span class="n">palabras_mas_comunes</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">palabra</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">frecuencia</span><span class="si">}</span><span class="s2"> veces&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+PALABRAS MÁS FRECUENTES EN EL DISCURSO DE BELLO
+(Sin stopwords)
+============================================================
+  universidad          → 4 veces
+  ciencias             → 3 veces
+  bajo                 → 3 veces
+  punto                → 3 veces
+  vista                → 3 veces
+  moral                → 3 veces
+  señores              → 2 veces
+  instituciones        → 2 veces
+  sociales             → 2 veces
+  si                   → 2 veces
+  letras               → 2 veces
+  vida                 → 2 veces
+  sociedad             → 2 veces
+  todas                → 2 veces
+  placeres             → 2 veces
+</pre></div>
+</div>
+</div>
+</div>
+<div class="seealso admonition">
+<p class="admonition-title">Interpretación histórica</p>
+<p>Las palabras más frecuentes revelan los <strong>temas centrales</strong> del discurso de Bello:</p>
+<ul class="simple">
+<li><p><strong>“universidad”</strong>: El tema principal del discurso</p></li>
+<li><p><strong>“ciencias”, “letras”</strong>: La importancia del conocimiento</p></li>
+<li><p><strong>“sociedad”, “moral”</strong>: La función social de la educación</p></li>
+<li><p><strong>“Chile”, “patria”</strong>: El enfoque nacional de la institución</p></li>
+</ul>
+<p>Este análisis cuantitativo confirma lo que sabemos cualitativamente: Bello concebía la Universidad como una institución al servicio de Chile y su desarrollo moral y científico.</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="personalizando-las-stopwords">
+<h2><span class="section-number">24.7. </span>Personalizando las Stopwords<a class="headerlink" href="#personalizando-las-stopwords" title="Link to this heading">#</a></h2>
+<p>En muchos casos, necesitamos agregar stopwords específicas al contexto de nuestro análisis. Por ejemplo, en discursos del siglo XIX, hay palabras formales que se repiten mucho pero no aportan al análisis temático.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creamos una lista personalizada de stopwords para discursos históricos</span>
+<span class="n">stopwords_historicas</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;señores&#39;</span><span class="p">,</span>      <span class="c1"># Forma de tratamiento común en discursos</span>
+    <span class="s1">&#39;bajo&#39;</span><span class="p">,</span>         <span class="c1"># Preposición frecuente</span>
+    <span class="s1">&#39;así&#39;</span><span class="p">,</span>          <span class="c1"># Adverbio común</span>
+    <span class="s1">&#39;puede&#39;</span><span class="p">,</span>        <span class="c1"># Verbo auxiliar</span>
+    <span class="s1">&#39;mismo&#39;</span><span class="p">,</span>        <span class="c1"># Adjetivo común</span>
+    <span class="s1">&#39;misma&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;todo&#39;</span><span class="p">,</span>         <span class="c1"># Determinante</span>
+    <span class="s1">&#39;toda&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;todos&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;todas&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cada&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sino&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;aun&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;aunque&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Combinamos con las stopwords estándar</span>
+<span class="n">stopwords_completas</span> <span class="o">=</span> <span class="n">stop_words_es</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">stopwords_historicas</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total de stopwords (estándar + históricas): </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">stopwords_completas</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total de stopwords (estándar + históricas): 325
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filtramos con las stopwords personalizadas</span>
+<span class="n">palabras_filtradas_v2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">palabra</span> <span class="ow">in</span> <span class="n">solo_palabras</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">palabra</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords_completas</span><span class="p">:</span>
+        <span class="n">palabras_filtradas_v2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">palabra</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+
+<span class="c1"># Nuevas frecuencias</span>
+<span class="n">frecuencias_v2</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">palabras_filtradas_v2</span><span class="p">)</span>
+<span class="n">palabras_comunes_v2</span> <span class="o">=</span> <span class="n">frecuencias_v2</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PALABRAS MÁS FRECUENTES (CON STOPWORDS PERSONALIZADAS)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">palabra</span><span class="p">,</span> <span class="n">frecuencia</span> <span class="ow">in</span> <span class="n">palabras_comunes_v2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">palabra</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">frecuencia</span><span class="si">}</span><span class="s2"> veces&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+PALABRAS MÁS FRECUENTES (CON STOPWORDS PERSONALIZADAS)
+============================================================
+  universidad          → 4 veces
+  ciencias             → 3 veces
+  punto                → 3 veces
+  vista                → 3 veces
+  moral                → 3 veces
+  instituciones        → 2 veces
+  sociales             → 2 veces
+  si                   → 2 veces
+  letras               → 2 veces
+  vida                 → 2 veces
+  sociedad             → 2 veces
+  placeres             → 2 veces
+  chilena              → 2 veces
+  digna                → 1 veces
+  ocupar               → 1 veces
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="creando-una-funcion-de-analisis-reutilizable">
+<h2><span class="section-number">24.8. </span>Creando una Función de Análisis Reutilizable<a class="headerlink" href="#creando-una-funcion-de-analisis-reutilizable" title="Link to this heading">#</a></h2>
+<p>Para facilitar el análisis de otros documentos históricos, crearemos una función que encapsule todo el proceso.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">analizar_texto_historico</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">titulo</span><span class="o">=</span><span class="s2">&quot;Documento&quot;</span><span class="p">,</span> <span class="n">n_palabras</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">stopwords_extra</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Analiza un texto histórico y muestra estadísticas relevantes.</span>
+<span class="sd">    </span>
+<span class="sd">    Parámetros:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    texto : str</span>
+<span class="sd">        El texto a analizar</span>
+<span class="sd">    titulo : str</span>
+<span class="sd">        Nombre del documento para mostrar en el reporte</span>
+<span class="sd">    n_palabras : int</span>
+<span class="sd">        Número de palabras frecuentes a mostrar</span>
+<span class="sd">    stopwords_extra : set</span>
+<span class="sd">        Stopwords adicionales específicas del contexto</span>
+<span class="sd">    </span>
+<span class="sd">    Retorna:</span>
+<span class="sd">    --------</span>
+<span class="sd">    dict : Diccionario con las estadísticas del análisis</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Preparamos stopwords</span>
+    <span class="n">sw</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;spanish&#39;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">stopwords_extra</span><span class="p">:</span>
+        <span class="n">sw</span> <span class="o">=</span> <span class="n">sw</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">stopwords_extra</span><span class="p">)</span>
+    
+    <span class="c1"># Tokenización</span>
+    <span class="n">oraciones</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s1">&#39;spanish&#39;</span><span class="p">)</span>
+    <span class="n">palabras</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s1">&#39;spanish&#39;</span><span class="p">)</span>
+    <span class="n">solo_palabras</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">palabras</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()]</span>
+    
+    <span class="c1"># Filtrado de stopwords</span>
+    <span class="n">palabras_filtradas</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">solo_palabras</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sw</span><span class="p">]</span>
+    
+    <span class="c1"># Frecuencias</span>
+    <span class="n">frecuencias</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">palabras_filtradas</span><span class="p">)</span>
+    
+    <span class="c1"># Mostramos el reporte</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ANÁLISIS DE TEXTO: </span><span class="si">{</span><span class="n">titulo</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📊 Estadísticas generales:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   • Caracteres totales: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">texto</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   • Oraciones: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">oraciones</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   • Palabras totales: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">solo_palabras</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   • Palabras únicas: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">solo_palabras</span><span class="p">]))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   • Palabras sin stopwords: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">palabras_filtradas</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   • Promedio palabras/oración: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">solo_palabras</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">oraciones</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📝 Top </span><span class="si">{</span><span class="n">n_palabras</span><span class="si">}</span><span class="s2"> palabras más frecuentes:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">palabra</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">frecuencias</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="n">n_palabras</span><span class="p">):</span>
+        <span class="n">barra</span> <span class="o">=</span> <span class="s2">&quot;█&quot;</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="n">freq</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   </span><span class="si">{</span><span class="n">palabra</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">barra</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">freq</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Retornamos los datos para uso posterior</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;oraciones&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">oraciones</span><span class="p">),</span>
+        <span class="s1">&#39;palabras_totales&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">solo_palabras</span><span class="p">),</span>
+        <span class="s1">&#39;palabras_unicas&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">solo_palabras</span><span class="p">])),</span>
+        <span class="s1">&#39;palabras_filtradas&#39;</span><span class="p">:</span> <span class="n">palabras_filtradas</span><span class="p">,</span>
+        <span class="s1">&#39;frecuencias&#39;</span><span class="p">:</span> <span class="n">frecuencias</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Usamos la función con el discurso de Bello</span>
+<span class="n">stopwords_extra</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;señores&#39;</span><span class="p">,</span> <span class="s1">&#39;bajo&#39;</span><span class="p">,</span> <span class="s1">&#39;así&#39;</span><span class="p">,</span> <span class="s1">&#39;puede&#39;</span><span class="p">,</span> <span class="s1">&#39;mismo&#39;</span><span class="p">,</span> <span class="s1">&#39;misma&#39;</span><span class="p">}</span>
+
+<span class="n">resultado</span> <span class="o">=</span> <span class="n">analizar_texto_historico</span><span class="p">(</span>
+    <span class="n">texto</span><span class="o">=</span><span class="n">discurso_bello</span><span class="p">,</span>
+    <span class="n">titulo</span><span class="o">=</span><span class="s2">&quot;Discurso Inaugural de Andrés Bello (1843)&quot;</span><span class="p">,</span>
+    <span class="n">n_palabras</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+    <span class="n">stopwords_extra</span><span class="o">=</span><span class="n">stopwords_extra</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+ANÁLISIS DE TEXTO: DISCURSO INAUGURAL DE ANDRÉS BELLO (1843)
+============================================================
+
+📊 Estadísticas generales:
+   • Caracteres totales: 2,140
+   • Oraciones: 9
+   • Palabras totales: 356
+   • Palabras únicas: 178
+   • Palabras sin stopwords: 159
+   • Promedio palabras/oración: 39.6
+
+📝 Top 12 palabras más frecuentes:
+   universidad     ████████ (4)
+   ciencias        ██████ (3)
+   punto           ██████ (3)
+   vista           ██████ (3)
+   moral           ██████ (3)
+   instituciones   ████ (2)
+   sociales        ████ (2)
+   si              ████ (2)
+   letras          ████ (2)
+   vida            ████ (2)
+   sociedad        ████ (2)
+   todas           ████ (2)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="busqueda-de-frases-y-contexto">
+<h2><span class="section-number">24.9. </span>Búsqueda de Frases y Contexto<a class="headerlink" href="#busqueda-de-frases-y-contexto" title="Link to this heading">#</a></h2>
+<p>Una tarea común en el análisis de textos históricos es buscar frases específicas y mostrar su contexto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">buscar_frase_contexto</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">frase</span><span class="p">,</span> <span class="n">contexto</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Busca una frase en el texto y muestra su contexto.</span>
+<span class="sd">    </span>
+<span class="sd">    Parámetros:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    texto : str</span>
+<span class="sd">        El texto donde buscar</span>
+<span class="sd">    frase : str</span>
+<span class="sd">        La frase a buscar</span>
+<span class="sd">    contexto : int</span>
+<span class="sd">        Número de caracteres de contexto a mostrar</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">texto_lower</span> <span class="o">=</span> <span class="n">texto</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">frase_lower</span> <span class="o">=</span> <span class="n">frase</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    
+    <span class="c1"># Contamos ocurrencias</span>
+    <span class="n">ocurrencias</span> <span class="o">=</span> <span class="n">texto_lower</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">frase_lower</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔍 Buscando: &#39;</span><span class="si">{</span><span class="n">frase</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Ocurrencias encontradas: </span><span class="si">{</span><span class="n">ocurrencias</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">ocurrencias</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># Mostramos el contexto de cada ocurrencia</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ocurrencias</span><span class="p">):</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="n">texto_lower</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">frase_lower</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+            <span class="n">inicio</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pos</span> <span class="o">-</span> <span class="n">contexto</span><span class="p">)</span>
+            <span class="n">fin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">texto</span><span class="p">),</span> <span class="n">pos</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">frase</span><span class="p">)</span> <span class="o">+</span> <span class="n">contexto</span><span class="p">)</span>
+            <span class="n">fragmento</span> <span class="o">=</span> <span class="n">texto</span><span class="p">[</span><span class="n">inicio</span><span class="p">:</span><span class="n">fin</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">   Ocurrencia </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   ...</span><span class="si">{</span><span class="n">fragmento</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+            
+            <span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="k">return</span> <span class="n">ocurrencias</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Buscamos frases relevantes en el discurso de Bello</span>
+<span class="n">buscar_frase_contexto</span><span class="p">(</span><span class="n">discurso_bello</span><span class="p">,</span> <span class="s2">&quot;Universidad&quot;</span><span class="p">)</span>
+<span class="n">buscar_frase_contexto</span><span class="p">(</span><span class="n">discurso_bello</span><span class="p">,</span> <span class="s2">&quot;ciencias&quot;</span><span class="p">)</span>
+<span class="n">buscar_frase_contexto</span><span class="p">(</span><span class="n">discurso_bello</span><span class="p">,</span> <span class="s2">&quot;Chile&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>🔍 Buscando: &#39;Universidad&#39;
+   Ocurrencias encontradas: 4
+
+   Ocurrencia 1:
+   ...La Universidad, señores, no sería digna de ocupar un lugar en nuestras instituciones  sociales, si el cultivo de l...
+
+   Ocurrencia 2:
+   ...tente  educación religiosa y moral, es el primero de estos objetos y el de mayor trascendencia.  La Universidad estudiará también las especialidades de la sociedad chilena bajo el  punto de vista económico. La U...
+
+   Ocurrencia 3:
+   ...d estudiará también las especialidades de la sociedad chilena bajo el  punto de vista económico. La Universidad examinará los resultados de la estadística  chilena, contribuirá a formarla, y leerá en sus guarism...
+
+   Ocurrencia 4:
+   ...sión de nuestros  intereses materiales. Porque en este, como en los otros ramos, el programa de la  Universidad es enteramente chileno: si toma prestadas a la Europa las deducciones  de la ciencia, es para aplic...
+
+🔍 Buscando: &#39;ciencias&#39;
+   Ocurrencias encontradas: 3
+
+   Ocurrencia 1:
+   ...eñores, no sería digna de ocupar un lugar en nuestras instituciones  sociales, si el cultivo de las ciencias y de las letras pudiese mirarse como peligroso  bajo un punto de vista moral, o bajo un punto de vi...
+
+   Ocurrencia 2:
+   ...de la  conciencia, hasta las que expresan las acciones y reacciones de las fuerzas políticas.  Las ciencias y las letras, fuera de ese valor social, fuera de esta importancia que  podemos llamar instrumental...
+
+   Ocurrencia 3:
+   ...tiva y las ama; placeres exquisitos, a que no llega  el delirio de los sentidos.  El fomento de las ciencias eclesiásticas, destinado a formar dignos ministros del  culto, y en último resultado a proveer a lo...
+
+🔍 Buscando: &#39;Chile&#39;
+   Ocurrencias encontradas: 4
+
+   Ocurrencia 1:
+   ...os y el de mayor trascendencia.  La Universidad estudiará también las especialidades de la sociedad chilena bajo el  punto de vista económico. La Universidad examinará los resultados de la estadística  chi...
+
+   Ocurrencia 2:
+   ...ilena bajo el  punto de vista económico. La Universidad examinará los resultados de la estadística  chilena, contribuirá a formarla, y leerá en sus guarismos la expresión de nuestros  intereses materiales....
+
+   Ocurrencia 3:
+   ...materiales. Porque en este, como en los otros ramos, el programa de la  Universidad es enteramente chileno: si toma prestadas a la Europa las deducciones  de la ciencia, es para aplicarlas a Chile. Todas...
+
+   Ocurrencia 4:
+   ...ramente chileno: si toma prestadas a la Europa las deducciones  de la ciencia, es para aplicarlas a Chile. Todas las sendas en que se propone dirigir  las investigaciones de sus miembros, el estudio de sus...
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="actividad-de-cierre">
+<h2><span class="section-number">24.10. </span>Actividad de Cierre<a class="headerlink" href="#actividad-de-cierre" title="Link to this heading">#</a></h2>
+<div class="important admonition">
+<p class="admonition-title">Instrucciones</p>
+<p>Realiza los siguientes ejercicios para practicar lo aprendido sobre tokenización y stopwords.</p>
+</div>
+<section id="ejercicio-1-analiza-otro-fragmento">
+<h3><span class="section-number">24.10.1. </span>Ejercicio 1: Analiza otro fragmento<a class="headerlink" href="#ejercicio-1-analiza-otro-fragmento" title="Link to this heading">#</a></h3>
+<p>Copia el siguiente fragmento del discurso de Bello y analízalo con la función <code class="docutils literal notranslate"><span class="pre">analizar_texto_historico()</span></code>:</p>
+<p><em>“Yo no abogaré jamás por el purismo exagerado que condena todo lo nuevo en materia de idioma; creo, por el contrario, que la multitud de ideas nuevas, que pasan diariamente del comercio literario a la circulación general, exige voces nuevas que las representen.”</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribe tu código aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-2-compara-idiomas">
+<h3><span class="section-number">24.10.2. </span>Ejercicio 2: Compara idiomas<a class="headerlink" href="#ejercicio-2-compara-idiomas" title="Link to this heading">#</a></h3>
+<p>Tokeniza el siguiente texto en inglés y compáralo con su traducción al español. ¿Cuál tiene más tokens?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">texto_ingles</span> <span class="o">=</span> <span class="s2">&quot;The University shall be a beacon of knowledge and progress for the nation.&quot;</span>
+<span class="n">texto_espanol</span> <span class="o">=</span> <span class="s2">&quot;La Universidad será un faro de conocimiento y progreso para la nación.&quot;</span>
+
+<span class="c1"># Escribe tu código aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-3-stopwords-personalizadas">
+<h3><span class="section-number">24.10.3. </span>Ejercicio 3: Stopwords personalizadas<a class="headerlink" href="#ejercicio-3-stopwords-personalizadas" title="Link to this heading">#</a></h3>
+<p>Crea tu propia lista de stopwords para analizar discursos políticos chilenos del siglo XX. Considera palabras formales como “honorable”, “distinguido”, “compatriotas”, etc.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribe tu código aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="resumen-del-capitulo">
+<h2><span class="section-number">24.11. </span>Resumen del Capítulo<a class="headerlink" href="#resumen-del-capitulo" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concepto</p></th>
+<th class="head"><p>Descripción</p></th>
+<th class="head"><p>Función NLTK</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Tokenización</p></td>
+<td><p>Dividir texto en unidades menores</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sent_tokenize()</span></code>, <code class="docutils literal notranslate"><span class="pre">word_tokenize()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Tokens</p></td>
+<td><p>Unidades resultantes (oraciones, palabras)</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>Stopwords</p></td>
+<td><p>Palabras sin contenido semántico</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">stopwords.words('spanish')</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Frecuencias</p></td>
+<td><p>Conteo de palabras</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Counter()</span></code> de collections</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="seealso admonition">
+<p class="admonition-title">¿Qué sigue?</p>
+<p>En el siguiente capítulo aprenderemos a <strong>leer y analizar documentos PDF</strong> directamente desde Python, aplicando estas técnicas de tokenización a discursos históricos completos como el discurso inaugural de Ronald Reagan (1981).</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="referencias">
+<h2><span class="section-number">24.12. </span>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Bello, A. (1843). <em>Discurso pronunciado en la instalación de la Universidad de Chile</em>. Santiago de Chile.</p></li>
+<li><p>Bird, S., Klein, E., &amp; Loper, E. (2009). <em>Natural Language Processing with Python</em>. O’Reilly Media.</p></li>
+<li><p>Harari, Y. N. (2014). <em>De animales a dioses: Breve historia de la humanidad</em>. Debate.</p></li>
+<li><p>NLTK Project. (2024). <em>Natural Language Toolkit Documentation</em>. <a class="reference external" href="https://www.nltk.org/">https://www.nltk.org/</a></p></li>
+<li><p>Universidad de Chile. (2024). <em>Discurso Inaugural de Andrés Bello</em>. <a class="reference external" href="https://uchile.cl/presentacion/historia/discurso-inaugural">https://uchile.cl/presentacion/historia/discurso-inaugural</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Capitulo_23_Pandas_Avanzado.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">23. </span>Pandas Avanzado - Filtrado, Agrupación y Análisis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Capitulo_25_Analisis_PDF.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">25. </span>Análisis de Documentos PDF: Extrayendo Historia de los Archivos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">24.1. Objetivos de Aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-el-procesamiento-del-lenguaje-natural-en-la-historia">24.2. Introducción: El Procesamiento del Lenguaje Natural en la Historia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-historico-andres-bello-y-la-universidad-de-chile">24.2.1. Contexto Histórico: Andrés Bello y la Universidad de Chile</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-del-entorno-instalando-nltk">24.3. Preparación del Entorno: Instalando NLTK</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-la-tokenizacion">24.4. ¿Qué es la Tokenización?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenizacion-en-oraciones-sent-tokenize">24.4.1. Tokenización en Oraciones: <code class="docutils literal notranslate"><span class="pre">sent_tokenize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenizacion-en-palabras-word-tokenize">24.4.2. Tokenización en Palabras: <code class="docutils literal notranslate"><span class="pre">word_tokenize()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analizando-el-discurso-completo-de-andres-bello">24.5. Analizando el Discurso Completo de Andrés Bello</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stopwords-filtrando-el-ruido-del-texto">24.6. Stopwords: Filtrando el Ruido del Texto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#personalizando-las-stopwords">24.7. Personalizando las Stopwords</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creando-una-funcion-de-analisis-reutilizable">24.8. Creando una Función de Análisis Reutilizable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-frases-y-contexto">24.9. Búsqueda de Frases y Contexto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividad-de-cierre">24.10. Actividad de Cierre</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-analiza-otro-fragmento">24.10.1. Ejercicio 1: Analiza otro fragmento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-compara-idiomas">24.10.2. Ejercicio 2: Compara idiomas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-stopwords-personalizadas">24.10.3. Ejercicio 3: Stopwords personalizadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-del-capitulo">24.11. Resumen del Capítulo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">24.12. Referencias</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Claudio Rojas Monsalves
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

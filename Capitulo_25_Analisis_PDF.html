@@ -1,0 +1,1379 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>25. Análisis de Documentos PDF: Extrayendo Historia de los Archivos &#8212; Programando la Historia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Capitulo_25_Analisis_PDF';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="24. Tokenización y Análisis de Texto: Dividiendo el Discurso Histórico" href="Capitulo_24_Tokenizacion_Stopwords.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Original.png" class="logo__image only-light" alt="Programando la Historia - Home"/>
+    <script>document.write(`<img src="_static/Original.png" class="logo__image only-dark" alt="Programando la Historia - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Programando la Historia.
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Inteligencia Artificial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20I.html">1. ¿Qué es la Inteligencia Artificial?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20II.html">2. Historia de la Inteligencia Artificial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inteligencia%20Artificial%20III.html">3. Inteligencia Artificial Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades.html">4. Mitos vs. Realidad: ¿La IA nos reemplazará?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mitos%20y%20Realidades%20II.html">5. La IA Revolucionando la Investigación Histórica y la Educación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sesgos.html">6. Sesgos Algorítmicos: El uso de Compas en el Sistemas de Justicia de EEUU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deepfakes.html">7. Desinformación y Deepfakes en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datos.html">8. Privacidad y Datos Personales en la Era Digital</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Elecci%C3%B3n%20de%20IA.html">9. ¿Cómo mejorar tus tareas escolares sin hacer trampa?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Herramientas%20para%20la%20IA%20Generativa.html">10. Herramientas de IA Generativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Prompt.html">11. Prompting Efectivo: El arte de “conversar” con la IA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyectos.html">12. Proyectos Estudiantiles Potenciados por IA</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Programación Básica</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Markdown_II_final.html">13. ¿Qué es Markdown?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Google_Sheets_Formulas.html">14. Fórmulas Básicas en Google Sheets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mini_Dashboard_Crisis.html">15. Mini Dashboard de Crisis Históricas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_16_Introduccion_Python.html">16. Introducción a Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_17_Variables_Tipos_Datos.html">17. Variables y Tipos de Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_18_Metodos_Listas_Strings.html">18. Métodos de Listas y Strings: Manipulando Datos Históricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_19_Condicionales_Ciclo_For.html">19. Condicionales y Ciclos For: Decisiones y Repeticiones en la Historia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_20_While_Control_Flujo.html">20. Ciclo While y Control de Flujo: Repetir Hasta que la Historia Cambie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_21_Funciones_Parametros.html">21. Funciones con Parámetros: Organizando el Código Histórico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_22_Introduccion_Pandas.html">22. Introducción a Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_23_Pandas_Avanzado.html">23. Pandas Avanzado - Filtrado, Agrupación y Análisis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_24_Tokenizacion_Stopwords.html">24. Tokenización y Análisis de Texto: Dividiendo el Discurso Histórico</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">25. Análisis de Documentos PDF: Extrayendo Historia de los Archivos</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ClaudioRojasMon/apuntes_2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ClaudioRojasMon/apuntes_2025/issues/new?title=Issue%20on%20page%20%2FCapitulo_25_Analisis_PDF.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Capitulo_25_Analisis_PDF.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Análisis de Documentos PDF: Extrayendo Historia de los Archivos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">25.1. Objetivos de Aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-los-archivos-pdf-en-la-investigacion-historica">25.2. Introducción: Los Archivos PDF en la Investigación Histórica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-historico-el-discurso-inaugural-de-reagan-1981">25.2.1. Contexto Histórico: El Discurso Inaugural de Reagan (1981)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-del-entorno">25.3. Preparación del Entorno</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leyendo-documentos-pdf">25.4. Leyendo Documentos PDF</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-basico-pdfreader">25.4.1. Método básico: PdfReader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-discurso-de-reagan-texto-para-analisis">25.4.2. El Discurso de Reagan: Texto para Análisis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-completo-del-discurso">25.5. Análisis Completo del Discurso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-palabras-clave-y-frases">25.6. Búsqueda de Palabras Clave y Frases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-oraciones-especificas">25.7. Análisis de Oraciones Específicas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-discursos-reagan-vs-bello">25.8. Comparación de Discursos: Reagan vs. Bello</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividad-de-cierre">25.9. Actividad de Cierre</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-analisis-de-frases-celebres">25.9.1. Ejercicio 1: Análisis de frases célebres</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-palabras-unicas-de-cada-discurso">25.9.2. Ejercicio 2: Palabras únicas de cada discurso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-crea-tu-propia-funcion-de-analisis">25.9.3. Ejercicio 3: Crea tu propia función de análisis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-del-capitulo">25.10. Resumen del Capítulo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">25.11. Referencias</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-de-documentos-pdf-extrayendo-historia-de-los-archivos">
+<h1><span class="section-number">25. </span>Análisis de Documentos PDF: Extrayendo Historia de los Archivos<a class="headerlink" href="#analisis-de-documentos-pdf-extrayendo-historia-de-los-archivos" title="Link to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>“La revolución cognitiva es el punto en que la historia se independizó de la biología. Hasta entonces, las acciones de todos los organismos estaban determinadas por sus genes. A partir de la revolución cognitiva, los relatos empezaron a determinar lo que hacían los sapiens.”</p>
+<p class="attribution">—Yuval Noah Harari, <em>Homo Deus</em> (2016)</p>
+</div></blockquote>
+<div class="tip admonition">
+<p class="admonition-title">Información del Capítulo</p>
+<p><strong>Tiempo estimado:</strong> 100 minutos<br />
+<strong>Nivel:</strong> Intermedio-Avanzado<br />
+<strong>Prerrequisitos:</strong> Capítulo 24 - Tokenización y Análisis de Texto</p>
+</div>
+<section id="objetivos-de-aprendizaje">
+<h2><span class="section-number">25.1. </span>Objetivos de Aprendizaje<a class="headerlink" href="#objetivos-de-aprendizaje" title="Link to this heading">#</a></h2>
+<p>Al finalizar este capítulo, serás capaz de:</p>
+<ol class="arabic simple">
+<li><p>Leer y extraer texto de documentos <strong>PDF</strong> usando Python</p></li>
+<li><p>Aplicar técnicas de <strong>tokenización y stopwords</strong> a documentos completos</p></li>
+<li><p>Crear funciones de <strong>análisis automatizado</strong> para discursos históricos</p></li>
+<li><p>Buscar <strong>palabras clave y frases</strong> en documentos extensos</p></li>
+<li><p>Generar <strong>estadísticas y visualizaciones</strong> del contenido textual</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="introduccion-los-archivos-pdf-en-la-investigacion-historica">
+<h2><span class="section-number">25.2. </span>Introducción: Los Archivos PDF en la Investigación Histórica<a class="headerlink" href="#introduccion-los-archivos-pdf-en-la-investigacion-historica" title="Link to this heading">#</a></h2>
+<p>El formato <strong>PDF</strong> (<em>Portable Document Format</em>) se ha convertido en el estándar para la digitalización de documentos históricos. Bibliotecas, archivos nacionales y museos de todo el mundo han digitalizado millones de documentos en este formato.</p>
+<p>Para los historiadores digitales, la capacidad de <strong>extraer y analizar texto de PDFs automáticamente</strong> representa una revolución metodológica:</p>
+<ul class="simple">
+<li><p><strong>Análisis de corpus extensos</strong>: Miles de documentos procesados en horas</p></li>
+<li><p><strong>Búsqueda sistemática</strong>: Localizar términos específicos en archivos completos</p></li>
+<li><p><strong>Comparación de discursos</strong>: Analizar cambios en el lenguaje político a través del tiempo</p></li>
+<li><p><strong>Detección de patrones</strong>: Identificar temas recurrentes en documentación histórica</p></li>
+</ul>
+<div class="note admonition">
+<p class="admonition-title">Nuestro documento de estudio</p>
+<p>En este capítulo trabajaremos con el <strong>Discurso Inaugural de Ronald Reagan</strong> (20 de enero de 1981), un documento fundamental para entender el giro conservador en la política estadounidense de la década de 1980 y su impacto global durante la Guerra Fría.</p>
+</div>
+<section id="contexto-historico-el-discurso-inaugural-de-reagan-1981">
+<h3><span class="section-number">25.2.1. </span>Contexto Histórico: El Discurso Inaugural de Reagan (1981)<a class="headerlink" href="#contexto-historico-el-discurso-inaugural-de-reagan-1981" title="Link to this heading">#</a></h3>
+<p><strong>Ronald Reagan</strong> (1911-2004) asumió la presidencia de Estados Unidos el 20 de enero de 1981, en un momento de crisis económica y tensión con la Unión Soviética. Su discurso inaugural marcó un cambio paradigmático en la política estadounidense:</p>
+<ul class="simple">
+<li><p><strong>Crítica al “gobierno grande”</strong>: La famosa frase “el gobierno no es la solución a nuestro problema; el gobierno es el problema”</p></li>
+<li><p><strong>Renovación del patriotismo</strong>: Llamado a recuperar la grandeza americana</p></li>
+<li><p><strong>Política económica</strong>: Anuncio de reformas fiscales y reducción del Estado</p></li>
+<li><p><strong>Postura internacional</strong>: Firmeza frente a la Unión Soviética</p></li>
+</ul>
+<p>Este discurso es considerado uno de los más influyentes del siglo XX y estableció las bases del “reaganismo” como corriente política <span id="id1">[<a class="reference internal" href="markdown.html#id11" title="Ronald Reagan. Inaugural address. Discurso de inauguración presidencial, enero 1981. Primer discurso inaugural de Ronald Reagan como presidente de Estados Unidos. URL: https://www.reaganlibrary.gov/archives/speech/inaugural-address-1981.">Reagan, 1981</a>]</span>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="preparacion-del-entorno">
+<h2><span class="section-number">25.3. </span>Preparación del Entorno<a class="headerlink" href="#preparacion-del-entorno" title="Link to this heading">#</a></h2>
+<p>Para trabajar con PDFs en Python, utilizaremos la biblioteca <strong>PyPDF2</strong>, una herramienta potente y fácil de usar para extraer texto de documentos PDF <span id="id2">[<a class="reference internal" href="markdown.html#id9" title="PyPDF2 Contributors. Pypdf2 documentation. 2024. Biblioteca Python para manipulación de archivos PDF. URL: https://pypdf2.readthedocs.io/.">PyPDF2 Contributors, 2024</a>]</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instalación de PyPDF2 (ejecutar solo si no está instalado)</span>
+<span class="c1"># !pip install PyPDF2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importamos las bibliotecas necesarias</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">PyPDF2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PyPDF2</span><span class="w"> </span><span class="kn">import</span> <span class="n">PdfReader</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nltk</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nltk.tokenize</span><span class="w"> </span><span class="kn">import</span> <span class="n">word_tokenize</span><span class="p">,</span> <span class="n">sent_tokenize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nltk.corpus</span><span class="w"> </span><span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="c1"># Descargamos recursos de NLTK si es necesario</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt_tab&#39;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✓ Bibliotecas importadas correctamente&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✓ Bibliotecas importadas correctamente
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="leyendo-documentos-pdf">
+<h2><span class="section-number">25.4. </span>Leyendo Documentos PDF<a class="headerlink" href="#leyendo-documentos-pdf" title="Link to this heading">#</a></h2>
+<section id="metodo-basico-pdfreader">
+<h3><span class="section-number">25.4.1. </span>Método básico: PdfReader<a class="headerlink" href="#metodo-basico-pdfreader" title="Link to this heading">#</a></h3>
+<p>La clase <code class="docutils literal notranslate"><span class="pre">PdfReader</span></code> de PyPDF2 nos permite abrir un archivo PDF y extraer su contenido página por página.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">leer_pdf</span><span class="p">(</span><span class="n">ruta_archivo</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Lee un archivo PDF y extrae todo su texto.</span>
+<span class="sd">    </span>
+<span class="sd">    Parámetros:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    ruta_archivo : str</span>
+<span class="sd">        Ruta al archivo PDF</span>
+<span class="sd">    </span>
+<span class="sd">    Retorna:</span>
+<span class="sd">    --------</span>
+<span class="sd">    str : Texto completo del documento</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Abrimos el archivo PDF</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ruta_archivo</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">archivo</span><span class="p">:</span>
+            <span class="c1"># Creamos el lector de PDF</span>
+            <span class="n">lector</span> <span class="o">=</span> <span class="n">PdfReader</span><span class="p">(</span><span class="n">archivo</span><span class="p">)</span>
+            
+            <span class="c1"># Variable para almacenar todo el texto</span>
+            <span class="n">texto_completo</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            
+            <span class="c1"># Iteramos por cada página</span>
+            <span class="k">for</span> <span class="n">num_pagina</span><span class="p">,</span> <span class="n">pagina</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lector</span><span class="o">.</span><span class="n">pages</span><span class="p">):</span>
+                <span class="n">texto_pagina</span> <span class="o">=</span> <span class="n">pagina</span><span class="o">.</span><span class="n">extract_text</span><span class="p">()</span>
+                <span class="n">texto_completo</span> <span class="o">+=</span> <span class="n">texto_pagina</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+            
+            <span class="k">return</span> <span class="n">texto_completo</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lector</span><span class="o">.</span><span class="n">pages</span><span class="p">)</span>
+            
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: No se encontró el archivo &#39;</span><span class="si">{</span><span class="n">ruta_archivo</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al leer el PDF: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="el-discurso-de-reagan-texto-para-analisis">
+<h3><span class="section-number">25.4.2. </span>El Discurso de Reagan: Texto para Análisis<a class="headerlink" href="#el-discurso-de-reagan-texto-para-analisis" title="Link to this heading">#</a></h3>
+<p>Para este ejercicio, trabajaremos con el texto del discurso inaugural de Reagan. El siguiente es un fragmento significativo del discurso original traducido al español:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Discurso Inaugural de Ronald Reagan (20 de enero de 1981)</span>
+<span class="c1"># Traducción al español de fragmentos clave</span>
+
+<span class="n">discurso_reagan</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Los negocios de nuestra nación siguen adelante. Estados Unidos se enfrenta a una </span>
+<span class="s2">crisis económica de enormes proporciones. Sufrimos la inflación sostenida más larga </span>
+<span class="s2">y una de las peores de nuestra historia. Distorsiona nuestras decisiones económicas, </span>
+<span class="s2">penaliza el ahorro y aplasta por igual a los jóvenes con dificultades económicas y </span>
+<span class="s2">a los ancianos con ingresos fijos. Amenaza con destrozar la vida de millones de </span>
+<span class="s2">nuestros ciudadanos.</span>
+
+<span class="s2">Las industrias ociosas han sumido a los trabajadores en el desempleo, la miseria y </span>
+<span class="s2">la indignidad personal. A quienes trabajan se les niega una remuneración justa por </span>
+<span class="s2">su labor debido a un sistema tributario que penaliza el éxito y nos impide mantener </span>
+<span class="s2">la plena productividad.</span>
+
+<span class="s2">En la crisis actual, el gobierno no es la solución a nuestro problema; el gobierno </span>
+<span class="s2">es el problema. De vez en cuando hemos caído en la tentación de creer que la sociedad </span>
+<span class="s2">se ha vuelto demasiado compleja para ser gestionada por el autogobierno, que el </span>
+<span class="s2">gobierno de una élite es superior al gobierno para, por y del pueblo.</span>
+
+<span class="s2">Se habla mucho de grupos de interés. Pues bien, nuestra preocupación debe ser por </span>
+<span class="s2">un grupo de interés que ha sido desatendido durante demasiado tiempo. No conoce </span>
+<span class="s2">fronteras sectoriales ni divisiones étnicas ni raciales, y trasciende las fronteras </span>
+<span class="s2">de los partidos políticos. Está formado por hombres y mujeres que cultivan nuestros </span>
+<span class="s2">alimentos, patrullan nuestras calles, trabajan en nuestras minas y fábricas, educan </span>
+<span class="s2">a nuestros hijos, mantienen nuestros hogares y nos curan cuando enfermamos: </span>
+<span class="s2">profesionales, industriales, comerciantes, oficinistas, taxistas y camioneros. </span>
+<span class="s2">En resumen, son «Nosotros, el pueblo», esta raza llamada estadounidenses.</span>
+
+<span class="s2">El objetivo de esta administración será una economía sana, vigorosa y en crecimiento </span>
+<span class="s2">que brinde igualdad de oportunidades a todos los estadounidenses, sin barreras </span>
+<span class="s2">derivadas de la intolerancia ni la discriminación. Poner a Estados Unidos a trabajar </span>
+<span class="s2">de nuevo significa que todos los estadounidenses vuelvan a trabajar. Acabar con la </span>
+<span class="s2">inflación significa liberar a todos los estadounidenses del terror del descontrol </span>
+<span class="s2">del costo de vida.</span>
+
+<span class="s2">Somos una nación con gobierno, no al revés. Y esto nos hace especiales entre las </span>
+<span class="s2">naciones de la Tierra. Nuestro gobierno no tiene más poder que el que le otorga el </span>
+<span class="s2">pueblo. Es hora de frenar y revertir el crecimiento del gobierno, que muestra signos </span>
+<span class="s2">de haber crecido sin el consentimiento de los gobernados.</span>
+
+<span class="s2">Mi intención es limitar el tamaño y la influencia del establishment federal y exigir </span>
+<span class="s2">que se reconozca la distinción entre los poderes otorgados al Gobierno Federal y los </span>
+<span class="s2">reservados a los Estados o al pueblo. Es necesario recordar a todos que el Gobierno </span>
+<span class="s2">Federal no creó a los Estados; los Estados crearon al Gobierno Federal.</span>
+
+<span class="s2">Si buscamos la respuesta a por qué durante tantos años logramos tanto y prosperamos </span>
+<span class="s2">como ningún otro pueblo de la Tierra, fue porque aquí, en esta tierra, desatamos la </span>
+<span class="s2">energía y el genio individual del hombre como nunca antes. La libertad y la dignidad </span>
+<span class="s2">del individuo han estado más disponibles y garantizadas aquí que en cualquier otro </span>
+<span class="s2">lugar de la Tierra.</span>
+
+<span class="s2">Es hora de que nos demos cuenta de que somos una nación demasiado grande como para </span>
+<span class="s2">limitarnos a pequeños sueños. No estamos, como algunos quieren hacernos creer, </span>
+<span class="s2">condenados a una decadencia inevitable. No creo en un destino que nos caerá encima </span>
+<span class="s2">hagamos lo que hagamos. Sí creo en un destino que nos caerá encima si no hacemos nada.</span>
+
+<span class="s2">Tenemos todo el derecho a soñar con héroes. Quienes dicen que vivimos en una época </span>
+<span class="s2">donde no hay héroes, simplemente no saben dónde buscar. Se ven héroes a diario </span>
+<span class="s2">entrando y saliendo de las fábricas. Hay emprendedores con fe en sí mismos y en una </span>
+<span class="s2">idea que crean nuevos empleos, nueva riqueza y oportunidades.</span>
+
+<span class="s2">Con aquellos vecinos y aliados que comparten nuestra libertad, fortaleceremos nuestros </span>
+<span class="s2">lazos históricos y les aseguraremos nuestro apoyo y firme compromiso. En cuanto a los </span>
+<span class="s2">enemigos de la libertad, aquellos que son adversarios potenciales, se les recordará </span>
+<span class="s2">que la paz es la mayor aspiración del pueblo estadounidense. Negociaremos por ella, </span>
+<span class="s2">nos sacrificaremos por ella; no nos rendiremos por ella, ni ahora ni nunca.</span>
+
+<span class="s2">Nuestra paciencia nunca debe malinterpretarse. Nuestra reticencia al conflicto no </span>
+<span class="s2">debe interpretarse erróneamente como una falta de voluntad. Cuando sea necesario </span>
+<span class="s2">actuar para preservar nuestra seguridad nacional, actuaremos. Mantendremos la fuerza </span>
+<span class="s2">suficiente para prevalecer si es necesario, sabiendo que, si lo hacemos, tendremos </span>
+<span class="s2">la mejor oportunidad de no tener que usarla jamás.</span>
+
+<span class="s2">Sobre todo, debemos comprender que ningún arsenal ni arma en los arsenales del mundo </span>
+<span class="s2">es tan formidable como la voluntad y el coraje moral de hombres y mujeres libres.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longitud del discurso: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">discurso_reagan</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> caracteres&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Longitud del discurso: 4,759 caracteres
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="analisis-completo-del-discurso">
+<h2><span class="section-number">25.5. </span>Análisis Completo del Discurso<a class="headerlink" href="#analisis-completo-del-discurso" title="Link to this heading">#</a></h2>
+<p>Ahora aplicaremos todas las técnicas aprendidas en el capítulo anterior para analizar el discurso de Reagan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">analizar_discurso_historico</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">titulo</span><span class="p">,</span> <span class="n">idioma</span><span class="o">=</span><span class="s1">&#39;spanish&#39;</span><span class="p">,</span> <span class="n">n_palabras</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Realiza un análisis completo de un discurso histórico.</span>
+<span class="sd">    </span>
+<span class="sd">    Parámetros:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    texto : str</span>
+<span class="sd">        El texto del discurso</span>
+<span class="sd">    titulo : str</span>
+<span class="sd">        Título del documento</span>
+<span class="sd">    idioma : str</span>
+<span class="sd">        Idioma para stopwords (&#39;spanish&#39; o &#39;english&#39;)</span>
+<span class="sd">    n_palabras : int</span>
+<span class="sd">        Número de palabras frecuentes a mostrar</span>
+<span class="sd">    </span>
+<span class="sd">    Retorna:</span>
+<span class="sd">    --------</span>
+<span class="sd">    dict : Diccionario con todos los resultados del análisis</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Configuración de stopwords</span>
+    <span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="n">idioma</span><span class="p">))</span>
+    
+    <span class="c1"># Stopwords adicionales para discursos políticos</span>
+    <span class="n">stopwords_politicas</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;señores&#39;</span><span class="p">,</span> <span class="s1">&#39;señoras&#39;</span><span class="p">,</span> <span class="s1">&#39;ustedes&#39;</span><span class="p">,</span> <span class="s1">&#39;nosotros&#39;</span><span class="p">,</span> <span class="s1">&#39;nuestro&#39;</span><span class="p">,</span> <span class="s1">&#39;nuestra&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;nuestros&#39;</span><span class="p">,</span> <span class="s1">&#39;nuestras&#39;</span><span class="p">,</span> <span class="s1">&#39;hoy&#39;</span><span class="p">,</span> <span class="s1">&#39;ahora&#39;</span><span class="p">,</span> <span class="s1">&#39;bien&#39;</span><span class="p">,</span> <span class="s1">&#39;así&#39;</span><span class="p">,</span> <span class="s1">&#39;hace&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;hacer&#39;</span><span class="p">,</span> <span class="s1">&#39;sido&#39;</span><span class="p">,</span> <span class="s1">&#39;ser&#39;</span><span class="p">,</span> <span class="s1">&#39;puede&#39;</span><span class="p">,</span> <span class="s1">&#39;pueden&#39;</span><span class="p">,</span> <span class="s1">&#39;debe&#39;</span><span class="p">,</span> <span class="s1">&#39;deben&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;toda&#39;</span><span class="p">,</span> <span class="s1">&#39;todo&#39;</span><span class="p">,</span> <span class="s1">&#39;todos&#39;</span><span class="p">,</span> <span class="s1">&#39;todas&#39;</span><span class="p">,</span> <span class="s1">&#39;cada&#39;</span><span class="p">,</span> <span class="s1">&#39;más&#39;</span><span class="p">,</span> <span class="s1">&#39;menos&#39;</span>
+    <span class="p">}</span>
+    <span class="n">stop_words</span> <span class="o">=</span> <span class="n">stop_words</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">stopwords_politicas</span><span class="p">)</span>
+    
+    <span class="c1"># Tokenización</span>
+    <span class="n">oraciones</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="n">idioma</span><span class="p">)</span>
+    <span class="n">palabras</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="n">idioma</span><span class="p">)</span>
+    <span class="n">solo_palabras</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">palabras</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()]</span>
+    <span class="n">palabras_lower</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">solo_palabras</span><span class="p">]</span>
+    
+    <span class="c1"># Filtrado de stopwords</span>
+    <span class="n">palabras_filtradas</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">palabras_lower</span> <span class="k">if</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>
+    
+    <span class="c1"># Frecuencias</span>
+    <span class="n">frecuencias</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">palabras_filtradas</span><span class="p">)</span>
+    <span class="n">palabras_unicas</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">palabras_lower</span><span class="p">)</span>
+    
+    <span class="c1"># Cálculos adicionales</span>
+    <span class="n">promedio_palabras</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">solo_palabras</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">oraciones</span><span class="p">)</span> <span class="k">if</span> <span class="n">oraciones</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="n">riqueza_lexica</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">palabras_unicas</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">palabras_lower</span><span class="p">)</span> <span class="k">if</span> <span class="n">palabras_lower</span> <span class="k">else</span> <span class="mi">0</span>
+    
+    <span class="c1"># Mostrar resultados</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;═&quot;</span><span class="o">*</span><span class="mi">70</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; ANÁLISIS DEL DISCURSO: </span><span class="si">{</span><span class="n">titulo</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;═&quot;</span><span class="o">*</span><span class="mi">70</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📊 ESTADÍSTICAS GENERALES&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Caracteres totales:     </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">texto</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Número de oraciones:    </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">oraciones</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Palabras totales:       </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">solo_palabras</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Palabras únicas:        </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">palabras_unicas</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Promedio palabras/oración: </span><span class="si">{</span><span class="n">promedio_palabras</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Riqueza léxica:         </span><span class="si">{</span><span class="n">riqueza_lexica</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📝 TOP </span><span class="si">{</span><span class="n">n_palabras</span><span class="si">}</span><span class="s2"> PALABRAS MÁS FRECUENTES&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">palabra</span><span class="p">,</span> <span class="n">freq</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">frecuencias</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="n">n_palabras</span><span class="p">),</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">barra</span> <span class="o">=</span> <span class="s2">&quot;█&quot;</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   </span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">2</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">palabra</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">barra</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">freq</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Retornamos los datos</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;titulo&#39;</span><span class="p">:</span> <span class="n">titulo</span><span class="p">,</span>
+        <span class="s1">&#39;caracteres&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">texto</span><span class="p">),</span>
+        <span class="s1">&#39;oraciones&#39;</span><span class="p">:</span> <span class="n">oraciones</span><span class="p">,</span>
+        <span class="s1">&#39;num_oraciones&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">oraciones</span><span class="p">),</span>
+        <span class="s1">&#39;palabras_totales&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">solo_palabras</span><span class="p">),</span>
+        <span class="s1">&#39;palabras_unicas&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">palabras_unicas</span><span class="p">),</span>
+        <span class="s1">&#39;promedio_palabras&#39;</span><span class="p">:</span> <span class="n">promedio_palabras</span><span class="p">,</span>
+        <span class="s1">&#39;riqueza_lexica&#39;</span><span class="p">:</span> <span class="n">riqueza_lexica</span><span class="p">,</span>
+        <span class="s1">&#39;frecuencias&#39;</span><span class="p">:</span> <span class="n">frecuencias</span><span class="p">,</span>
+        <span class="s1">&#39;palabras_filtradas&#39;</span><span class="p">:</span> <span class="n">palabras_filtradas</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Analizamos el discurso de Reagan</span>
+<span class="n">resultado_reagan</span> <span class="o">=</span> <span class="n">analizar_discurso_historico</span><span class="p">(</span>
+    <span class="n">texto</span><span class="o">=</span><span class="n">discurso_reagan</span><span class="p">,</span>
+    <span class="n">titulo</span><span class="o">=</span><span class="s2">&quot;Discurso Inaugural de Ronald Reagan (1981)&quot;</span><span class="p">,</span>
+    <span class="n">idioma</span><span class="o">=</span><span class="s1">&#39;spanish&#39;</span><span class="p">,</span>
+    <span class="n">n_palabras</span><span class="o">=</span><span class="mi">15</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>══════════════════════════════════════════════════════════════════════
+ ANÁLISIS DEL DISCURSO: DISCURSO INAUGURAL DE RONALD REAGAN (1981)
+══════════════════════════════════════════════════════════════════════
+
+📊 ESTADÍSTICAS GENERALES
+----------------------------------------
+   Caracteres totales:     4,759
+   Número de oraciones:    41
+   Palabras totales:       750
+   Palabras únicas:        363
+   Promedio palabras/oración: 18.3
+   Riqueza léxica:         48.40%
+
+📝 TOP 15 PALABRAS MÁS FRECUENTES
+----------------------------------------
+    1. gobierno        ██████████ (10)
+    2. pueblo          ██████ (6)
+    3. estadounidenses ████ (4)
+    4. tierra          ████ (4)
+    5. federal         ████ (4)
+    6. si              ████ (4)
+    7. nación          ███ (3)
+    8. demasiado       ███ (3)
+    9. necesario       ███ (3)
+   10. nunca           ███ (3)
+   11. libertad        ███ (3)
+   12. héroes          ███ (3)
+   13. unidos          ██ (2)
+   14. crisis          ██ (2)
+   15. inflación       ██ (2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="seealso admonition">
+<p class="admonition-title">Interpretación Histórica</p>
+<p>Las palabras más frecuentes en el discurso de Reagan revelan sus <strong>ejes temáticos principales</strong>:</p>
+<ul class="simple">
+<li><p><strong>“gobierno”</strong>: Tema central del discurso, criticado como “el problema”</p></li>
+<li><p><strong>“libertad”</strong>: Valor fundamental del conservadurismo reaganiano</p></li>
+<li><p><strong>“pueblo”</strong>: Apelación populista a “Nosotros, el pueblo”</p></li>
+<li><p><strong>“nación”</strong>: Discurso nacionalista y patriótico</p></li>
+<li><p><strong>“Estados Unidos”</strong>: Excepcionalismo americano</p></li>
+</ul>
+<p>Este análisis cuantitativo confirma la interpretación histórica: Reagan construyó un discurso que contraponía al “pueblo trabajador” contra el “gobierno grande”, estableciendo las bases ideológicas del neoliberalismo estadounidense.</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="busqueda-de-palabras-clave-y-frases">
+<h2><span class="section-number">25.6. </span>Búsqueda de Palabras Clave y Frases<a class="headerlink" href="#busqueda-de-palabras-clave-y-frases" title="Link to this heading">#</a></h2>
+<p>Una tarea esencial en el análisis de documentos históricos es buscar términos específicos y analizar su contexto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">buscar_palabras_clave</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">palabras_clave</span><span class="p">,</span> <span class="n">contexto</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Busca múltiples palabras clave en un texto y muestra estadísticas.</span>
+<span class="sd">    </span>
+<span class="sd">    Parámetros:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    texto : str</span>
+<span class="sd">        El texto donde buscar</span>
+<span class="sd">    palabras_clave : list</span>
+<span class="sd">        Lista de palabras a buscar</span>
+<span class="sd">    contexto : int</span>
+<span class="sd">        Caracteres de contexto a mostrar</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">texto_lower</span> <span class="o">=</span> <span class="n">texto</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; BÚSQUEDA DE PALABRAS CLAVE&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+    
+    <span class="n">resultados</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="k">for</span> <span class="n">palabra</span> <span class="ow">in</span> <span class="n">palabras_clave</span><span class="p">:</span>
+        <span class="n">palabra_lower</span> <span class="o">=</span> <span class="n">palabra</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="n">ocurrencias</span> <span class="o">=</span> <span class="n">texto_lower</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">palabra_lower</span><span class="p">)</span>
+        <span class="n">resultados</span><span class="p">[</span><span class="n">palabra</span><span class="p">]</span> <span class="o">=</span> <span class="n">ocurrencias</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔍 &#39;</span><span class="si">{</span><span class="n">palabra</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">ocurrencias</span><span class="si">}</span><span class="s2"> ocurrencias&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">ocurrencias</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># Mostramos la primera ocurrencia con contexto</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="n">texto_lower</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">palabra_lower</span><span class="p">)</span>
+            <span class="n">inicio</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pos</span> <span class="o">-</span> <span class="n">contexto</span><span class="p">)</span>
+            <span class="n">fin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">texto</span><span class="p">),</span> <span class="n">pos</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">palabra</span><span class="p">)</span> <span class="o">+</span> <span class="n">contexto</span><span class="p">)</span>
+            <span class="n">fragmento</span> <span class="o">=</span> <span class="n">texto</span><span class="p">[</span><span class="n">inicio</span><span class="p">:</span><span class="n">fin</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Contexto: ...</span><span class="si">{</span><span class="n">fragmento</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">resultados</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Palabras clave relevantes para el análisis del discurso de Reagan</span>
+<span class="n">palabras_clave_reagan</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;gobierno&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;libertad&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pueblo&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;crisis&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;inflación&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;economía&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;héroes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Estados&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;paz&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;enemigos&#39;</span>
+<span class="p">]</span>
+
+<span class="n">resultados_busqueda</span> <span class="o">=</span> <span class="n">buscar_palabras_clave</span><span class="p">(</span><span class="n">discurso_reagan</span><span class="p">,</span> <span class="n">palabras_clave_reagan</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+ BÚSQUEDA DE PALABRAS CLAVE
+============================================================
+
+🔍 &#39;gobierno&#39;: 11 ocurrencias
+   Contexto: ...l éxito y nos impide mantener  la plena productividad.  En la crisis actual, el gobierno no es la solución a nuestro problema; el gobierno  es el problema. De vez en cu...
+
+🔍 &#39;libertad&#39;: 3 ocurrencias
+   Contexto: ...ra, desatamos la  energía y el genio individual del hombre como nunca antes. La libertad y la dignidad  del individuo han estado más disponibles y garantizadas aquí que...
+
+🔍 &#39;pueblo&#39;: 6 ocurrencias
+   Contexto: ...gobierno, que el  gobierno de una élite es superior al gobierno para, por y del pueblo.  Se habla mucho de grupos de interés. Pues bien, nuestra preocupación debe ser...
+
+🔍 &#39;crisis&#39;: 2 ocurrencias
+   Contexto: ...s negocios de nuestra nación siguen adelante. Estados Unidos se enfrenta a una  crisis económica de enormes proporciones. Sufrimos la inflación sostenida más larga  y...
+
+🔍 &#39;inflación&#39;: 2 ocurrencias
+   Contexto: ...Unidos se enfrenta a una  crisis económica de enormes proporciones. Sufrimos la inflación sostenida más larga  y una de las peores de nuestra historia. Distorsiona nuest...
+
+🔍 &#39;economía&#39;: 1 ocurrencias
+   Contexto: ...esta raza llamada estadounidenses.  El objetivo de esta administración será una economía sana, vigorosa y en crecimiento  que brinde igualdad de oportunidades a todos l...
+
+🔍 &#39;héroes&#39;: 3 ocurrencias
+   Contexto: ...o que nos caerá encima si no hacemos nada.  Tenemos todo el derecho a soñar con héroes. Quienes dicen que vivimos en una época  donde no hay héroes, simplemente no sa...
+
+🔍 &#39;Estados&#39;: 5 ocurrencias
+   Contexto: ...Los negocios de nuestra nación siguen adelante. Estados Unidos se enfrenta a una  crisis económica de enormes proporciones. Sufrimos la...
+
+🔍 &#39;paz&#39;: 1 ocurrencias
+   Contexto: ...la libertad, aquellos que son adversarios potenciales, se les recordará  que la paz es la mayor aspiración del pueblo estadounidense. Negociaremos por ella,  nos s...
+
+🔍 &#39;enemigos&#39;: 1 ocurrencias
+   Contexto: ...istóricos y les aseguraremos nuestro apoyo y firme compromiso. En cuanto a los  enemigos de la libertad, aquellos que son adversarios potenciales, se les recordará  que...
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="analisis-de-oraciones-especificas">
+<h2><span class="section-number">25.7. </span>Análisis de Oraciones Específicas<a class="headerlink" href="#analisis-de-oraciones-especificas" title="Link to this heading">#</a></h2>
+<p>Podemos buscar las oraciones que contienen ciertos términos para un análisis más profundo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">encontrar_oraciones_con_palabra</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">palabra</span><span class="p">,</span> <span class="n">idioma</span><span class="o">=</span><span class="s1">&#39;spanish&#39;</span><span class="p">,</span> <span class="n">max_oraciones</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Encuentra todas las oraciones que contienen una palabra específica.</span>
+<span class="sd">    </span>
+<span class="sd">    Parámetros:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    texto : str</span>
+<span class="sd">        El texto a analizar</span>
+<span class="sd">    palabra : str</span>
+<span class="sd">        La palabra a buscar</span>
+<span class="sd">    idioma : str</span>
+<span class="sd">        Idioma para tokenización</span>
+<span class="sd">    max_oraciones : int</span>
+<span class="sd">        Máximo de oraciones a mostrar</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">oraciones</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="n">idioma</span><span class="p">)</span>
+    <span class="n">palabra_lower</span> <span class="o">=</span> <span class="n">palabra</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    
+    <span class="n">oraciones_encontradas</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">oracion</span> <span class="ow">in</span> <span class="n">oraciones</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">palabra_lower</span> <span class="ow">in</span> <span class="n">oracion</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">oraciones_encontradas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">oracion</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📖 Oraciones que contienen &#39;</span><span class="si">{</span><span class="n">palabra</span><span class="si">}</span><span class="s2">&#39;:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   (Encontradas: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">oraciones_encontradas</span><span class="p">)</span><span class="si">}</span><span class="s2"> de </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">oraciones</span><span class="p">)</span><span class="si">}</span><span class="s2"> oraciones)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">oracion</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">oraciones_encontradas</span><span class="p">[:</span><span class="n">max_oraciones</span><span class="p">],</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># Limpiamos la oración</span>
+        <span class="n">oracion_limpia</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">oracion</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">   </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">oracion_limpia</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">oraciones_encontradas</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_oraciones</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">   ... y </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">oraciones_encontradas</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">max_oraciones</span><span class="si">}</span><span class="s2"> oraciones más.&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">oraciones_encontradas</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Buscamos oraciones con palabras clave del discurso de Reagan</span>
+<span class="n">oraciones_gobierno</span> <span class="o">=</span> <span class="n">encontrar_oraciones_con_palabra</span><span class="p">(</span><span class="n">discurso_reagan</span><span class="p">,</span> <span class="s2">&quot;gobierno&quot;</span><span class="p">)</span>
+<span class="n">oraciones_libertad</span> <span class="o">=</span> <span class="n">encontrar_oraciones_con_palabra</span><span class="p">(</span><span class="n">discurso_reagan</span><span class="p">,</span> <span class="s2">&quot;libertad&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>📖 Oraciones que contienen &#39;gobierno&#39;:
+   (Encontradas: 7 de 41 oraciones)
+------------------------------------------------------------
+
+   1. En la crisis actual, el gobierno no es la solución a nuestro problema; el gobierno es el problema.
+
+   2. De vez en cuando hemos caído en la tentación de creer que la sociedad se ha vuelto demasiado compleja para ser gestionada por el autogobierno, que el gobierno de una élite es superior al gobierno para, por y del pueblo.
+
+   3. Somos una nación con gobierno, no al revés.
+
+   4. Nuestro gobierno no tiene más poder que el que le otorga el pueblo.
+
+   5. Es hora de frenar y revertir el crecimiento del gobierno, que muestra signos de haber crecido sin el consentimiento de los gobernados.
+
+   ... y 2 oraciones más.
+
+📖 Oraciones que contienen &#39;libertad&#39;:
+   (Encontradas: 3 de 41 oraciones)
+------------------------------------------------------------
+
+   1. La libertad y la dignidad del individuo han estado más disponibles y garantizadas aquí que en cualquier otro lugar de la Tierra.
+
+   2. Con aquellos vecinos y aliados que comparten nuestra libertad, fortaleceremos nuestros lazos históricos y les aseguraremos nuestro apoyo y firme compromiso.
+
+   3. En cuanto a los enemigos de la libertad, aquellos que son adversarios potenciales, se les recordará que la paz es la mayor aspiración del pueblo estadounidense.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="comparacion-de-discursos-reagan-vs-bello">
+<h2><span class="section-number">25.8. </span>Comparación de Discursos: Reagan vs. Bello<a class="headerlink" href="#comparacion-de-discursos-reagan-vs-bello" title="Link to this heading">#</a></h2>
+<p>Una aplicación poderosa del análisis de texto es la <strong>comparación entre documentos históricos</strong> de diferentes épocas y contextos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fragmento del discurso de Andrés Bello para comparación</span>
+<span class="n">discurso_bello_fragmento</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">La Universidad, señores, no sería digna de ocupar un lugar en nuestras instituciones </span>
+<span class="s2">sociales, si el cultivo de las ciencias y de las letras pudiese mirarse como peligroso </span>
+<span class="s2">bajo un punto de vista moral, o bajo un punto de vista político. La moral es la vida </span>
+<span class="s2">misma de la sociedad; la libertad es el estímulo que da un vigor sano y una actividad </span>
+<span class="s2">fecunda a las instituciones sociales.</span>
+
+<span class="s2">Las ciencias y las letras, fuera de ese valor social, fuera de esta importancia que </span>
+<span class="s2">podemos llamar instrumental, tienen un mérito suyo, intrínseco, en cuanto aumentan </span>
+<span class="s2">los placeres y goces del individuo que las cultiva y las ama.</span>
+
+<span class="s2">La Universidad estudiará también las especialidades de la sociedad chilena bajo el </span>
+<span class="s2">punto de vista económico. Porque en este, como en los otros ramos, el programa de la </span>
+<span class="s2">Universidad es enteramente chileno: si toma prestadas a la Europa las deducciones </span>
+<span class="s2">de la ciencia, es para aplicarlas a Chile. Todas las sendas convergen a un centro: </span>
+<span class="s2">la patria.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Analizamos ambos discursos</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">70</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; COMPARACIÓN DE DISCURSOS HISTÓRICOS&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">70</span><span class="p">)</span>
+
+<span class="n">resultado_bello</span> <span class="o">=</span> <span class="n">analizar_discurso_historico</span><span class="p">(</span>
+    <span class="n">texto</span><span class="o">=</span><span class="n">discurso_bello_fragmento</span><span class="p">,</span>
+    <span class="n">titulo</span><span class="o">=</span><span class="s2">&quot;Discurso de Andrés Bello (1843)&quot;</span><span class="p">,</span>
+    <span class="n">n_palabras</span><span class="o">=</span><span class="mi">10</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>======================================================================
+ COMPARACIÓN DE DISCURSOS HISTÓRICOS
+======================================================================
+
+══════════════════════════════════════════════════════════════════════
+ ANÁLISIS DEL DISCURSO: DISCURSO DE ANDRÉS BELLO (1843)
+══════════════════════════════════════════════════════════════════════
+
+📊 ESTADÍSTICAS GENERALES
+----------------------------------------
+   Caracteres totales:     967
+   Número de oraciones:    6
+   Palabras totales:       163
+   Palabras únicas:        92
+   Promedio palabras/oración: 27.2
+   Riqueza léxica:         56.44%
+
+📝 TOP 10 PALABRAS MÁS FRECUENTES
+----------------------------------------
+    1. universidad     ███ (3)
+    2. bajo            ███ (3)
+    3. punto           ███ (3)
+    4. vista           ███ (3)
+    5. instituciones   ██ (2)
+    6. sociales        ██ (2)
+    7. si              ██ (2)
+    8. ciencias        ██ (2)
+    9. letras          ██ (2)
+   10. moral           ██ (2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tabla comparativa</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">70</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; TABLA COMPARATIVA: BELLO vs REAGAN&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">70</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;Métrica&#39;</span><span class="si">:</span><span class="s2">&lt;30</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Bello (1843)&#39;</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Reagan (1981)&#39;</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">70</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Año del discurso&#39;</span><span class="si">:</span><span class="s2">&lt;30</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;1843&#39;</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;1981&#39;</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;País&#39;</span><span class="si">:</span><span class="s2">&lt;30</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Chile&#39;</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Estados Unidos&#39;</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Ocasión&#39;</span><span class="si">:</span><span class="s2">&lt;30</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Universidad&#39;</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Inauguración&#39;</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Oraciones&#39;</span><span class="si">:</span><span class="s2">&lt;30</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">resultado_bello</span><span class="p">[</span><span class="s1">&#39;num_oraciones&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">resultado_reagan</span><span class="p">[</span><span class="s1">&#39;num_oraciones&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Palabras totales&#39;</span><span class="si">:</span><span class="s2">&lt;30</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">resultado_bello</span><span class="p">[</span><span class="s1">&#39;palabras_totales&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;20,</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">resultado_reagan</span><span class="p">[</span><span class="s1">&#39;palabras_totales&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;20,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Palabras únicas&#39;</span><span class="si">:</span><span class="s2">&lt;30</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">resultado_bello</span><span class="p">[</span><span class="s1">&#39;palabras_unicas&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;20,</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">resultado_reagan</span><span class="p">[</span><span class="s1">&#39;palabras_unicas&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;20,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Promedio palabras/oración&#39;</span><span class="si">:</span><span class="s2">&lt;30</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">resultado_bello</span><span class="p">[</span><span class="s1">&#39;promedio_palabras&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;20.1f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">resultado_reagan</span><span class="p">[</span><span class="s1">&#39;promedio_palabras&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;20.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Riqueza léxica&#39;</span><span class="si">:</span><span class="s2">&lt;30</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">resultado_bello</span><span class="p">[</span><span class="s1">&#39;riqueza_lexica&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;20.2%</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">resultado_reagan</span><span class="p">[</span><span class="s1">&#39;riqueza_lexica&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;20.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>======================================================================
+ TABLA COMPARATIVA: BELLO vs REAGAN
+======================================================================
+
+Métrica                        Bello (1843)         Reagan (1981)       
+----------------------------------------------------------------------
+Año del discurso               1843                 1981                
+País                           Chile                Estados Unidos      
+Ocasión                        Universidad          Inauguración        
+Oraciones                      6                    41                  
+Palabras totales               163                  750                 
+Palabras únicas                92                   363                 
+Promedio palabras/oración      27.2                 18.3                
+Riqueza léxica                 56.44%               48.40%              
+</pre></div>
+</div>
+</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Interpretación Comparativa</p>
+<p>La comparación entre los discursos de <strong>Bello (1843)</strong> y <strong>Reagan (1981)</strong> revela diferencias estilísticas y temáticas significativas:</p>
+<p><strong>Diferencias estilísticas:</strong></p>
+<ul class="simple">
+<li><p>Bello usa oraciones más largas y elaboradas (estilo académico del siglo XIX)</p></li>
+<li><p>Reagan emplea oraciones más cortas y directas (retórica política moderna)</p></li>
+</ul>
+<p><strong>Diferencias temáticas:</strong></p>
+<ul class="simple">
+<li><p><strong>Bello</strong>: Ciencias, letras, universidad, moral, patria → Enfoque en educación y conocimiento</p></li>
+<li><p><strong>Reagan</strong>: Gobierno, libertad, pueblo, crisis, economía → Enfoque en política y economía</p></li>
+</ul>
+<p><strong>Similitudes:</strong></p>
+<ul class="simple">
+<li><p>Ambos apelan al concepto de “libertad”</p></li>
+<li><p>Ambos tienen un fuerte componente nacionalista (“patria”, “nación”)</p></li>
+<li><p>Ambos buscan definir el rol del Estado en la sociedad</p></li>
+</ul>
+</div>
+</section>
+<hr class="docutils" />
+<section id="actividad-de-cierre">
+<h2><span class="section-number">25.9. </span>Actividad de Cierre<a class="headerlink" href="#actividad-de-cierre" title="Link to this heading">#</a></h2>
+<div class="important admonition">
+<p class="admonition-title">Instrucciones</p>
+<p>Realiza los siguientes ejercicios para practicar el análisis de documentos PDF y textos históricos.</p>
+</div>
+<section id="ejercicio-1-analisis-de-frases-celebres">
+<h3><span class="section-number">25.9.1. </span>Ejercicio 1: Análisis de frases célebres<a class="headerlink" href="#ejercicio-1-analisis-de-frases-celebres" title="Link to this heading">#</a></h3>
+<p>La frase más famosa del discurso de Reagan es: <em>“El gobierno no es la solución a nuestro problema; el gobierno es el problema.”</em></p>
+<p>Busca esta frase en el texto y analiza las 3 oraciones que la rodean (anterior y posterior) para entender su contexto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribe tu código aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-2-palabras-unicas-de-cada-discurso">
+<h3><span class="section-number">25.9.2. </span>Ejercicio 2: Palabras únicas de cada discurso<a class="headerlink" href="#ejercicio-2-palabras-unicas-de-cada-discurso" title="Link to this heading">#</a></h3>
+<p>Encuentra las palabras que aparecen <strong>solo en el discurso de Reagan</strong> y <strong>solo en el discurso de Bello</strong> (excluyendo stopwords). ¿Qué revelan sobre cada orador?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribe tu código aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-3-crea-tu-propia-funcion-de-analisis">
+<h3><span class="section-number">25.9.3. </span>Ejercicio 3: Crea tu propia función de análisis<a class="headerlink" href="#ejercicio-3-crea-tu-propia-funcion-de-analisis" title="Link to this heading">#</a></h3>
+<p>Crea una función llamada <code class="docutils literal notranslate"><span class="pre">generar_resumen_discurso()</span></code> que reciba un texto y devuelva:</p>
+<ul class="simple">
+<li><p>Las 3 oraciones más largas del discurso</p></li>
+<li><p>Las 3 oraciones más cortas del discurso</p></li>
+<li><p>La oración que contiene más palabras clave de una lista dada</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribe tu código aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="resumen-del-capitulo">
+<h2><span class="section-number">25.10. </span>Resumen del Capítulo<a class="headerlink" href="#resumen-del-capitulo" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concepto</p></th>
+<th class="head"><p>Descripción</p></th>
+<th class="head"><p>Biblioteca/Función</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Lectura de PDF</p></td>
+<td><p>Extraer texto de archivos PDF</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PyPDF2.PdfReader()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Análisis de discursos</p></td>
+<td><p>Estadísticas y frecuencias</p></td>
+<td><p>Funciones personalizadas</p></td>
+</tr>
+<tr class="row-even"><td><p>Búsqueda de palabras</p></td>
+<td><p>Localizar términos en textos</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str.count()</span></code>, <code class="docutils literal notranslate"><span class="pre">str.find()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Comparación de textos</p></td>
+<td><p>Analizar diferencias entre documentos</p></td>
+<td><p>Counter, sets</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="seealso admonition">
+<p class="admonition-title">Proyecto Final Sugerido</p>
+<p>Como proyecto integrador, podrías:</p>
+<ol class="arabic simple">
+<li><p>Descargar 3-5 discursos presidenciales chilenos de diferentes épocas</p></li>
+<li><p>Aplicar todas las técnicas aprendidas para analizarlos</p></li>
+<li><p>Crear un informe comparativo que muestre la evolución del lenguaje político chileno</p></li>
+<li><p>Identificar qué temas han sido constantes y cuáles han cambiado</p></li>
+</ol>
+</div>
+</section>
+<hr class="docutils" />
+<section id="referencias">
+<h2><span class="section-number">25.11. </span>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Bird, S., Klein, E., &amp; Loper, E. (2009). <em>Natural Language Processing with Python</em>. O’Reilly Media.</p></li>
+<li><p>Harari, Y. N. (2016). <em>Homo Deus: Breve historia del mañana</em>. Debate.</p></li>
+<li><p>PyPDF2 Documentation. (2024). <em>PyPDF2 - A Python library to work with PDF files</em>. <a class="reference external" href="https://pypdf2.readthedocs.io/">https://pypdf2.readthedocs.io/</a></p></li>
+<li><p>Reagan, R. (1981). <em>Inaugural Address</em>. The American Presidency Project. <a class="reference external" href="https://www.presidency.ucsb.edu/documents/inaugural-address-11">https://www.presidency.ucsb.edu/documents/inaugural-address-11</a></p></li>
+<li><p>Reagan Presidential Library. (2024). <em>Speeches and Addresses</em>. <a class="reference external" href="https://www.reaganlibrary.gov/archives/speech/inaugural-address-1981">https://www.reaganlibrary.gov/archives/speech/inaugural-address-1981</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Capitulo_24_Tokenizacion_Stopwords.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">24. </span>Tokenización y Análisis de Texto: Dividiendo el Discurso Histórico</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">25.1. Objetivos de Aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-los-archivos-pdf-en-la-investigacion-historica">25.2. Introducción: Los Archivos PDF en la Investigación Histórica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-historico-el-discurso-inaugural-de-reagan-1981">25.2.1. Contexto Histórico: El Discurso Inaugural de Reagan (1981)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-del-entorno">25.3. Preparación del Entorno</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leyendo-documentos-pdf">25.4. Leyendo Documentos PDF</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-basico-pdfreader">25.4.1. Método básico: PdfReader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-discurso-de-reagan-texto-para-analisis">25.4.2. El Discurso de Reagan: Texto para Análisis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-completo-del-discurso">25.5. Análisis Completo del Discurso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-palabras-clave-y-frases">25.6. Búsqueda de Palabras Clave y Frases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-oraciones-especificas">25.7. Análisis de Oraciones Específicas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-discursos-reagan-vs-bello">25.8. Comparación de Discursos: Reagan vs. Bello</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividad-de-cierre">25.9. Actividad de Cierre</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-analisis-de-frases-celebres">25.9.1. Ejercicio 1: Análisis de frases célebres</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-palabras-unicas-de-cada-discurso">25.9.2. Ejercicio 2: Palabras únicas de cada discurso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-crea-tu-propia-funcion-de-analisis">25.9.3. Ejercicio 3: Crea tu propia función de análisis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-del-capitulo">25.10. Resumen del Capítulo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">25.11. Referencias</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Claudio Rojas Monsalves
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -60,6 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Capitulo_23_Pandas_Avanzado';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="24. Tokenización y Análisis de Texto: Dividiendo el Discurso Histórico" href="Capitulo_24_Tokenizacion_Stopwords.html" />
     <link rel="prev" title="22. Introducción a Pandas" href="Capitulo_22_Introduccion_Pandas.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -207,6 +208,8 @@
 <li class="toctree-l1"><a class="reference internal" href="Capitulo_21_Funciones_Parametros.html">21. Funciones con Parámetros: Organizando el Código Histórico</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Capitulo_22_Introduccion_Pandas.html">22. Introducción a Pandas</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">23. Pandas Avanzado - Filtrado, Agrupación y Análisis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_24_Tokenizacion_Stopwords.html">24. Tokenización y Análisis de Texto: Dividiendo el Discurso Histórico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Capitulo_25_Analisis_PDF.html">25. Análisis de Documentos PDF: Extrayendo Historia de los Archivos</a></li>
 </ul>
 
     </div>
@@ -439,8 +442,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="pandas-avanzado-filtrado-agrupacion-y-analisis">
 <h1><span class="section-number">23. </span>Pandas Avanzado - Filtrado, Agrupación y Análisis<a class="headerlink" href="#pandas-avanzado-filtrado-agrupacion-y-analisis" title="Link to this heading">#</a></h1>
 <blockquote class="epigraph">
-<div><p>“La historia es la suma total de todas aquellas cosas que podrían haberse evitado.”</p>
-<p class="attribution">—Konrad Adenauer, político alemán</p>
+<div><p>“Los algoritmos que actualmente controlan el mundo se pueden dividir en dos grandes familias. Unos procesan datos para entender el mundo; otros procesan datos para tomar decisiones. Los más poderosos hacen ambas cosas.”</p>
+<p class="attribution">—Yuval Noah Harari, <em>Homo Deus</em> (2016)</p>
 </div></blockquote>
 <section id="objetivos-de-aprendizaje">
 <h2><span class="section-number">23.1. </span>Objetivos de Aprendizaje<a class="headerlink" href="#objetivos-de-aprendizaje" title="Link to this heading">#</a></h2>
@@ -2803,23 +2806,23 @@ Name: islmgenpct, dtype: float64
 <div class="docutils container" id="id1">
 <div role="list" class="citation-list">
 <div class="citation" id="id2" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">MH13</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id24">MH13</a><span class="fn-bracket">]</span></span>
 <p>Zeev Maoz and Errol A. Henderson. The world religion dataset, 1945-2010: logic, estimates, and trends. <em>International Interactions</em>, 39(3):265–291, 2013. URL: <a class="reference external" href="https://correlatesofwar.org/data-sets/world-religion-data/">https://correlatesofwar.org/data-sets/world-religion-data/</a>, <a class="reference external" href="https://doi.org/10.1080/03050629.2013.782306">doi:10.1080/03050629.2013.782306</a>.</p>
 </div>
 <div class="citation" id="id4" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">McK22</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id26">McK22</a><span class="fn-bracket">]</span></span>
 <p>Wes McKinney. <em>Python for Data Analysis: Data Wrangling with pandas, NumPy, and Jupyter</em>. O'Reilly Media, Sebastopol, CA, 3rd edition, 2022. ISBN 978-1098104030.</p>
 </div>
 <div class="citation" id="id3" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">pandasdteam24</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id25">pandasdteam24</a><span class="fn-bracket">]</span></span>
 <p>pandas development team. Pandas documentation. 2024. Biblioteca de Python para análisis de datos. URL: <a class="reference external" href="https://pandas.pydata.org/docs/">https://pandas.pydata.org/docs/</a>.</p>
 </div>
 </div>
 </div>
 <ul class="simple">
-<li><p><span id="id6">[<a class="reference internal" href="markdown.html#id3" title="Zeev Maoz and Errol A. Henderson. The world religion dataset, 1945-2010: logic, estimates, and trends. International Interactions, 39(3):265–291, 2013. URL: https://correlatesofwar.org/data-sets/world-religion-data/, doi:10.1080/03050629.2013.782306.">Maoz and Henderson, 2013</a>]</span></p></li>
-<li><p><span id="id7">[<a class="reference internal" href="markdown.html#id4" title="pandas development team. Pandas documentation. 2024. Biblioteca de Python para análisis de datos. URL: https://pandas.pydata.org/docs/.">pandas development team, 2024</a>]</span></p></li>
-<li><p><span id="id8">[<a class="reference internal" href="markdown.html#id5" title="Wes McKinney. Python for Data Analysis: Data Wrangling with pandas, NumPy, and Jupyter. O'Reilly Media, Sebastopol, CA, 3rd edition, 2022. ISBN 978-1098104030.">McKinney, 2022</a>]</span></p></li>
+<li><p><span id="id24">[<a class="reference internal" href="markdown.html#id3" title="Zeev Maoz and Errol A. Henderson. The world religion dataset, 1945-2010: logic, estimates, and trends. International Interactions, 39(3):265–291, 2013. URL: https://correlatesofwar.org/data-sets/world-religion-data/, doi:10.1080/03050629.2013.782306.">Maoz and Henderson, 2013</a>]</span></p></li>
+<li><p><span id="id25">[<a class="reference internal" href="markdown.html#id4" title="pandas development team. Pandas documentation. 2024. Biblioteca de Python para análisis de datos. URL: https://pandas.pydata.org/docs/.">pandas development team, 2024</a>]</span></p></li>
+<li><p><span id="id26">[<a class="reference internal" href="markdown.html#id5" title="Wes McKinney. Python for Data Analysis: Data Wrangling with pandas, NumPy, and Jupyter. O'Reilly Media, Sebastopol, CA, 3rd edition, 2022. ISBN 978-1098104030.">McKinney, 2022</a>]</span></p></li>
 </ul>
 </section>
 </section>
@@ -2862,6 +2865,15 @@ Name: islmgenpct, dtype: float64
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title"><span class="section-number">22. </span>Introducción a Pandas</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="Capitulo_24_Tokenizacion_Stopwords.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">24. </span>Tokenización y Análisis de Texto: Dividiendo el Discurso Histórico</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
