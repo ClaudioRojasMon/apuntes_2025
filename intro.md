@@ -2,6 +2,10 @@
 
 > *"La tecnología es mejor cuando acerca a las personas"* - Matt Mullenweg
 
+# Programando la Historia
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18490458.svg)](https://doi.org/10.5281/zenodo.18490458)
+
 ## 👋 Bienvenidos al mundo de la Tecnología
 
 Este texto tiene como objetivo acompañar y potenciar el aprendizaje de los estudiantes de II° medio en el curso de Tecnología. Como tu profesor, he diseñado este material pensando específicamente en ustedes: jóvenes de 15-16 años que están dando sus primeros pasos en el fascinante mundo de la programación y la inteligencia artificial.
@@ -101,6 +105,14 @@ Al completar este curso, serás capaz de:
 ## 📝 Nota para el Estudiante
 
 Este no es solo un curso de tecnología, es una invitación a ver el mundo de manera diferente. Aquí aprenderás que la programación no es solo para "nerds", que la IA no es magia, y que los datos pueden contar historias fascinantes sobre nuestro pasado.
+
+## 📝 Citación 
+
+<div align="justify">Citar este trabajo como:</div>
+
+ - <div align="justify">Formato APA: Rojas Monsalves, C. (2026, febrero 5). Programando la Historia: Tecnología para II° Medio. Zenodo. https://doi.org/10.5281/zenodo.18490458</div>
+ - <div align="justify">Formato IEEE: [1]C. Rojas Monsalves, «Programando la Historia: Tecnología para II° Medio», feb. 05, 2026. doi: 10.5281/zenodo.18490458.</div>
+  - <div align="justify">Formato Chicago: Rojas Monsalves, Claudio. «Programando la historia: tecnología para II° medio». 5 de febrero de 2026. https://doi.org/10.5281/zenodo.18490458.</div>
 
 ```{admonition} Recuerda
 :class: tip
