@@ -2,33 +2,21 @@
 title: Programando la Historia
 author: Claudio Rojas Monsalves
 logo: Original.png
-
-# Force re-execution of notebooks on each build.
 execute:
   execute_notebooks: 'off'
-
-# Define the name of the latex output file for PDF builds
 latex:
   latex_documents:
     targetname: book.tex
-
-# Add a bibtex file so that we can create citations
 bibtex_bibfiles:
   - references.bib
-  
 sphinx:
   config:
     bibtex_reference_style: author_year
-
-# Information about where the book exists on the web
+    copyright: "2025 Claudio Rojas Monsalves"
 repository:
   url: https://github.com/ClaudioRojasMon/apuntes_2025
   path_to_book: .
   branch: main
-
-# Add GitHub buttons to your book
 html:
   use_issues_button: true
   use_repository_button: true
-  extra_footer: |
-    <p>© 2026 Claudio Rojas Monsalves. Todos los derechos reservados.</p> 
