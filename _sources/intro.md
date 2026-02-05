@@ -2,7 +2,9 @@
 
 > *"La tecnología es mejor cuando acerca a las personas"* - Matt Mullenweg
 
-https://doi.org/10.5281/zenodo.18490458
+# Programando la Historia
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18490458.svg)](https://doi.org/10.5281/zenodo.18490458)
 
 ## 👋 Bienvenidos al mundo de la Tecnología
 
