@@ -33,3 +33,8 @@ parts:
       - file: Capitulo_21_Funciones_Parametros
       - file: Capitulo_22_Introduccion_Pandas
       - file: Capitulo_23_Pandas_Avanzado
+      - file: Capitulo_24_Tokenizacion_Stopwords
+      - file: Capitulo_25_Analisis_PDF
+   - caption: Python
+     numbered: true
+      - file: BibliografiaVF

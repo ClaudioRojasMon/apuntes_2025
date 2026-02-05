@@ -30,3 +30,5 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+  extra_footer: |
+    <p>© 2026 Claudio Rojas Monsalves. Todos los derechos reservados.</p> 
