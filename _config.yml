@@ -20,7 +20,7 @@ repository:
 html:
   use_issues_button: false
   use_repository_button: false
-  use_download_button: true
+  use_download_button: false
   google_analytics_id: G-R2YCC6S642
 ```
 
