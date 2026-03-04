@@ -13,6 +13,7 @@ sphinx:
   config:
     bibtex_reference_style: author_year
     copyright: "2025 Claudio Rojas Monsalves"
+    googleanalytics_id: G-R2YCC6S642
 repository:
   url: https://github.com/ClaudioRojasMon/apuntes_2025
   path_to_book: .
@@ -21,6 +22,5 @@ html:
   use_issues_button: false
   use_repository_button: false
   use_download_button: false
-  google_analytics_id: G-R2YCC6S642
 ```
 
