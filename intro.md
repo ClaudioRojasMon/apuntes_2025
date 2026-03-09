@@ -4,6 +4,19 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18490458.svg)](https://doi.org/10.5281/zenodo.18490458)
 
+---
+
+## 🏆 Reconocimiento Internacional
+
+<div align="center">
+<strong>Este libro ha sido seleccionado y destacado en la 
+<a href="https://executablebooks.org/en/latest/gallery/" target="_blank">Galería Oficial de Executable Books</a></strong>
+<br><br>
+<em>Destacado como ejemplo de buena intersección entre tecnología e historia para estudiantes de secundaria, en español</em>
+</div>
+
+---
+
 ## 👋 Bienvenidos al mundo de la Tecnología
 
 Este texto tiene como objetivo acompañar y potenciar el aprendizaje de los estudiantes de II° medio en el curso de Tecnología. Como tu profesor, he diseñado este material pensando específicamente en ustedes: jóvenes de 15-16 años que están dando sus primeros pasos en el fascinante mundo de la programación y la inteligencia artificial.
